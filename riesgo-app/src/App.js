@@ -1,7 +1,14 @@
+import Sidebar from './components/Sidebar'
+import Map from './components/Map'
+import React from 'react';
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+        <React.StrictMode>
+            <Sidebar />
+            <Map />
+        </React.StrictMode>
     </div>
   );
 }
