@@ -11,13 +11,16 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
+import React from "react";
+import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
+
 const Sidebar = () => {
     return (
         <div>
         <Card sx={{ maxWidth: 340, position: "absolute", margin: 2 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Currently Viewing
+                <LogoSvg />
                 </Typography>
                 <Typography variant="h5" component="div">
                 Marikina
@@ -47,6 +50,11 @@ const Sidebar = () => {
                 </BottomNavigation>
             </Paper>
         </Card>
+        {/* <Paper sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} elevation={3}>
+            <BottomNavigation sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <img src={logo} alt="Logo" className="riesgo-logo" />
+            </BottomNavigation>
+        </Paper> */}
         </div>
     )
 }
