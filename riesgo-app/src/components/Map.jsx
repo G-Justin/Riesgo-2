@@ -11,6 +11,8 @@ export default class Map extends Component {
             lat: 14.577,
             lng: 121,
             zoom: 11.16,
+            pitch: 60,
+            bearing: 0.13,
         };
     }
 
