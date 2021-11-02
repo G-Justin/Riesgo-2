@@ -30,7 +30,11 @@ export default class Map extends Component {
           zoom,
           minZoom: 11,
           maxZoom: 15,
+          bearing: 0.13
         });
+
+        this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
     }
 
     render() {
