@@ -7,9 +7,15 @@ import { CardContent } from "@mui/material"
 import { Paper } from "@mui/material"
 import { Typography } from "@mui/material"
 
-import RestoreIcon from '@mui/icons-material/Restore';
+//Icons 
+import WaterIcon from '@mui/icons-material/Water';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import FilterHdrIcon from '@mui/icons-material/FilterHdr';
+import HouseSidingIcon from '@mui/icons-material/HouseSiding';
+import PeopleIcon from '@mui/icons-material/People';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import BuildIcon from '@mui/icons-material/Build';
 
 import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
@@ -44,17 +50,23 @@ const Sidebar = () => {
                     //     setValue(newValue);
                     // }}
                     >
-                    <BottomNavigationAction label="Flood" icon={<RestoreIcon />} />
+                    <BottomNavigationAction label="Flood Map" icon={<WaterIcon />} />
                     <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction label="Hazard Level" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction label="Hazard Level" icon={<WarningAmberIcon />} />
+                </BottomNavigation>
+                <BottomNavigation
+                    showLabels
+                    >
+                    <BottomNavigationAction label="Land Elevation" icon={<FilterHdrIcon />} />
+                    <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
+                    <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
+                </BottomNavigation>
+                <BottomNavigation showLabels>
+                    <BottomNavigationAction label="Adjust Weights" icon={<EqualizerIcon />} />
+                    <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
                 </BottomNavigation>
             </Paper>
         </Card>
-        {/* <Paper sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} elevation={3}>
-            <BottomNavigation sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <img src={logo} alt="Logo" className="riesgo-logo" />
-            </BottomNavigation>
-        </Paper> */}
         </div>
     )
 }

@@ -15,3 +15,12 @@ code {
 .riesgo-logo {
   max-height: 100px;
 }
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  /*border: 1px solid black;*/
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
