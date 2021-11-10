@@ -7,8 +7,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
+    //Initialize state of entire App
     this.state = {
-      layer: 'marikina'
+      cityname: 'marikina',
+      layer: 'marikina-data'
     };
 
     this.updateVis = this.updateVis.bind(this);

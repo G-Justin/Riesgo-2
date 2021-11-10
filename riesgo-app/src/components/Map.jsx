@@ -52,24 +52,24 @@ export default class Map extends Component {
                 '#300061',
               ];
 
-            // const legend = document.getElementById('legend');
+            const legend = document.getElementById('legend');
 
-            // layers.forEach((layer, i) => {
-            //     const color = colors[i];
-            //     const item = document.createElement('div');
-            //     const key = document.createElement('span');
-            //     key.className = 'legend-key';
-            //     key.style.backgroundColor = color;
+            layers.forEach((layer, i) => {
+                const color = colors[i];
+                const item = document.createElement('div');
+                const key = document.createElement('span');
+                key.className = 'legend-key';
+                key.style.backgroundColor = color;
               
-            //     const value = document.createElement('span');
-            //     value.innerHTML = `${layer}`;
-            //     item.appendChild(key);
-            //     item.appendChild(value);
-            //     legend.appendChild(item);
-            // });
+                const value = document.createElement('span');
+                value.innerHTML = `${layer}`;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+            });
 
-            //Marikina Dataset
-            this.map.addSource('landelevation', {
+            //Marikina Dataset - Flooding
+            this.map.addSource('marikina-data', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckvqcdvn412hf28qnodby4baw-29fzo',
             });
@@ -77,7 +77,7 @@ export default class Map extends Component {
             this.map.addLayer({
                 id: 'landelevation3d',
                 type: 'fill-extrusion',
-                source: 'landelevation',
+                source: 'marikina-data',
                 'source-layer': 'marikina_data_test',
                 paint: {
                 'fill-extrusion-color': {
@@ -97,6 +97,12 @@ export default class Map extends Component {
                 },
                 },
             });
+             //can load and replace these config as json?
+
+            //Marikina Dataset - Flooding
+
+
+            //https://docs.mapbox.com/mapbox-gl-js/example/color-switcher/
         });
     }
 

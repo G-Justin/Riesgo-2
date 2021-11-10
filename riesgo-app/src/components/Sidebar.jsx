@@ -57,7 +57,14 @@ const Sidebar = () => {
                 <BottomNavigation
                     showLabels
                     >
-                    <BottomNavigationAction label="Land Elevation" icon={<FilterHdrIcon />} />
+                    <BottomNavigationAction 
+                        label="Land Elevation" 
+                        icon={<FilterHdrIcon />} 
+
+                        onClick={() => {
+                            alert('clicked');
+                        }}
+                    />
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
                     <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
                 </BottomNavigation>
