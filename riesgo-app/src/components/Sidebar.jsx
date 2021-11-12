@@ -17,11 +17,26 @@ import PeopleIcon from '@mui/icons-material/People';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import BuildIcon from '@mui/icons-material/Build';
 
+//Select
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+
+import Select from '@mui/material/Select';
+
 import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
 const Sidebar = (props) => {
+    const [city, setCity] = React.useState('');
+
+    const handleChange = (event) => {
+        setCity(event.target.value);
+        props.updateCity(event.target.value);
+    };
+
     const [value, setValue] = React.useState(0);
+
     return (
         <div>
         <Card sx={{ maxWidth: 340, position: "absolute", margin: 2 }}>
@@ -29,8 +44,23 @@ const Sidebar = (props) => {
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                 <LogoSvg />
                 </Typography>
+                <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
+                    <InputLabel id="demo-simple-select-standard-label">City Select</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={city}
+                    onChange={handleChange}
+                    label="City Select"
+                    type="text"
+                    >
+                    <MenuItem value={'c_manila'}>Manila</MenuItem>
+                    <MenuItem value={'c_marikina'}>Marikina</MenuItem>
+                    <MenuItem value={'c_pasig'}>Pasig</MenuItem>
+                    </Select>
+                </FormControl>
                 <Typography variant="h5" component="div">
-                Marikina
+                <b>{city}</b>
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 City

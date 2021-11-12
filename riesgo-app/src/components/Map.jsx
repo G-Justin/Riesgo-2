@@ -182,7 +182,8 @@ export default class Map extends Component {
 
     componentWillUpdate(nextProps) {
         const {
-            layer
+            layer,
+            city
         } = this.props;
 
         //If layer change detected
@@ -205,6 +206,11 @@ export default class Map extends Component {
             this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
         }
 
+        //If city change detected
+        if(nextProps.city !== city) {
+            console.log("Was " + city);
+            console.log("Now " + nextProps.city);
+        }
     }
 
     render() {
