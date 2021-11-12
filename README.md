@@ -2,5 +2,7 @@
 ## Setup
  1. Navigate to folder.
  2. Run `npm install` (*Note that you will need to run this each time a new npm module is added.*)
- 3. Run `node index`
- 4. Go to `localhost:3000` in browser or  https://agile-bayou-99564.herokuapp.com/.
+ 3. Run `npm start` to begin React application
+
+
+RIESGO is a decision support tool that recommends the building configurations and locations of potentially safer evacuation centers.
