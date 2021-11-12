@@ -39,34 +39,36 @@ export default class Map extends Component {
 
         this.map.on('style.load', () => {
             //Layers Visualization
-            const layers = [
-                'No Risk',
-                'Low Risk',
-                'Medium Risk',
-                'High Risk',
-              ];
-              const colors = [
-                '#fcfbab',
-                '#f6684c',
-                '#9d1e69',
-                '#300061',
-              ];
+            // const layers = [
+            //     'No Risk',
+            //     'Low Risk',
+            //     'Medium Risk',
+            //     'High Risk',
+            //   ];
+            //   const colors = [
+            //     '#fcfbab',
+            //     '#f6684c',
+            //     '#9d1e69',
+            //     '#300061',
+            //   ];
 
-            const legend = document.getElementById('legend');
+            // const legend = document.getElementById('legend');
 
-            layers.forEach((layer, i) => {
-                const color = colors[i];
-                const item = document.createElement('div');
-                const key = document.createElement('span');
-                key.className = 'legend-key';
-                key.style.backgroundColor = color;
+            // layers.forEach((layer, i) => {
+            //     const color = colors[i];
+            //     const item = document.createElement('div');
+            //     const key = document.createElement('span');
+            //     key.className = 'legend-key';
+            //     key.style.backgroundColor = color;
               
-                const value = document.createElement('span');
-                value.innerHTML = `${layer}`;
-                item.appendChild(key);
-                item.appendChild(value);
-                legend.appendChild(item);
-            });
+            //     const value = document.createElement('span');
+            //     value.innerHTML = `${layer}`;
+            //     item.appendChild(key);
+            //     item.appendChild(value);
+            //     legend.appendChild(item);
+            // });
+
+            //MARIKINA
 
             //Marikina Dataset - Flooding
             this.map.addSource('marikina-data', {
@@ -75,10 +77,13 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'landelevation3d',
+                id: 'marikina',
                 type: 'fill-extrusion',
                 source: 'marikina-data',
                 'source-layer': 'marikina_data_test',
+                layout: {
+                    visibility: 'none'
+                },
                 paint: {
                 'fill-extrusion-color': {
                     property: 'flood_5yr',
@@ -97,38 +102,105 @@ export default class Map extends Component {
                 },
                 },
             });
-             //can load and replace these config as json?
 
-            //Marikina Dataset - Flooding
+            //PASIG
 
+            //Pasig Dataset - Land Elevation
+            this.map.addSource('pasig-elevation', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvukhftv2sy420l4byfi5pem-9hq3c',
+            });
 
-            //https://docs.mapbox.com/mapbox-gl-js/example/color-switcher/
+            //Pasig Dataset - Flood
+            this.map.addSource('pasig-flood-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvukj51q1rtv28p63zxroh1q-841yj',
+            });
+
+            //Pasig Layer Inits
+            this.map.addLayer({
+                id: 'l_pasig_elev',
+                type: 'fill-extrusion',
+                source: 'pasig-elevation',
+                'source-layer': 'pasig_elevation',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'elevation',
+                    stops: [
+                        [0, '#d4fde4'],
+                        [0.125, '#aae6bc'],
+                        [0.250, '#80ce95'],
+                        [0.375, '#69c180'],
+                        [0.5, '#50b469'],
+                        [0.625, '#35a54f'],
+                        [0.750, '#279d41'],
+                        [0.875, '#1c9637'],
+                        [1, '#0a8c26'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                'fill-extrusion-opacity': 0.9,
+                'fill-extrusion-opacity-transition': {
+                    duration: 800,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_flood',
+                type: 'fill-extrusion',
+                source: 'pasig-flood-5yr',
+                'source-layer': 'pasig_flood_5yr',
+                layout: {
+                    visibility: 'visible',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'flood_5yr',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
+                'fill-extrusion-opacity': 0.75,
+                'fill-extrusion-opacity-transition': {
+                    duration: 800,
+                    delay: 0,
+                },
+                },
+            });
         });
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillUpdate(nextProps) {
         const {
             layer
         } = this.props;
 
-        if(this.map.isStyleLoaded()) {
-            if(nextProps.layer) {
-                if(nextProps.layer !== layer) {
-                    const current = this.map.getLayer(layer);
-                    const newlayer = this.map.getLayer(nextProps.layer);
+        //If layer change detected
+        if(nextProps.layer !== layer) {
+            this.map.setLayoutProperty(
+                nextProps.layer,
+                'visibility',
+                'visible'
+            );
+            console.log("Enabled " + nextProps.layer);
 
-                    if(current !== undefined) {
-                        const layerType = current.type;
-                        this.map.setPaintProperty(layer, `${layerType}-opacity`, 0);
-                    }
-
-                    if(current !== undefined) {
-                        const layerType = newlayer.type;
-                        this.map.setPaintProperty(nextProps.layer, `${layerType}-opacity`, 0.7);
-                    }
-                }
-            }
+            this.map.setLayoutProperty(
+                layer,
+                'visibility',
+                'none'
+            );
+            console.log("Disabled " + nextProps.layer);
         }
+
     }
 
     render() {

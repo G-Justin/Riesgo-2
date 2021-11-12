@@ -20,7 +20,7 @@ import BuildIcon from '@mui/icons-material/Build';
 import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     return (
         <div>
         <Card sx={{ maxWidth: 340, position: "absolute", margin: 2 }}>
@@ -50,7 +50,15 @@ const Sidebar = () => {
                     //     setValue(newValue);
                     // }}
                     >
-                    <BottomNavigationAction label="Flood Map" icon={<WaterIcon />} />
+                    <BottomNavigationAction 
+                        label="Flood Map"
+                        icon={<WaterIcon />} 
+
+                        onClick={() => {
+                            const toActivate = 'l_pasig_flood';
+                            props.updateLayer(toActivate);
+                        }}
+                    />
                     <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
                     <BottomNavigationAction label="Hazard Level" icon={<WarningAmberIcon />} />
                 </BottomNavigation>
@@ -62,7 +70,8 @@ const Sidebar = () => {
                         icon={<FilterHdrIcon />} 
 
                         onClick={() => {
-                            alert('clicked');
+                            const toActivate = 'l_pasig_elev';
+                            props.updateLayer(toActivate);
                         }}
                     />
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />

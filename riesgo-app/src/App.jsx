@@ -9,18 +9,17 @@ export default class App extends React.Component {
 
     //Initialize state of entire App
     this.state = {
-      cityname: 'marikina',
-      layer: 'marikina-data'
+      //city: 'marikina',
+      layer: 'l_pasig_flood'
     };
 
-    this.updateVis = this.updateVis.bind(this);
+    this.updateLayer = this.updateLayer.bind(this);
   }
 
-  updateVis = () => {
+  updateLayer = (layerName) => {
     let {layer} = this.state;
 
-    //testing purposes
-    layer = 'marikina';
+    layer = layerName;
 
     this.setState({
       layer
@@ -29,12 +28,14 @@ export default class App extends React.Component {
 
   render() {
     const {
-      layer
+      layer, //city
     } = this.state;
     return (
       <div className="App">
           <React.StrictMode>
-              <Sidebar />
+              <Sidebar
+                updateLayer = {this.updateLayer}
+              />
               <Info />
               <Map 
                 layer={layer}
