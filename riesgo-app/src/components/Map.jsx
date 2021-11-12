@@ -142,9 +142,9 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
-                'fill-extrusion-opacity': 0.9,
+                'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
-                    duration: 800,
+                    duration: 400,
                     delay: 0,
                 },
                 },
@@ -170,8 +170,9 @@ export default class Map extends Component {
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
                 'fill-extrusion-opacity': 0.75,
+
                 'fill-extrusion-opacity-transition': {
-                    duration: 800,
+                    duration: 400,
                     delay: 0,
                 },
                 },
@@ -187,18 +188,21 @@ export default class Map extends Component {
         //If layer change detected
         if(nextProps.layer !== layer) {
             this.map.setLayoutProperty(
+                layer,
+                'visibility',
+                'none'
+            );
+            console.log("Disabled " + layer);
+
+            this.map.setLayoutProperty(
                 nextProps.layer,
                 'visibility',
                 'visible'
             );
             console.log("Enabled " + nextProps.layer);
-
-            this.map.setLayoutProperty(
-                layer,
-                'visibility',
-                'none'
-            );
-            console.log("Disabled " + nextProps.layer);
+            
+            this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
+            this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
         }
 
     }

@@ -21,6 +21,7 @@ import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
 const Sidebar = (props) => {
+    const [value, setValue] = React.useState(0);
     return (
         <div>
         <Card sx={{ maxWidth: 340, position: "absolute", margin: 2 }}>
@@ -42,13 +43,13 @@ const Sidebar = (props) => {
                 <Button size="small">View Details</Button>
             </CardActions>
 
-            <Paper sx={{ position: 'relative', bottom: 0, left: 0, right: 0 }} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <BottomNavigation
                     showLabels
-                    // value={value}
-                    // onChange={(event, newValue) => {
-                    //     setValue(newValue);
-                    // }}
+                    value={value}
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
                     >
                     <BottomNavigationAction 
                         label="Flood Map"
@@ -61,10 +62,6 @@ const Sidebar = (props) => {
                     />
                     <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
                     <BottomNavigationAction label="Hazard Level" icon={<WarningAmberIcon />} />
-                </BottomNavigation>
-                <BottomNavigation
-                    showLabels
-                    >
                     <BottomNavigationAction 
                         label="Land Elevation" 
                         icon={<FilterHdrIcon />} 
@@ -76,8 +73,6 @@ const Sidebar = (props) => {
                     />
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
                     <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
-                </BottomNavigation>
-                <BottomNavigation showLabels>
                     <BottomNavigationAction label="Adjust Weights" icon={<EqualizerIcon />} />
                     <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
                 </BottomNavigation>
