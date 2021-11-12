@@ -103,8 +103,20 @@ export default class Map extends Component {
                 },
             });
 
-            //PASIG
+            //MARIKINA
+            //Marikina Dataset - Land Elevation
+            this.map.addSource('marikina-elevation', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvwn7fnz0vr920mtehdcswos-5mog7',
+            });
 
+            //Pasig Dataset - Flood
+            this.map.addSource('marikina-flood-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvwn9xfe08rj27mh6imu5voh-6d3nm',
+            });
+
+            //PASIG
             //Pasig Dataset - Land Elevation
             this.map.addSource('pasig-elevation', {
                 type: 'vector',
@@ -115,6 +127,67 @@ export default class Map extends Component {
             this.map.addSource('pasig-flood-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckvukj51q1rtv28p63zxroh1q-841yj',
+            });
+
+            //Marikina Layer Inits
+            this.map.addLayer({
+                id: 'l_marikina_elev',
+                type: 'fill-extrusion',
+                source: 'marikina-elevation',
+                'source-layer': 'marikina_elevation',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'elevation',
+                    stops: [
+                        [0, '#d4fde4'],
+                        [0.125, '#aae6bc'],
+                        [0.250, '#80ce95'],
+                        [0.375, '#69c180'],
+                        [0.5, '#50b469'],
+                        [0.625, '#35a54f'],
+                        [0.750, '#279d41'],
+                        [0.875, '#1c9637'],
+                        [1, '#0a8c26'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_flood',
+                type: 'fill-extrusion',
+                source: 'marikina-flood-5yr',
+                'source-layer': 'marikina_flood_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'flood_5yr',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
             });
 
             //Pasig Layer Inits
@@ -187,7 +260,7 @@ export default class Map extends Component {
         } = this.props;
 
         //If layer change detected
-        if(nextProps.layer !== layer) {
+        if(nextProps.layer !== layer || nextProps.city !== city) {
             this.map.setLayoutProperty(
                 layer,
                 'visibility',
@@ -204,12 +277,6 @@ export default class Map extends Component {
             
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
             this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
-        }
-
-        //If city change detected
-        if(nextProps.city !== city) {
-            console.log("Was " + city);
-            console.log("Now " + nextProps.city);
         }
     }
 

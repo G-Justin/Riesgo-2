@@ -86,7 +86,15 @@ const Sidebar = (props) => {
                         icon={<WaterIcon />} 
 
                         onClick={() => {
-                            const toActivate = 'l_pasig_flood';
+                            var toActivate = '';
+                            if(city === "c_pasig") {
+                                toActivate = 'l_pasig_flood';
+                            } else if (city === "c_manila") {
+                                toActivate = 'l_manila_flood';
+                            } else if (city === "c_marikina") {
+                                toActivate = 'l_marikina_flood';
+                            }
+                            console.log("Im on " + city)
                             props.updateLayer(toActivate);
                         }}
                     />
@@ -97,7 +105,14 @@ const Sidebar = (props) => {
                         icon={<FilterHdrIcon />} 
 
                         onClick={() => {
-                            const toActivate = 'l_pasig_elev';
+                            var toActivate = '';
+                            if(city === "c_pasig") {
+                                toActivate = 'l_pasig_elev';
+                            } else if (city === "c_manila") {
+                                toActivate = 'l_manila_elev';
+                            } else if (city === "c_marikina") {
+                                toActivate = 'l_marikina_elev';
+                            }
                             props.updateLayer(toActivate);
                         }}
                     />
