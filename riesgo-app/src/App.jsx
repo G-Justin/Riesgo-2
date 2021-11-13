@@ -9,8 +9,8 @@ export default class App extends React.Component {
 
     //Initialize state of entire App
     this.state = {
-      city: 'l_pasig',
-      layer: 'l_pasig_flood',
+      city: '',
+      layer: '',
       layer_type: 'flood'
     };
 

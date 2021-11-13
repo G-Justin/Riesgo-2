@@ -69,51 +69,22 @@ export default class Map extends Component {
             // });
 
             //MARIKINA
-
-            //Marikina Dataset - Flooding
-            this.map.addSource('marikina-data', {
-                type: 'vector',
-                url: 'mapbox://jdarvin.ckvqcdvn412hf28qnodby4baw-29fzo',
-            });
-
-            this.map.addLayer({
-                id: 'marikina',
-                type: 'fill-extrusion',
-                source: 'marikina-data',
-                'source-layer': 'marikina_data_test',
-                layout: {
-                    visibility: 'none'
-                },
-                paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_5yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 500, ['number', ['get', 'flood_5yr'], 1]],
-                'fill-extrusion-opacity': 0.75,
-                'fill-extrusion-opacity-transition': {
-                    duration: 800,
-                    delay: 0,
-                },
-                },
-            });
-
-            //MARIKINA
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckvwn7fnz0vr920mtehdcswos-5mog7',
             });
 
-            //Pasig Dataset - Flood
+            //Marikina Dataset - Flood
             this.map.addSource('marikina-flood-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckvwn9xfe08rj27mh6imu5voh-6d3nm',
+            });
+
+            //Marikina Dataset - Accesibility
+            this.map.addSource('marikina-accessibility', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvx9noo000cm27msl6bx6kmf-3zf7c',
             });
 
             //PASIG
@@ -127,6 +98,12 @@ export default class Map extends Component {
             this.map.addSource('pasig-flood-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckvukj51q1rtv28p63zxroh1q-841yj',
+            });
+
+            //Pasig Dataset - Accesibility
+            this.map.addSource('pasig-accessibility', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckvx9pskx3fui28l4rq0jpdpl-09kki',
             });
 
             //Marikina Layer Inits
@@ -154,6 +131,38 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_accessibility',
+                type: 'fill-extrusion',
+                source: 'marikina-accessibility',
+                'source-layer': 'marikina_accessibility',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -224,12 +233,44 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
+                id: 'l_pasig_accessibility',
+                type: 'fill-extrusion',
+                source: 'pasig-accessibility',
+                'source-layer': 'pasig_accessibility',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
                 id: 'l_pasig_flood',
                 type: 'fill-extrusion',
                 source: 'pasig-flood-5yr',
                 'source-layer': 'pasig_flood_5yr',
                 layout: {
-                    visibility: 'visible',
+                    visibility: 'none',
                 },
                 paint: {
                 'fill-extrusion-color': {
@@ -242,7 +283,7 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
-                'fill-extrusion-opacity': 0.75,
+                'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
                     duration: 400,

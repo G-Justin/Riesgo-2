@@ -10,7 +10,7 @@ import { Typography } from "@mui/material"
 //Icons 
 import WaterIcon from '@mui/icons-material/Water';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import HouseSidingIcon from '@mui/icons-material/HouseSiding';
 import PeopleIcon from '@mui/icons-material/People';
@@ -128,7 +128,16 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction label="Hazard Level" icon={<WarningAmberIcon />} />
+                    <BottomNavigationAction 
+                        label="Accessibility" 
+                        icon={<LocalHospitalIcon />} 
+
+                        onClick={() => {
+                            const toActivate = `${city}_accessibility`;
+                            props.updateLayerType('accessibility');
+                            props.updateLayer(toActivate);
+                        }}
+                    />
                     <BottomNavigationAction 
                         label="Land Elevation" 
                         icon={<FilterHdrIcon />} 
