@@ -131,7 +131,7 @@ export default class Map extends Component {
 
             //Marikina Layer Inits
             this.map.addLayer({
-                id: 'l_marikina_elev',
+                id: 'l_marikina_elevation',
                 type: 'fill-extrusion',
                 source: 'marikina-elevation',
                 'source-layer': 'marikina_elevation',
@@ -192,7 +192,7 @@ export default class Map extends Component {
 
             //Pasig Layer Inits
             this.map.addLayer({
-                id: 'l_pasig_elev',
+                id: 'l_pasig_elevation',
                 type: 'fill-extrusion',
                 source: 'pasig-elevation',
                 'source-layer': 'pasig_elevation',
@@ -256,11 +256,31 @@ export default class Map extends Component {
     componentWillUpdate(nextProps) {
         const {
             layer,
-            city
+            city,
+            layer_type
         } = this.props;
 
         //If layer change detected
-        if(nextProps.layer !== layer || nextProps.city !== city) {
+        if(nextProps.layer !== layer) {
+            this.map.setLayoutProperty(
+                layer,
+                'visibility',
+                'none'
+            );
+            //console.log("Disabled " + layer);
+
+            this.map.setLayoutProperty(
+                nextProps.layer,
+                'visibility',
+                'visible'
+            );
+            //console.log("Enabled " + nextProps.layer);
+            
+            this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
+            this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
+        }
+
+        if(nextProps.city !== city) {
             this.map.setLayoutProperty(
                 layer,
                 'visibility',
@@ -269,14 +289,16 @@ export default class Map extends Component {
             console.log("Disabled " + layer);
 
             this.map.setLayoutProperty(
-                nextProps.layer,
+                `${nextProps.city}_${layer_type}`,
                 'visibility',
                 'visible'
             );
-            console.log("Enabled " + nextProps.layer);
+            console.log(`Enabled ${nextProps.city}_${layer_type}`);
             
+            this.props.updateLayer(`${nextProps.city}_${layer_type}`);
+
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
-            this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
+            this.map.setPaintProperty(`${nextProps.city}_${layer_type}`, 'fill-extrusion-opacity', 0.75);
         }
     }
 

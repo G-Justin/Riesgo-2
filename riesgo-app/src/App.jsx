@@ -9,8 +9,9 @@ export default class App extends React.Component {
 
     //Initialize state of entire App
     this.state = {
-      city: 'c_pasig',
-      layer: 'l_pasig_flood'
+      city: 'l_pasig',
+      layer: 'l_pasig_flood',
+      layer_type: 'flood'
     };
 
     this.updateLayer = this.updateLayer.bind(this);
@@ -35,10 +36,20 @@ export default class App extends React.Component {
     });
   }
 
+  updateLayerType = (layerType) => {
+    let {layer_type} = this.state;
+    layer_type = layerType;
+
+    this.setState({
+      layer_type
+    });
+  }
+
   render() {
     const {
       layer,
-      city
+      city,
+      layer_type
     } = this.state;
     return (
       <div className="App">
@@ -46,11 +57,14 @@ export default class App extends React.Component {
               <Sidebar
                 updateLayer = {this.updateLayer}
                 updateCity = {this.updateCity}
+                updateLayerType = {this.updateLayerType}
               />
               <Info />
               <Map 
                 layer={layer}
                 city={city}
+                layer_type = {layer_type}
+                updateLayer = {this.updateLayer}
               />
           </React.StrictMode>
       </div>

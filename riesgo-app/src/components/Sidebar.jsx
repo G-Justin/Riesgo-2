@@ -29,17 +29,44 @@ import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('');
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event) => {
         setCity(event.target.value);
         props.updateCity(event.target.value);
     };
 
-    const [value, setValue] = React.useState(0);
+    function CityName(props) {
+        const cityName = props.cityName;
+
+        if(cityName === "l_manila") {
+            return "Manila" 
+        } else if(cityName === "l_pasig") {
+            return "Pasig"
+        } else if(cityName === "l_marikina") {
+            return "Marikina"
+        } else {
+            return "Select a City"
+        }
+    }
+
+    function CityDetails(props) {
+        const cityName = props.cityName;
+
+        if(cityName === "l_manila") {
+            return "Manila, the capital of the Philippines, is a densely populated bayside city on the island of Luzon, which mixes Spanish colonial architecture with modern skyscrapers. Intramuros, a walled city in colonial times, is the heart of Old Manila. It’s home to the baroque 16th-century San Agustin Church as well as Fort Santiago, a storied citadel and former military prison." 
+        } else if(cityName === "l_pasig") {
+            return "Pasig City is a large district with a mix of offices and upscale housing, popular for mall complexes in and around the Ortigas Center area. Hip eateries serving modern Filipino fare cluster in Kapitolyo village, and parks like Greenfield District host weekend markets with local food and crafts."
+        } else if(cityName === "l_marikina") {
+            return "Marikina, officially the City of Marikina, is a 1st class highly urbanized city in the National Capital Region of the Philippines. According to the 2020 census, it has a population of 456,059 people."
+        } else {
+            return "None Selected"
+        }
+    }
 
     return (
         <div>
-        <Card sx={{ maxWidth: 340, position: "absolute", margin: 2 }}>
+        <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                 <LogoSvg />
@@ -54,19 +81,21 @@ const Sidebar = (props) => {
                     label="City Select"
                     type="text"
                     >
-                    <MenuItem value={'c_manila'}>Manila</MenuItem>
-                    <MenuItem value={'c_marikina'}>Marikina</MenuItem>
-                    <MenuItem value={'c_pasig'}>Pasig</MenuItem>
+                    <MenuItem value={'l_manila'}>Manila</MenuItem>
+                    <MenuItem value={'l_marikina'}>Marikina</MenuItem>
+                    <MenuItem value={'l_pasig'}>Pasig</MenuItem>
                     </Select>
                 </FormControl>
                 <Typography variant="h5" component="div">
-                <b>{city}</b>
+                <b>
+                    <CityName  cityName={city} />
+                </b>
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                City
+                    City
                 </Typography>
                 <Typography variant="body2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                <CityDetails  cityName={city} />
                 </Typography>
             </CardContent>
             <CardActions>
@@ -87,14 +116,14 @@ const Sidebar = (props) => {
 
                         onClick={() => {
                             var toActivate = '';
-                            if(city === "c_pasig") {
+                            if(city === "l_pasig") {
                                 toActivate = 'l_pasig_flood';
-                            } else if (city === "c_manila") {
+                            } else if (city === "l_manila") {
                                 toActivate = 'l_manila_flood';
-                            } else if (city === "c_marikina") {
+                            } else if (city === "l_marikina") {
                                 toActivate = 'l_marikina_flood';
                             }
-                            console.log("Im on " + city)
+                            props.updateLayerType('flood');
                             props.updateLayer(toActivate);
                         }}
                     />
@@ -106,13 +135,14 @@ const Sidebar = (props) => {
 
                         onClick={() => {
                             var toActivate = '';
-                            if(city === "c_pasig") {
-                                toActivate = 'l_pasig_elev';
-                            } else if (city === "c_manila") {
-                                toActivate = 'l_manila_elev';
-                            } else if (city === "c_marikina") {
-                                toActivate = 'l_marikina_elev';
+                            if(city === "l_pasig") {
+                                toActivate = 'l_pasig_elevation';
+                            } else if (city === "l_manila") {
+                                toActivate = 'l_manila_elevation';
+                            } else if (city === "l_marikina") {
+                                toActivate = 'l_marikina_elevation';
                             }
+                            props.updateLayerType('elevation');
                             props.updateLayer(toActivate);
                         }}
                     />
