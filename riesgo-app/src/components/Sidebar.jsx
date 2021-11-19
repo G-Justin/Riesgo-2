@@ -17,6 +17,10 @@ import PeopleIcon from '@mui/icons-material/People';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import BuildIcon from '@mui/icons-material/Build';
 
+//Misc
+import Divider from '@mui/material/Divider';
+
+
 //Select
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -28,8 +32,9 @@ import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
 const Sidebar = (props) => {
-    const [city, setCity] = React.useState('');
+    const [city, setCity] = React.useState(0);
     const [value, setValue] = React.useState(0);
+    const [layer, setLayer] = React.useState(0);
 
     const handleChange = (event) => {
         setCity(event.target.value);
@@ -62,6 +67,34 @@ const Sidebar = (props) => {
         } else {
             return "None Selected"
         }
+    }
+
+    function LayerName(props) {
+        const layerName = props.layerName;
+
+        if(layerName === "Flood") {
+            return "Flood Map"
+        } else if (layerName === "Elevation") {
+            return "Land Elevation"
+        } else if (layerName === "Accessibility") {
+            return "Area Accessibility"
+        } else {
+            return "Welcome to RIESGO!"
+        }
+    }
+
+    function LayerDetails(props) {
+        const layerName = props.layerName;
+
+        if(layerName === "Flood") {
+            return "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
+        } else if (layerName === "Elevation") {
+            return "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids"
+        } else if (layerName === "Accessibility") {
+            return "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum"
+        }
+
+        return "Select a map to view details."
     }
 
     return (
@@ -115,25 +148,22 @@ const Sidebar = (props) => {
                         icon={<WaterIcon />} 
 
                         onClick={() => {
-                            var toActivate = '';
-                            if(city === "l_pasig") {
-                                toActivate = 'l_pasig_flood';
-                            } else if (city === "l_manila") {
-                                toActivate = 'l_manila_flood';
-                            } else if (city === "l_marikina") {
-                                toActivate = 'l_marikina_flood';
-                            }
+                            const toActivate = `${city}_flood`;
+
+                            setLayer('Flood');
                             props.updateLayerType('flood');
                             props.updateLayer(toActivate);
                         }}
                     />
                     <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
                     <BottomNavigationAction 
-                        label="Accessibility" 
+                        label="Area Accessibility" 
                         icon={<LocalHospitalIcon />} 
 
                         onClick={() => {
                             const toActivate = `${city}_accessibility`;
+
+                            setLayer('Accessibility');
                             props.updateLayerType('accessibility');
                             props.updateLayer(toActivate);
                         }}
@@ -143,14 +173,9 @@ const Sidebar = (props) => {
                         icon={<FilterHdrIcon />} 
 
                         onClick={() => {
-                            var toActivate = '';
-                            if(city === "l_pasig") {
-                                toActivate = 'l_pasig_elevation';
-                            } else if (city === "l_manila") {
-                                toActivate = 'l_manila_elevation';
-                            } else if (city === "l_marikina") {
-                                toActivate = 'l_marikina_elevation';
-                            }
+                            const toActivate = `${city}_elevation`;
+
+                            setLayer('Elevation');
                             props.updateLayerType('elevation');
                             props.updateLayer(toActivate);
                         }}
@@ -161,6 +186,20 @@ const Sidebar = (props) => {
                     <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
                 </BottomNavigation>
             </Paper>
+        </Card>
+
+        <Card sx={{ width: 340, position: "absolute", margin: 2, right: 40 }}>
+            <CardContent>
+                <Typography variant="h5" component="div">
+                    <LayerName layerName={layer} />
+                </Typography>
+                <Divider sx={{marginTop: 1, marginBottom: 1}}/>
+                <Typography variant="body2">
+                    <LayerDetails  layerName={layer} />
+                </Typography>
+                
+                
+            </CardContent>
         </Card>
         </div>
     )

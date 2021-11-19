@@ -59,7 +59,7 @@ export default class App extends React.Component {
                 updateCity = {this.updateCity}
                 updateLayerType = {this.updateLayerType}
               />
-              <Info />
+              
               <Map 
                 layer={layer}
                 city={city}
