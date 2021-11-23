@@ -16,6 +16,7 @@ import HouseSidingIcon from '@mui/icons-material/HouseSiding';
 import PeopleIcon from '@mui/icons-material/People';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import BuildIcon from '@mui/icons-material/Build';
+import WarningIcon from '@mui/icons-material/Warning';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -78,6 +79,8 @@ const Sidebar = (props) => {
             return "Land Elevation"
         } else if (layerName === "Accessibility") {
             return "Area Accessibility"
+        } else if (layerName === "Hazard") {
+            return "Hazard Levels"
         } else {
             return "Welcome to RIESGO!"
         }
@@ -92,9 +95,11 @@ const Sidebar = (props) => {
             return "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids"
         } else if (layerName === "Accessibility") {
             return "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum"
+        } else if (layerName === "Hazard") {
+            return "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words."
+        } else {
+            return "Select a map to view details."
         }
-
-        return "Select a map to view details."
     }
 
     return (
@@ -183,6 +188,18 @@ const Sidebar = (props) => {
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
                     <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
                     <BottomNavigationAction label="Adjust Weights" icon={<EqualizerIcon />} />
+                    <BottomNavigationAction 
+                        label="Hazard Levels" 
+                        icon={<WarningIcon />} 
+                        
+                        onClick={() => {
+                            const toActivate = `${city}_hazard`;
+
+                            setLayer('Hazard');
+                            props.updateLayerType('hazard');
+                            props.updateLayer(toActivate);
+                        }}
+                        />
                     <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
                 </BottomNavigation>
             </Paper>

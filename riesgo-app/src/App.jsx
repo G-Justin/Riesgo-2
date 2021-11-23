@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './components/Sidebar'
-import Info from './components/Info'
+//import Info from './components/Info'
 import Map from './components/Map'
 
 export default class App extends React.Component {
