@@ -1,7 +1,9 @@
 import React from 'react';
+import {Route, Routes} from 'react-router-dom';
 import Sidebar from './components/Sidebar'
 //import Info from './components/Info'
 import Map from './components/Map'
+import Welcome from './components/Welcome'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -53,7 +55,21 @@ export default class App extends React.Component {
     } = this.state;
     return (
       <div className="App">
-          <React.StrictMode>
+        <Routes>
+          <Route path="/" element={<Welcome/>}/>
+          <Route path="/map" element={<>
+                <Sidebar 
+                  updateLayer = {this.updateLayer}
+                  updateCity = {this.updateCity}
+                  updateLayerType = {this.updateLayerType}/>
+                <Map 
+                  layer={layer}
+                  city={city}
+                  layer_type = {layer_type}
+                  updateLayer = {this.updateLayer}/>
+                </>}/>
+        </Routes>
+          {/* <React.StrictMode>
               <Sidebar
                 updateLayer = {this.updateLayer}
                 updateCity = {this.updateCity}
@@ -66,7 +82,7 @@ export default class App extends React.Component {
                 layer_type = {layer_type}
                 updateLayer = {this.updateLayer}
               />
-          </React.StrictMode>
+          </React.StrictMode> */}
       </div>
     );
   }
