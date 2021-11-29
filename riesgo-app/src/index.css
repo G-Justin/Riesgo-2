@@ -16,11 +16,11 @@ code {
   max-height: 100px;
 }
 
-.legend-key {
+   
+  .legend span {
+  border-radius: 50%;
   display: inline-block;
-  border-radius: 20%;
-  /*border: 1px solid black;*/
-  width: 10px;
   height: 10px;
   margin-right: 5px;
+  width: 10px;
 }

@@ -37,37 +37,7 @@ export default class Map extends Component {
 
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-        //Layers Visualizations
-        // const flood_labels = [
-        //     'No Risk',
-        //     'Low Risk',
-        //     'Medium Risk',
-        //     'High Risk',
-        // ];
-
         this.map.on('style.load', () => {
-            //Layers Visualization
-            // const flood_colors = [
-            //     '#fcfbab',
-            //     '#f6684c',
-            //     '#9d1e69',
-            //     '#300061',
-            // ];
-
-            // const accessibility_labels = [
-            //     'Low Accessibility',
-            //     'Accessible',
-            //     'High Accessibility'
-            // ]
-
-            // const accessibility_colors = [
-            //     '#FFF0F3',
-            //     '#C9184A',
-            //     '#800F2F',
-            // ];
-
-            // const legend = document.getElementById('legend');
-
             //MARIKINA ==================================================================================
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
@@ -393,23 +363,6 @@ export default class Map extends Component {
             this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
 
             console.log(nextProps.layer_type)
-
-            // const labels = `this.${layer_type}_labels`;
-            // const colors = `this.${layer_type}_colors`;
-
-            // labels.forEach((label, i) => {
-            //     const color = colors[i];
-            //     const item = document.createElement('div');
-            //     const key = document.createElement('span');
-            //     key.className = 'legend-key';
-            //     key.style.backgroundColor = color;
-              
-            //     const value = document.createElement('span');
-            //     value.innerHTML = `${layer}`;
-            //     item.appendChild(key);
-            //     item.appendChild(value);
-            //     this.legend.appendChild(item);
-            // });
         }
         //Refresh layer if city changed
         if(nextProps.city !== city) {

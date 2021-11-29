@@ -1,3 +1,4 @@
+//Paper and Material UI
 import { BottomNavigation } from "@mui/material"
 import { BottomNavigationAction } from "@mui/material"
 import { Button } from "@mui/material"
@@ -21,14 +22,15 @@ import WarningIcon from '@mui/icons-material/Warning';
 //Misc
 import Divider from '@mui/material/Divider';
 
-
 //Select
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-
 import Select from '@mui/material/Select';
 
+//Adjust Weights
+import Slider from './Slider'
+import Fade from '@mui/material/Fade';
 import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 
@@ -36,6 +38,11 @@ const Sidebar = (props) => {
     const [city, setCity] = React.useState(0);
     const [value, setValue] = React.useState(0);
     const [layer, setLayer] = React.useState(0);
+
+    //Adjust Weights Ui
+    const [open, setOpen] = React.useState(false);
+    const handleOpen =  () => setOpen(true);
+    //const handleClose = () => setOpen(false);
 
     const handleChange = (event) => {
         setCity(event.target.value);
@@ -73,37 +80,49 @@ const Sidebar = (props) => {
     function LayerName(props) {
         const layerName = props.layerName;
 
-        if(layerName === "Flood") {
-            return "Flood Map"
-        } else if (layerName === "Elevation") {
-            return "Land Elevation"
-        } else if (layerName === "Accessibility") {
-            return "Area Accessibility"
-        } else if (layerName === "Hazard") {
-            return "Hazard Levels"
-        } else {
-            return "Welcome to RIESGO!"
+        switch(layerName) {
+            case "Flood":
+                return "Flood Map";
+            case "Elevation":
+                return "Land Elevation";
+            case "Accessibility":
+                return "Area Accessibility";
+            case "Hazard":
+                return "Hazard Levels";
+            default:
+                return "Welcome to RIESGO!"
         }
     }
 
     function LayerDetails(props) {
         const layerName = props.layerName;
 
-        if(layerName === "Flood") {
-            return "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
-        } else if (layerName === "Elevation") {
-            return "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids"
-        } else if (layerName === "Accessibility") {
-            return "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum"
-        } else if (layerName === "Hazard") {
-            return "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words."
-        } else {
-            return "Select a map to view details."
+        switch(layerName) {
+            case "Flood":
+                return "Flood details";
+            case "Elevation":
+                return "Elevation details";
+            case "Accessibility":
+                return "Accessibility details";
+            case "Hazard":
+                return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+            default:
+                return "Select a map to view details."
         }
     }
 
+    // function LegendRow() {
+
+    // }
+
+    // function LegendHandling(props) {
+    //     for(var i = 0; i < )
+    // }
+
     return (
         <div>
+        
+        {/* Left */}
         <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -129,18 +148,37 @@ const Sidebar = (props) => {
                     <CityName  cityName={city} />
                 </b>
                 </Typography>
+
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     City
                 </Typography>
+
                 <Typography variant="body2">
-                <CityDetails  cityName={city} />
+                    <CityDetails  cityName={city} />
                 </Typography>
             </CardContent>
+            
             <CardActions>
                 <Button size="small">View Details</Button>
             </CardActions>
+        </Card>
 
-            <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin:2, left: 350}}>
+            <CardContent>
+                <Typography>
+                    <b>Flood Risk Legend</b>
+                </Typography>
+                <Typography sx={{ fontSize: 14 }} color="text.primary" className="legend">
+                    <div><span style={{backgroundColor: '#ffd86e'}}></span>No Risk</div>
+                    <div><span style={{backgroundColor: '#f6684c'}}></span>Low Risk</div>
+                    <div><span style={{backgroundColor: '#9d1e69'}}></span>Medium Risk</div>
+                    <div><span style={{backgroundColor: '#300061'}}></span>High Risk</div>
+                </Typography>
+            </CardContent>
+        </Card>
+
+        {/* Bottom */}
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
@@ -160,7 +198,18 @@ const Sidebar = (props) => {
                             props.updateLayer(toActivate);
                         }}
                     />
-                    <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction 
+                        label="Hazard Levels" 
+                        icon={<WarningIcon />} 
+                        
+                        onClick={() => {
+                            const toActivate = `${city}_hazard`;
+
+                            setLayer('Hazard');
+                            props.updateLayerType('hazard');
+                            props.updateLayer(toActivate);
+                        }}
+                        />
                     <BottomNavigationAction 
                         label="Area Accessibility" 
                         icon={<LocalHospitalIcon />} 
@@ -185,39 +234,47 @@ const Sidebar = (props) => {
                             props.updateLayer(toActivate);
                         }}
                     />
+                    <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
                     <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
-                    <BottomNavigationAction label="Adjust Weights" icon={<EqualizerIcon />} />
                     <BottomNavigationAction 
-                        label="Hazard Levels" 
-                        icon={<WarningIcon />} 
-                        
-                        onClick={() => {
-                            const toActivate = `${city}_hazard`;
-
-                            setLayer('Hazard');
-                            props.updateLayerType('hazard');
-                            props.updateLayer(toActivate);
-                        }}
-                        />
+                        label="Land Usage"
+                        icon={<EqualizerIcon />} 
+                        onClick={handleOpen}
+                    />
                     <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
                 </BottomNavigation>
-            </Paper>
-        </Card>
+        </Paper>
 
-        <Card sx={{ width: 340, position: "absolute", margin: 2, right: 40 }}>
+        {/* Right */}
+        <Card sx={{ width: 340, position: "absolute", margin: 2, right: 40}}>
             <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography variant="h6" component="div">
                     <LayerName layerName={layer} />
                 </Typography>
+
                 <Divider sx={{marginTop: 1, marginBottom: 1}}/>
-                <Typography variant="body2">
+
+                <Typography variant="body2" align="justify">
                     <LayerDetails  layerName={layer} />
                 </Typography>
-                
-                
             </CardContent>
         </Card>
+
+        <Fade in={open}>
+            <Card sx={{ width: 300, position: "absolute", margin: 2, right: 0, bottom: 250 }}>
+                <CardContent>
+                    <Typography variant="h6" component="div">
+                        Adjust Land Usage
+                    </Typography>
+
+                    <Divider sx={{marginTop: 1, marginBottom: 1}}/>
+                    <Slider />
+                    
+                </CardContent>
+            </Card>
+        </Fade>
+
         </div>
     )
 }
