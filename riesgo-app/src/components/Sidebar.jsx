@@ -41,8 +41,10 @@ const Sidebar = (props) => {
 
     //Adjust Weights Ui
     const [open, setOpen] = React.useState(false);
+
+    //Handle Open Land Usage (Default)
     const handleOpen =  () => setOpen(true);
-    //const handleClose = () => setOpen(false);
+    const handleClose = () => setOpen(false);
 
     const handleChange = (event) => {
         setCity(event.target.value);
@@ -232,9 +234,15 @@ const Sidebar = (props) => {
                             setLayer('Elevation');
                             props.updateLayerType('elevation');
                             props.updateLayer(toActivate);
+
+                            handleClose()
                         }}
                     />
-                    <BottomNavigationAction label="Evacuation" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction 
+                        label="Evacuation"
+                        icon={<FavoriteIcon/>}
+                        onClick={handleClose}
+                    />
                     <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
                     <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
                     <BottomNavigationAction 
