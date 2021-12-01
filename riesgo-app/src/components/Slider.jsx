@@ -5,6 +5,8 @@ import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
+//Icons
+
 export default function DiscreteSlider() {
   return (
     <Box>

@@ -33,6 +33,7 @@ import Slider from './Slider'
 import Fade from '@mui/material/Fade';
 import React from "react";
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
+import { Box } from "@mui/system"
 
 const Sidebar = (props) => {
     const [city, setCity] = React.useState(0);
@@ -90,7 +91,7 @@ const Sidebar = (props) => {
             case "Accessibility":
                 return "Area Accessibility";
             case "Hazard":
-                return "Hazard Levels";
+                return "Hazard Level";
             default:
                 return "Welcome to RIESGO!"
         }
@@ -113,18 +114,54 @@ const Sidebar = (props) => {
         }
     }
 
-    // function LegendRow() {
+    function LegendDetails(props) {
+        const layerName = props.layerName;
 
-    // }
-
-    // function LegendHandling(props) {
-    //     for(var i = 0; i < )
-    // }
+        switch(layerName) {
+            case "Flood":
+                return(
+                    <Box>
+                        <div><span style={{backgroundColor: '#cfd3ff'}}></span>No Flood</div>
+                        <div><span style={{backgroundColor: '#727ded'}}></span>Low Flood</div>
+                        <div><span style={{backgroundColor: '#3741a1'}}></span>Medium Flood</div>
+                        <div><span style={{backgroundColor: '#06106b'}}></span>High Flood</div>
+                    </Box>
+                );
+            case "Elevation":
+                return(
+                    <Box>
+                        <div><span style={{backgroundColor: '#d4fde4'}}></span>Low Elevation</div>
+                        <div><span style={{backgroundColor: '#80ce95'}}></span>Medium Elevation</div>
+                        <div><span style={{backgroundColor: '#0a8c26'}}></span>High Elevation</div>
+                    </Box>
+                );
+            case "Accessibility":
+                return(
+                    <Box>
+                        <div><span style={{backgroundColor: '#FFF0F3'}}></span>Low Accessibility</div>
+                        <div><span style={{backgroundColor: '#C9184A'}}></span>Medium Accessibility</div>
+                        <div><span style={{backgroundColor: '#800F2F'}}></span>High Accessibility</div>
+                    </Box>
+                );
+            case "Hazard":
+                return(
+                    <Box>
+                        <div><span style={{backgroundColor: '#ffd86e'}}></span>No Hazard</div>
+                        <div><span style={{backgroundColor: '#f6684c'}}></span>Low Hazard</div>
+                        <div><span style={{backgroundColor: '#9d1e69'}}></span>Medium Hazard</div>
+                        <div><span style={{backgroundColor: '#300061'}}></span>High Hazard</div>
+                    </Box>
+                );
+            default:
+                return "Select a map to view details."
+        } 
+    }
 
     return (
         <div>
         
         {/* Left */}
+        {/* MAIN CITY SELECT */}
         <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -159,22 +196,20 @@ const Sidebar = (props) => {
                     <CityDetails  cityName={city} />
                 </Typography>
             </CardContent>
-            
+
             <CardActions>
                 <Button size="small">View Details</Button>
             </CardActions>
         </Card>
 
+        {/* LEGEND DISPLAY */}
         <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin:2, left: 350}}>
             <CardContent>
                 <Typography>
-                    <b>Flood Risk Legend</b>
+                    <b><LayerName layerName={layer} /> Legend</b>
                 </Typography>
                 <Typography sx={{ fontSize: 14 }} color="text.primary" className="legend">
-                    <div><span style={{backgroundColor: '#ffd86e'}}></span>No Risk</div>
-                    <div><span style={{backgroundColor: '#f6684c'}}></span>Low Risk</div>
-                    <div><span style={{backgroundColor: '#9d1e69'}}></span>Medium Risk</div>
-                    <div><span style={{backgroundColor: '#300061'}}></span>High Risk</div>
+                    <LegendDetails layerName={layer}/>
                 </Typography>
             </CardContent>
         </Card>
@@ -198,10 +233,12 @@ const Sidebar = (props) => {
                             setLayer('Flood');
                             props.updateLayerType('flood');
                             props.updateLayer(toActivate);
+
+                            handleClose();
                         }}
                     />
                     <BottomNavigationAction 
-                        label="Hazard Levels" 
+                        label="Hazard Level" 
                         icon={<WarningIcon />} 
                         
                         onClick={() => {
@@ -210,6 +247,8 @@ const Sidebar = (props) => {
                             setLayer('Hazard');
                             props.updateLayerType('hazard');
                             props.updateLayer(toActivate);
+
+                            handleClose();
                         }}
                         />
                     <BottomNavigationAction 
@@ -222,6 +261,8 @@ const Sidebar = (props) => {
                             setLayer('Accessibility');
                             props.updateLayerType('accessibility');
                             props.updateLayer(toActivate);
+
+                            handleClose();
                         }}
                     />
                     <BottomNavigationAction 
@@ -235,7 +276,7 @@ const Sidebar = (props) => {
                             props.updateLayerType('elevation');
                             props.updateLayer(toActivate);
 
-                            handleClose()
+                            handleClose();
                         }}
                     />
                     <BottomNavigationAction 
