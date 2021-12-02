@@ -192,9 +192,10 @@ const Sidebar = (props) => {
                     City
                 </Typography>
 
-                <Typography variant="body2">
+                <Typography variant="body">
                     <CityDetails  cityName={city} />
                 </Typography>
+
             </CardContent>
 
             <CardActions>
@@ -304,7 +305,7 @@ const Sidebar = (props) => {
 
                 <Divider sx={{marginTop: 1, marginBottom: 1}}/>
 
-                <Typography variant="body2" align="justify">
+                <Typography variant="body" align="justify">
                     <LayerDetails  layerName={layer} />
                 </Typography>
             </CardContent>

@@ -32,11 +32,12 @@ export default class Map extends Component {
           minZoom: 11,
           maxZoom: 15,
           pitch: 60,
+          maxPitch: 60,
           bearing: 0.13
         });
 
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
+        
         this.map.on('style.load', () => {
             //MARIKINA ==================================================================================
             //Marikina Dataset - Land Elevation
