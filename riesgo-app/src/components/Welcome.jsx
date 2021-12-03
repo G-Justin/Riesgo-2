@@ -40,7 +40,7 @@ function Welcome(){
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar>
+                <AppBar elevation={0} style={{ background: 'transparent' }}>
                     <Toolbar>
                         <LogoSvg />
                     </Toolbar>
@@ -53,7 +53,7 @@ function Welcome(){
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                style={{ minHeight: '66vh'}}>
+                style={{ minHeight: '66vh', paddingTop: '80px'}}>
                     <Grid item xs={12} sm={12} md={12}>
                         <Typography variant="h2" component="div" align="center" style={{ fontWeight: 'bold'}}>
                             A Metro Manila Interactive Map<br/> for Urban Planning
@@ -65,18 +65,34 @@ function Welcome(){
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12}>
-                        <Button variant="contained" color="primary">
+                        <Button 
+                        style={{
+                            background: 'linear-gradient(to right, #36D1DC 0%, #5B86E5  51%, #36D1DC  100%)',
+                            margin: '10px',
+                            padding: '10px 45px',
+                            textAlign: 'center',
+                            textTransform: 'uppercase',
+                            transition: '0.5s',
+                            backgroundSize: '200% auto',
+                            color: 'white',            
+                            boxShadow: '0 0 20px #eee',
+                            borderRadius: '40px',
+                        }}>
                             <Link to="map" style={{color:"white",textDecoration:"none", padding:5}}>
                                 <Typography variant="h6">Start RIESGO</Typography>
                             </Link>
                         </Button>
                     </Grid>
                 </Grid>
-
-                <Grid container alignItems="center" justifyContent="center" display="flex">
+                <Grid 
+                container 
+                alignItems="center" 
+                justifyContent="center" 
+                display="flex" 
+                style={{paddingTop: '16px', marginBottom: '32px'}}>
                 
                 <Grid item xs={4} >
-                    <Card sx={{width: 350, height: 275}}>
+                    <Card sx={{width: 350, height: 288}}>
                         <CardActionArea>
                             <CardMedia
                             component="img"
@@ -89,8 +105,8 @@ function Welcome(){
                                 <b>Explore Data</b>
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
+                                Check out the current data sets used to analyze the suitability of any locations 
+                                within Metro Manila.
                             </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -98,7 +114,7 @@ function Welcome(){
                 </Grid>
 
                 <Grid item xs={4} >
-                    <Card sx={{width: 350, height: 275}}>
+                    <Card sx={{width: 350, height: 320}}>
                         <CardActionArea>
                             <CardMedia
                             component="img"
@@ -111,8 +127,8 @@ function Welcome(){
                                 <b>FAQ</b>
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
+                                Need some help understanding our website? Browse through our FAQ page to find answers on commonly asked questions
+                                on how RIESGO was developed and how you can utilize it to aid your urban planning decisions.
                             </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -120,7 +136,7 @@ function Welcome(){
                 </Grid>
 
                 <Grid item xs={4} >
-                    <Card sx={{width: 350, height: 275}}>
+                    <Card sx={{width: 350, height: 288}}>
                         <CardActionArea>
                             <CardMedia
                             component="img"
@@ -133,8 +149,8 @@ function Welcome(){
                                 <b>Model</b>
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
+                                Presenting the equations the developers use to arrive on the suitability score of
+                                an area. These equations are integral to aid urban planners on their decision making process.
                             </Typography>
                             </CardContent>
                         </CardActionArea>
