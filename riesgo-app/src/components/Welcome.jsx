@@ -53,10 +53,10 @@ function Welcome(){
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                style={{ minHeight: '66vh', paddingTop: '80px'}}>
+                style={{ minHeight: '60vh', paddingTop: '80px'}}>
                     <Grid item xs={12} sm={12} md={12}>
                         <Typography variant="h2" component="div" align="center" style={{ fontWeight: 'bold'}}>
-                            A Metro Manila Interactive Map<br/> for Urban Planning
+                            An Interactive Metro Manila Map<br/> for Urban Planning
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12}>
@@ -156,8 +156,9 @@ function Welcome(){
                         </CardActionArea>
                     </Card>
                 </Grid>
-
                 </Grid>
+
+                <Typography variant="body2"><b>RIESGO</b> v0.0.1 by Darvin, Galura & Gelvoleo</Typography>
             </Container>
         </div>
       );

@@ -13,10 +13,8 @@ import WaterIcon from '@mui/icons-material/Water';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
-import HouseSidingIcon from '@mui/icons-material/HouseSiding';
 import PeopleIcon from '@mui/icons-material/People';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import BuildIcon from '@mui/icons-material/Build';
 import WarningIcon from '@mui/icons-material/Warning';
 
 //Misc
@@ -92,6 +90,11 @@ const Sidebar = (props) => {
                 return "Area Accessibility";
             case "Hazard":
                 return "Hazard Level";
+            case "Land Use":
+                return "Land Use";
+            case "Sustainability":
+                return "Sustainability";
+
             default:
                 return "Welcome to RIESGO!"
         }
@@ -281,18 +284,30 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction 
-                        label="Evacuation"
-                        icon={<FavoriteIcon/>}
-                        onClick={handleClose}
-                    />
-                    <BottomNavigationAction label="Land Use" icon={<HouseSidingIcon />} />
-                    <BottomNavigationAction label="Population" icon={<PeopleIcon />} />
-                    <BottomNavigationAction 
                         label="Land Usage"
                         icon={<EqualizerIcon />} 
-                        onClick={handleOpen}
+                        onClick={() => {
+                            const toActivate = `${city}_landuse`;
+
+                            setLayer('Land Use');
+                            props.updateLayerType('landuse');
+                            props.updateLayer(toActivate);
+
+                            handleOpen();
+                        }}
                     />
-                    <BottomNavigationAction label="Recommender" icon={<BuildIcon />} />
+                    <BottomNavigationAction
+                        label="Recommender"
+                        icon={<FavoriteIcon />} 
+                        onClick={() => {
+                            const toActivate = `${city}_sustainability`;
+
+                            setLayer('Sustainability');
+                            props.updateLayerType('sustainability');
+                            props.updateLayer(toActivate);
+
+                        }}
+                    />
                 </BottomNavigation>
         </Paper>
 
@@ -319,8 +334,8 @@ const Sidebar = (props) => {
                     </Typography>
 
                     <Divider sx={{marginTop: 1, marginBottom: 1}}/>
-                    <Slider />
                     
+                    <Slider />
                 </CardContent>
             </Card>
         </Fade>

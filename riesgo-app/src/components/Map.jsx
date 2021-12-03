@@ -64,6 +64,19 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckwbom3cs01no20lt2yp1pjm1-6cfhe',
             });
 
+            //Marikina Dataset - Land Use (FAKE)
+            this.map.addSource('fake-marikina-land-use', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckwqdmyyy0ql924pfweq7ptc6-2a6zr',
+            });
+
+            //Marikina Dataset - Sustainability (FAKE)
+            this.map.addSource('fake-marikina-sustainability-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckwqdjusr0tvs28s10h3pbotb-2z5rw',
+            });
+
+
             //PASIG ==================================================================================
             //Pasig Dataset - Land Elevation
             this.map.addSource('pasig-elevation', {
@@ -203,6 +216,62 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_landuse',
+                type: 'fill-extrusion',
+                source: 'fake-marikina-land-use',
+                'source-layer': 'fake_marikina_land_use',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'land_use',
+                    stops: [
+                        [0, '#fff9d9'],
+                        [0.33, '#fff3b3'],
+                        [0.66, '#ffe973'],
+                        [1, '#ffdd26'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'land_use'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_sustainability',
+                type: 'fill-extrusion',
+                source: 'fake-marikina-sustainability-5yr',
+                'source-layer': 'fake_marikina_sustainability_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'sustainability_5yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'sustainability_5yr'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
