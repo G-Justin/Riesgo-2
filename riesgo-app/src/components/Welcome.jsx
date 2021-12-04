@@ -40,7 +40,7 @@ function Welcome(){
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar elevation={0} style={{ background: 'transparent' }}>
+                <AppBar elevation={1} style={{ background: '#fafafa' }}>
                     <Toolbar>
                         <LogoSvg />
                     </Toolbar>
@@ -56,7 +56,7 @@ function Welcome(){
                 style={{ minHeight: '60vh', paddingTop: '80px'}}>
                     <Grid item xs={12} sm={12} md={12}>
                         <Typography variant="h2" component="div" align="center" style={{ fontWeight: 'bold'}}>
-                            An Interactive Metro Manila Map<br/> for Urban Planning
+                            An Interactive Metro Manila Map<br/> for Flood Visualization and Urban Planning
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12}>
