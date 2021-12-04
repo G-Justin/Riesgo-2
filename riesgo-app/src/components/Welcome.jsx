@@ -40,7 +40,7 @@ function Welcome(){
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar elevation={1} style={{ background: '#fafafa' }}>
+                <AppBar elevation={0} style={{ background: 'transparent' }}>
                     <Toolbar>
                         <LogoSvg />
                     </Toolbar>
