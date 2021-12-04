@@ -2,6 +2,11 @@ import mapboxgl from 'mapbox-gl';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiamRhcnZpbiIsImEiOiJja3Y5a3lhN3EyZmIyMnVubnk0cXF3MWF2In0.oIcZ8fwDPMESBa-3qhx07w';
 
 export default class Map extends Component {

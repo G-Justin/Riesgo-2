@@ -34,8 +34,6 @@ import FaqImage     from "../assets/faq.PNG"
 //     }
 // };
 
-
-
 function Welcome(){
     return (
         <div>
