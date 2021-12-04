@@ -13,12 +13,12 @@ import WaterIcon from '@mui/icons-material/Water';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
-import PeopleIcon from '@mui/icons-material/People';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 
 //Misc
 import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom';
 
 //Select
 import InputLabel from '@mui/material/InputLabel';
@@ -105,13 +105,17 @@ const Sidebar = (props) => {
 
         switch(layerName) {
             case "Flood":
-                return "Flood details";
+                return "5 Year flood map data of the selected city.";
             case "Elevation":
-                return "Elevation details";
+                return "This map visualizes the elevatedness of certain areas around a city.";
             case "Accessibility":
-                return "Accessibility details";
+                return "Accessibility score considers how accessible an area is to vehicles or roads. Generally, the higher the accessibility score, the better people can access it.";
             case "Hazard":
                 return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+            case "Land Use":
+                return "Adjust land usage values in order to prioritize certain establishments or zones over others.";
+            case "Sustainability":
+                return "Sustainability";
             default:
                 return "Select a map to view details."
         }
@@ -168,7 +172,9 @@ const Sidebar = (props) => {
         <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                <LogoSvg />
+                    <Link to="/">
+                        <LogoSvg />
+                    </Link>
                 </Typography>
                 <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
                     <InputLabel id="demo-simple-select-standard-label">City Select</InputLabel>
@@ -306,6 +312,7 @@ const Sidebar = (props) => {
                             props.updateLayerType('sustainability');
                             props.updateLayer(toActivate);
 
+                            handleClose();
                         }}
                     />
                 </BottomNavigation>
@@ -325,7 +332,9 @@ const Sidebar = (props) => {
                 </Typography>
             </CardContent>
         </Card>
+        
 
+        {/* Land Usage Modal */}
         <Fade in={open}>
             <Card sx={{ width: 300, position: "absolute", margin: 2, right: 0, bottom: 250 }}>
                 <CardContent>

@@ -9,10 +9,10 @@ import Button from '@mui/material/Button';
 
 export default function DiscreteSlider() {
   return (
-    <Box>
+    <Box style={{maxHeight: '200px', overflow: 'auto'}}>
 
     <Typography gutterBottom>
-    Forest
+    <b>Retail</b>
     </Typography>
 
     <Grid container spacing={2} alignItems="center">
@@ -37,7 +37,132 @@ export default function DiscreteSlider() {
     </Grid>
 
     <Typography gutterBottom>
-    Cementary
+    <b>Park</b>
+    </Typography>
+
+    <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          0
+        </Grid>
+
+        <Grid item xs>
+            <Slider 
+                defaultValue={0.5} 
+                aria-label="Default" 
+                valueLabelDisplay="auto" 
+                step={0.05}
+                min={0}
+                max={1}
+                />
+        </Grid>
+
+        <Grid item>
+            1
+        </Grid>
+    </Grid>
+
+    <Typography gutterBottom>
+    <b>Grass</b>
+    </Typography>
+
+    <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          0
+        </Grid>
+
+        <Grid item xs>
+            <Slider 
+                defaultValue={0.5} 
+                aria-label="Default" 
+                valueLabelDisplay="auto" 
+                step={0.05}
+                min={0}
+                max={1}
+                />
+        </Grid>
+
+        <Grid item>
+            1
+        </Grid>
+    </Grid>
+
+    <Typography gutterBottom>
+    <b>Cemetery</b>
+    </Typography>
+
+    <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          0
+        </Grid>
+
+        <Grid item xs>
+            <Slider 
+                defaultValue={0.5} 
+                aria-label="Default" 
+                valueLabelDisplay="auto" 
+                step={0.05}
+                min={0}
+                max={1}
+                />
+        </Grid>
+
+        <Grid item>
+            1
+        </Grid>
+    </Grid>
+
+    <Typography gutterBottom>
+    <b>Industrial</b>
+    </Typography>
+
+    <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          0
+        </Grid>
+
+        <Grid item xs>
+            <Slider 
+                defaultValue={0.5} 
+                aria-label="Default" 
+                valueLabelDisplay="auto" 
+                step={0.05}
+                min={0}
+                max={1}
+                />
+        </Grid>
+
+        <Grid item>
+            1
+        </Grid>
+    </Grid>
+
+    <Typography gutterBottom>
+    <b>Commercial</b>
+    </Typography>
+
+    <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          0
+        </Grid>
+
+        <Grid item xs>
+            <Slider 
+                defaultValue={0.5} 
+                aria-label="Default" 
+                valueLabelDisplay="auto" 
+                step={0.05}
+                min={0}
+                max={1}
+                />
+        </Grid>
+
+        <Grid item>
+            1
+        </Grid>
+    </Grid>
+
+    <Typography gutterBottom>
+    <b>Residential</b>
     </Typography>
 
     <Grid container spacing={2} alignItems="center">
