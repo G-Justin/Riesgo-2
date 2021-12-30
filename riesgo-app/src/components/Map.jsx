@@ -17,7 +17,7 @@ export default class Map extends Component {
             lat: 14.577,
             lng: 121,
             zoom: 11.16,
-            pitch: 60,
+            //pitch: 60,
             bearing: 0.13,
         };
     }
@@ -29,15 +29,23 @@ export default class Map extends Component {
     
         this.tooltipContainer = document.createElement('div'); // eslint-disable-line
     
+        const bounds = [
+            [120.83910868840256, 14.417858756589494], // Southwest coordinates
+            [121.23000694767939, 14.772673954833158] // Northeast coordinates
+        ];
+
         this.map = new mapboxgl.Map({
           container: this.mapContainer,
           style: 'mapbox://styles/jdarvin/ckv9lbninanro15pap69jm3rz',
           center: [lng, lat],
           zoom,
-          minZoom: 11,
+          maxBounds: bounds,
+
           maxZoom: 15,
-          pitch: 60,
+          
+          //pitch: 60,
           maxPitch: 60,
+          
           bearing: 0.13
         });
 
