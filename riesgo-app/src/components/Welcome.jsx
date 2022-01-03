@@ -156,7 +156,7 @@ function Welcome(){
                 </Grid>
                 </Grid>
 
-                <Typography variant="body2"><b>RIESGO</b> v0.0.1 by Darvin, Galura & Gelvoleo</Typography>
+                <Typography variant="body2"><b>RIESGO</b> v0.2 by Darvin, Galura & Gelvoleo</Typography>
             </Container>
         </div>
       );

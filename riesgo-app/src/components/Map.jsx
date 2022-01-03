@@ -462,6 +462,43 @@ export default class Map extends Component {
                 },
                 },
             });
+
+            this.map.getCanvas().style.cursor = "default";
+            // this.map.on('mouseenter', 'l_pasig_hazard', () => {
+            //     this.map.getCanvas().style.cursor = "default";
+            // });
+
+            // this.map.on("mouseleave", 'l_pasig_hazard', () => {
+            //     this.map.getCanvas().style.cursor = "pointer";
+            // });
+
+            //Hover over tiles for information
+            this.map.on('mousemove', (e) => {
+                const features = this.map.queryRenderedFeatures(e.point);
+                const displayProperties = [
+                    'type',
+                    'properties',
+                    'id',
+                    'layer',
+                    'source',
+                    'sourceLayer',
+                    'state'
+                ];
+                     
+                const displayFeatures = features.map((feat) => {
+                    const displayFeat = {};
+                    displayProperties.forEach((prop) => {
+                        displayFeat[prop] = feat[prop];
+                    });
+                    return displayFeat;
+                });
+                     
+                // Write object as string with an indent of two spaces.
+
+                document.getElementById('pd').innerHTML = displayFeatures.length
+                    ? `${displayFeatures[0].properties.hazard_5yr}`
+                    : `undefined`;
+            });
         });
     }
 

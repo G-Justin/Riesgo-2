@@ -96,7 +96,7 @@ const Sidebar = (props) => {
                 return "Sustainability";
 
             default:
-                return "Welcome to RIESGO!"
+                return ""
         }
     }
 
@@ -203,13 +203,18 @@ const Sidebar = (props) => {
 
                 <Typography variant="body">
                     <CityDetails  cityName={city} />
+                    <hr />
+                    <Typography variant="h6"><LayerName layerName={layer} /> Score</Typography>
+                    <Typography id="pd">undefined</Typography>
                 </Typography>
 
             </CardContent>
 
             <CardActions>
-                <Button size="small">View Details</Button>
+                <Button size="small">View Map Details</Button>
             </CardActions>
+
+            
         </Card>
 
         {/* LEGEND DISPLAY */}
