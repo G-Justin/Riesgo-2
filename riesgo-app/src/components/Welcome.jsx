@@ -111,7 +111,9 @@ function Welcome(){
                     </Card>
                 </Grid>
 
+                
                 <Grid item xs={4} >
+                <Link to="/FAQ" style={{ textDecoration: 'none' }}>
                     <Card sx={{width: 350, height: 320}}>
                         <CardActionArea>
                             <CardMedia
@@ -131,7 +133,9 @@ function Welcome(){
                             </CardContent>
                         </CardActionArea>
                     </Card>
+                </Link>
                 </Grid>
+                
 
                 <Grid item xs={4} >
                     <Card sx={{width: 350, height: 288}}>
