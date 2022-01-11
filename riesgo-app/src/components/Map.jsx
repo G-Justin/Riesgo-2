@@ -6,7 +6,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiamRhcnZpbiIsImEiOiJja3Y5a3lhN3EyZmIyMnVubnk0cXF3MWF2In0.oIcZ8fwDPMESBa-3qhx07w';
 
 export default class Map extends Component {
@@ -33,6 +32,9 @@ export default class Map extends Component {
             [120.83910868840256, 14.417858756589494], // Southwest coordinates
             [121.23000694767939, 14.772673954833158] // Northeast coordinates
         ];
+
+        //Variables for hovering feature
+        var hover_layer
 
         this.map = new mapboxgl.Map({
           container: this.mapContainer,
@@ -114,13 +116,19 @@ export default class Map extends Component {
             //Marikina Dataset - Accesibility
             this.map.addSource('marikina-accessibility', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvx9noo000cm27msl6bx6kmf-3zf7c',
+                url: 'mapbox://jdarvin.cky5re8470act27o1w98rious-5kh80',
             });
 
             //Marikina Dataset - Hazard
             this.map.addSource('marikina-hazard-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckwbom3cs01no20lt2yp1pjm1-6cfhe',
+            });
+
+            //Marikina Dataset - Coverage
+            this.map.addSource('marikina-coverage-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cky9ka8pz08x427s1lbi28iis-7rog5',
             });
 
             //Marikina Dataset - Land Use (FAKE)
@@ -200,13 +208,13 @@ export default class Map extends Component {
                 id: 'l_marikina_accessibility',
                 type: 'fill-extrusion',
                 source: 'marikina-accessibility',
-                'source-layer': 'marikina_accessibility',
+                'source-layer': 'marikina_accessibility_5yr',
                 layout: {
                     visibility: 'none',
                 },
                 paint: {
                 'fill-extrusion-color': {
-                    property: 'accessibility',
+                    property: 'accessibility_5yr',
                     stops: [
                         [0, '#FFF0F3'],
                         [0.125, '#FFCCD5'],
@@ -219,7 +227,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility'], 1]],
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_5yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -275,6 +283,34 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_coverage_score',
+                type: 'fill-extrusion',
+                source: 'marikina-coverage-score',
+                'source-layer': 'marikina_coverage_score',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'coverage_score',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
@@ -473,6 +509,8 @@ export default class Map extends Component {
             // });
 
             //Hover over tiles for information
+            //TODO: Retrieve hover_layer from global.
+
             this.map.on('mousemove', (e) => {
                 const features = this.map.queryRenderedFeatures(e.point);
                 const displayProperties = [
@@ -492,9 +530,10 @@ export default class Map extends Component {
                     });
                     return displayFeat;
                 });
-                     
-                // Write object as string with an indent of two spaces.
 
+                console.log("We are doing: " + this.hover_layer);
+
+                //Supposed to be current_layer
                 document.getElementById('pd').innerHTML = displayFeatures.length
                     ? `${displayFeatures[0].properties.hazard_5yr}`
                     : `undefined`;
@@ -508,6 +547,28 @@ export default class Map extends Component {
             city,
             layer_type
         } = this.props;
+
+        //Update current layer global variable        
+        switch(layer_type) {
+            case "hazard":
+                this.hover_layer = "hazard_5yr";
+                break;
+            case "elevation":
+                this.hover_layer = "elevation"; 
+                break;
+            case "flood":
+                this.hover_layer = "flood_5yr";
+                break;
+            case "accessibility":
+                this.hover_layer = "accessibility_5yr";
+                break;
+
+            default:
+                break;
+        } 
+        console.log("Hover layer is set to: " + this.hover_layer);
+
+        console.log("The current layer_type is " + layer_type);
 
         //If layer change detected
         if(nextProps.layer !== layer) {

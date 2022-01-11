@@ -10,11 +10,11 @@ import { Typography } from "@mui/material"
 
 //Icons 
 import WaterIcon from '@mui/icons-material/Water';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
+import BlockIcon from '@mui/icons-material/Block';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -243,11 +243,11 @@ const Sidebar = (props) => {
                         icon={<WaterIcon />} 
 
                         onClick={() => {
-                            const toActivate = `${city}_flood`;
+                            const toActivate = `${city}_flood`; //$city gets current city selected
 
-                            setLayer('Flood');
-                            props.updateLayerType('flood');
-                            props.updateLayer(toActivate);
+                            setLayer('Flood'); //Front-end Display name of Layer
+                            props.updateLayerType('flood'); //Back-end name of Layer
+                            props.updateLayer(toActivate);  //Load the dynamic regex in the backend
 
                             handleClose();
                         }}
@@ -307,7 +307,29 @@ const Sidebar = (props) => {
                             handleOpen();
                         }}
                     />
-                    <BottomNavigationAction
+                    <BottomNavigationAction 
+                        label="Coverage"
+                        icon={<EqualizerIcon />} 
+                        onClick={() => {
+                            const toActivate = `${city}_coverage_score`;
+
+                            setLayer('Coverage Score');
+                            props.updateLayerType('coveragescore');
+                            props.updateLayer(toActivate);
+
+                            handleOpen();
+                        }}
+                    />
+                    <BottomNavigationAction 
+                        label="None"
+                        icon={<BlockIcon />} 
+
+                        onClick={() => {
+
+                            handleClose();
+                        }}
+                    />
+                    {/* <BottomNavigationAction
                         label="Recommender"
                         icon={<FavoriteIcon />} 
                         onClick={() => {
@@ -319,7 +341,7 @@ const Sidebar = (props) => {
 
                             handleClose();
                         }}
-                    />
+                    /> */}
                 </BottomNavigation>
         </Paper>
 
