@@ -113,6 +113,16 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckvwn9xfe08rj27mh6imu5voh-6d3nm',
             });
 
+            this.map.addSource('marikina-flood-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckydvd9jo1r7j28lc3xbpf4yi-7hlgt',
+            });
+
+            this.map.addSource('marikina-flood-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckydvi6585f9l20pd9xzdf5va-7e9nx',
+            });
+
             //Marikina Dataset - Accesibility
             this.map.addSource('marikina-accessibility', {
                 type: 'vector',
@@ -249,7 +259,8 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_marikina_flood',
+                //ID CHANGED from l_marikina_flood to l_marikina_flood_5yr
+                id: 'l_marikina_flood_5yr',
                 type: 'fill-extrusion',
                 source: 'marikina-flood-5yr',
                 'source-layer': 'marikina_flood_5yr',
@@ -276,6 +287,65 @@ export default class Map extends Component {
                 },
             });
 
+            this.map.addLayer({
+                
+            //l_marikina_flood_25yr
+                id: 'l_marikina_flood_25yr',
+                type: 'fill-extrusion',
+                source: 'marikina-flood-25yr',
+                'source-layer': 'marikina_flood_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'flood_25yr',
+                    stops: [
+                        [0, '#06106b'],
+                        [0.33, '#3741a1'],
+                        [0.66, '#727ded'],
+                        [1, '#cfd3ff'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                //l_marikina_flood_100yr
+                    id: 'l_marikina_flood_100yr',
+                    type: 'fill-extrusion',
+                    source: 'marikina-flood-100yr',
+                    'source-layer': 'marikina_flood_100yr',
+                    layout: {
+                        visibility: 'none',
+                    },
+                    paint: {
+                    'fill-extrusion-color': {
+                        property: 'flood_100yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+    
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                    },
+                });
+    
             this.map.addLayer({
                 // ID CHANGED FROM l_marikina_hazard to l_marikina_hazard_5yr
                 id: 'l_marikina_hazard_5yr',
@@ -306,7 +376,7 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                 // ID CHANGED FROM l_marikina_hazard to l_marikina_hazard_25yr
+                 //l_marikina_hazard_25yr
                 id: 'l_marikina_hazard_25yr',
                 type: 'fill-extrusion',
                 source: 'marikina-hazard-25yr',
@@ -335,7 +405,7 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                // ID CHANGED FROM l_marikina_hazard to l_marikina_hazard_100yr
+                //l_marikina_hazard_100yr
                id: 'l_marikina_hazard_100yr',
                type: 'fill-extrusion',
                source: 'marikina-hazard-100yr',
@@ -616,7 +686,6 @@ export default class Map extends Component {
         const {
             layer,
             city,
-            //year,
             layer_type
         } = this.props;
 

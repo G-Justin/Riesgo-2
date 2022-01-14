@@ -358,7 +358,53 @@ const Sidebar = (props) => {
                     <Typography variant="body" align="justify">
                         <LayerDetails layerName={layer} />
                     </Typography>
-                    {/* <LayerYearVisibility layerName={layer}/> */}
+
+                    {/* Marikina Flood Buttons */}
+                    {layer === "Flood" && 
+                    <Box sx={{ '& button': { m: 1 } }}>
+                        <div onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}>
+                            <Button variant="outlined" size="small"
+                                onClick={() => {
+                                    const toActivate = `${city}_flood_5yr`;
+
+                                    setLayer('Flood');
+                                    props.updateLayerType('flood5yr');
+                                    props.updateLayer(toActivate);
+
+                                    handleClose();
+                                }}>
+                                5 Years
+                            </Button>
+                            <Button variant="outlined" size="small"
+                                onClick={() => {
+                                    const toActivate = `${city}_flood_25yr`;
+
+                                    setLayer('Flood');
+                                    props.updateLayerType('flood25yr');
+                                    props.updateLayer(toActivate);
+
+                                    handleClose();
+                                }}>
+                                25 Years
+                            </Button>
+                            <Button variant="outlined" size="small"
+                            onClick={() => {
+                                const toActivate = `${city}_flood_100yr`;
+
+                                setLayer('Flood');
+                                props.updateLayerType('flood100yr');
+                                props.updateLayer(toActivate);
+
+                                handleClose();
+                            }}>
+                                100 Years
+                            </Button>
+                        </div>
+                    </Box>}
+
+                    {/* Marikina Hazard Buttons */}
                     {layer === "Hazard" && 
                     <Box sx={{ '& button': { m: 1 } }}>
                         <div onChange={(event, newValue) => {
