@@ -15,6 +15,7 @@ import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
+import HouseIcon from '@mui/icons-material/House';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -297,7 +298,7 @@ const Sidebar = (props) => {
                     />
                     <BottomNavigationAction
                         label="Land Usage"
-                        icon={<EqualizerIcon />}
+                        icon={<HouseIcon />}
                         onClick={() => {
                             const toActivate = `${city}_landuse`;
 
@@ -327,7 +328,11 @@ const Sidebar = (props) => {
 
                         onClick={() => {
 
-                            handleClose();
+                            const toActivate = `none`;
+
+                            setLayer('None');
+                            props.updateLayerType('none');
+                            props.updateLayer(toActivate);
                         }}
                     />
                     {/* <BottomNavigationAction
