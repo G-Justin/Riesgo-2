@@ -34,7 +34,8 @@ export default class Map extends Component {
         ];
 
         //Variables for hovering feature
-        var hover_layer
+        var hover_layer;
+        console.log(hover_layer); //Warning bypasser. IDK why this exists??
 
         this.map = new mapboxgl.Map({
           container: this.mapContainer,
@@ -672,12 +673,26 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                console.log("We are doing: " + this.hover_layer);
+                //console.log("We are doing: " + this.hover_layer);
 
                 //Supposed to be current_layer
-                document.getElementById('pd').innerHTML = displayFeatures.length
-                    ? `${displayFeatures[0].properties.hazard_5yr}`
-                    : `undefined`;
+                if(this.hover_layer === "hazard_5yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.hazard_5yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "elevation") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.elevation}`
+                        : `undefined`;
+                } else if (this.hover_layer === "flood_5yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.flood_5yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "accessibility_5yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.accessibility_5yr}`
+                        : `undefined`;
+                }
             });
         });
     }
@@ -690,7 +705,7 @@ export default class Map extends Component {
         } = this.props;
 
         //Update current layer global variable        
-        switch(layer_type) {
+        switch(nextProps.layer_type) {
             case "hazard":
                 this.hover_layer = "hazard_5yr";
                 break;
@@ -708,7 +723,6 @@ export default class Map extends Component {
                 break;
         } 
         console.log("Hover layer is set to: " + this.hover_layer);
-
         console.log("The current layer_type is " + layer_type);
 
         //If layer change detected
