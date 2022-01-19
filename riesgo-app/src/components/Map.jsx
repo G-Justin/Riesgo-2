@@ -52,6 +52,8 @@ export default class Map extends Component {
           bearing: 0.13
         });
 
+        let hoveredStateId = null;
+
         //Buttons
         class PitchToggle {
             constructor({ bearing = 0, pitch = 45, minpitchzoom = null }) {
@@ -220,6 +222,12 @@ export default class Map extends Component {
                 },
                 'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
                 'fill-extrusion-opacity': 0,
+                // [
+                //     'case',
+                //     ['boolean', ['feature-state', 'hover'], false],
+                //     1,
+                //     0.5
+                // ],
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
                     delay: 0,
@@ -693,6 +701,48 @@ export default class Map extends Component {
                         ? `${displayFeatures[0].properties.accessibility_5yr}`
                         : `undefined`;
                 }
+
+                // if (e.features.length > 0) {
+                //     if (hoveredStateId !== null) {
+                //         this.map.setFeatureState(
+                //         { source: 'marikina-elevation', id: hoveredStateId },
+                //         { hover: false }
+                //     );
+                // }
+                
+                // hoveredStateId = e.features[0].id;
+                //     this.map.setFeatureState(
+                //         { source: 'marikina-elevation', id: hoveredStateId },
+                //         { hover: true }
+                //     );
+                // }
+            });
+
+            this.map.on('mousemove', 'l_marikina_elevation', (e) => {
+                if (e.features.length > 0) {
+                    if (hoveredStateId !== null) {
+                        this.map.setFeatureState(
+                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                
+                hoveredStateId = e.features[0].id;
+                    this.map.setFeatureState(
+                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { hover: true }
+                    );
+                }
+            });
+
+            this.map.on('mouseleave', 'l_marikina_elevation', () => {
+                if (hoveredStateId !== null) {
+                    this.map.setFeatureState(
+                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                hoveredStateId = null;
             });
         });
     }
