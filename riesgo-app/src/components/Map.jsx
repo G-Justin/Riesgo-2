@@ -220,14 +220,14 @@ export default class Map extends Component {
                         [1, '#0a8c26'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
-                'fill-extrusion-opacity': 0,
-                // [
+                // 'fill-extrusion-color': [
                 //     'case',
                 //     ['boolean', ['feature-state', 'hover'], false],
-                //     1,
-                //     0.5
+                //     '#ff0000',
+                //     '#ddd'
                 // ],
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
                     delay: 0,
@@ -722,14 +722,14 @@ export default class Map extends Component {
                 if (e.features.length > 0) {
                     if (hoveredStateId !== null) {
                         this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { source: 'marikina-elevation', sourceLayer:'marikina_elevation', id: hoveredStateId },
                         { hover: false }
                     );
                 }
                 
                 hoveredStateId = e.features[0].id;
                     this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { source: 'marikina-elevation', sourceLayer:'marikina_elevation', id: hoveredStateId },
                         { hover: true }
                     );
                 }
@@ -738,7 +738,7 @@ export default class Map extends Component {
             this.map.on('mouseleave', 'l_marikina_elevation', () => {
                 if (hoveredStateId !== null) {
                     this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
+                        { source: 'marikina-elevation', sourceLayer:'marikina_elevation', id: hoveredStateId },
                         { hover: false }
                     );
                 }
