@@ -15,6 +15,7 @@ import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
+import HouseIcon from '@mui/icons-material/House';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -171,12 +172,13 @@ const Sidebar = (props) => {
             {/* MAIN CITY SELECT */}
             <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
                 <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        <Link to="/">
-                            <LogoSvg />
+                    <Box sx={{marginBottom: 1, }}>
+                        <Link to="/" >
+                            <LogoSvg sx={{width: '100%'}} />
                         </Link>
-                    </Typography>
-                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
+                    </Box>
+                    
+                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1, fontSize: '5em'}}>
                         <InputLabel id="demo-simple-select-standard-label">City Select</InputLabel>
                         <Select
                             labelId="demo-simple-select-standard-label"
@@ -186,20 +188,20 @@ const Sidebar = (props) => {
                             label="City Select"
                             type="text"
                         >
-                            <MenuItem value={'l_manila'}>Manila</MenuItem>
-                            <MenuItem value={'l_marikina'}>Marikina</MenuItem>
-                            <MenuItem value={'l_pasig'}>Pasig</MenuItem>
+                            <MenuItem value={'l_manila'}><b>Manila</b></MenuItem>
+                            <MenuItem value={'l_marikina'}><b>Marikina</b></MenuItem>
+                            <MenuItem value={'l_pasig'}><b>Pasig</b></MenuItem>
                         </Select>
                     </FormControl>
-                    <Typography variant="h5" component="div">
+                    {/* <Typography variant="h5" component="div">
                         <b>
                             <CityName cityName={city} />
                         </b>
-                    </Typography>
+                    </Typography> */}
 
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         City
-                    </Typography>
+                    </Typography> */}
 
                     <Typography variant="body">
                         <CityDetails cityName={city} />
@@ -297,7 +299,7 @@ const Sidebar = (props) => {
                     />
                     <BottomNavigationAction
                         label="Land Usage"
-                        icon={<EqualizerIcon />}
+                        icon={<HouseIcon />}
                         onClick={() => {
                             const toActivate = `${city}_landuse`;
 
@@ -327,7 +329,11 @@ const Sidebar = (props) => {
 
                         onClick={() => {
 
-                            handleClose();
+                            const toActivate = `none`;
+
+                            setLayer('None');
+                            props.updateLayerType('none');
+                            props.updateLayer(toActivate);
                         }}
                     />
                     {/* <BottomNavigationAction
