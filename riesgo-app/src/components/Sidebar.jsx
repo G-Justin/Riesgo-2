@@ -177,7 +177,7 @@ const Sidebar = (props) => {
                             <LogoSvg sx={{width: '100%'}} />
                         </Link>
                     </Box>
-                    
+
                     <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1, fontSize: '5em'}}>
                         <InputLabel id="demo-simple-select-standard-label">City Select</InputLabel>
                         <Select
@@ -205,15 +205,12 @@ const Sidebar = (props) => {
 
                     <Typography variant="body">
                         <CityDetails cityName={city} />
-                        <hr />
-                        <Typography variant="h6"><LayerName layerName={layer} /> Score</Typography>
-                        <Typography id="pd">undefined</Typography>
                     </Typography>
 
                 </CardContent>
 
                 <CardActions>
-                    <Button size="small">View Map Details</Button>
+                    <Button size="small">View <CityName cityName={city} /> Dataset Details</Button>
                 </CardActions>
 
 
@@ -454,6 +451,9 @@ const Sidebar = (props) => {
                             </Button>
                         </div>
                     </Box>}
+                    <hr />
+                        <Typography variant="h6"><LayerName layerName={layer} /> Score</Typography>
+                        <Typography id="pd">undefined</Typography>
                 </CardContent>
             </Card>
 
