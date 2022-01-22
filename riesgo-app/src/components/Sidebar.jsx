@@ -173,7 +173,7 @@ const Sidebar = (props) => {
 
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card sx={{ width: 340, position: "absolute", margin: 2 }}>
+            <Card sx={{ width: 380, position: "absolute", margin: 2 }}>
                 <CardContent>
                     <Box sx={{marginBottom: 1, }}>
                         <Link to="/" >
@@ -220,7 +220,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, left: 350 }}>
+            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, left: 390 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
