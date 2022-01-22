@@ -3,7 +3,7 @@ import { BottomNavigation } from "@mui/material"
 import { BottomNavigationAction } from "@mui/material"
 import { Button } from "@mui/material"
 import { Card } from "@mui/material"
-import { CardActions } from "@mui/material"
+//import { CardActions } from "@mui/material"
 import { CardContent } from "@mui/material"
 import { Paper } from "@mui/material"
 import { Typography } from "@mui/material"
@@ -28,11 +28,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 //Adjust Weights
-import Slider from './Slider'
+import Slider from './Slider';
 import Fade from '@mui/material/Fade';
 import React from "react";
 import { ReactComponent as LogoSvg } from '../assets/riesgo-logo-small.svg';
-import { Box } from "@mui/system"
+import { Box } from "@mui/system";
+
+//Table Data
+import DataTable from './DataTable';
 
 const Sidebar = (props) => {
     const [city, setCity] = React.useState(0);
@@ -73,7 +76,7 @@ const Sidebar = (props) => {
         } else if (cityName === "l_pasig") {
             return "Pasig City is a large district with a mix of offices and upscale housing, popular for mall complexes in and around the Ortigas Center area. Hip eateries serving modern Filipino fare cluster in Kapitolyo village, and parks like Greenfield District host weekend markets with local food and crafts."
         } else if (cityName === "l_marikina") {
-            return "Marikina, officially the City of Marikina, is a 1st class highly urbanized city in the National Capital Region of the Philippines. According to the 2020 census, it has a population of 456,059 people."
+            return "Marikina, officially the City of Marikina, is a 1st class highly urbanized city in the National Capital Region of the Philippines. According to the 2020 census, it has a population of 456,059 people."            
         } else {
             return "None Selected"
         }
@@ -207,13 +210,13 @@ const Sidebar = (props) => {
                         <CityDetails cityName={city} />
                     </Typography>
 
+                    <hr />
+                    <DataTable
+                        cityName={city}
+                    />
+                    <hr />
+                    <Button size="small"><CityName cityName={city} /> Dataset Details</Button>
                 </CardContent>
-
-                <CardActions>
-                    <Button size="small">View <CityName cityName={city} /> Dataset Details</Button>
-                </CardActions>
-
-
             </Card>
 
             {/* LEGEND DISPLAY */}
