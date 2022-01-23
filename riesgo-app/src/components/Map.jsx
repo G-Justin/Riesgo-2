@@ -126,7 +126,7 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckydvi6585f9l20pd9xzdf5va-7e9nx',
             });
 
-            //Marikina Dataset - Accesibility
+            //Marikina Dataset - Accessibility
             this.map.addSource('marikina-accessibility-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckyr02q790s9p27mmb1r1bld8-0quh4',
@@ -189,19 +189,50 @@ export default class Map extends Component {
             //Pasig Dataset - Flood
             this.map.addSource('pasig-flood-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvukj51q1rtv28p63zxroh1q-841yj',
+                url: 'mapbox://jdarvin.ckyr2wzd28f5q21podjpe8xuf-4qoa8',
             });
 
-            //Pasig Dataset - Accesibility
-            this.map.addSource('pasig-accessibility', {
+            this.map.addSource('pasig-flood-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvx9pskx3fui28l4rq0jpdpl-09kki',
+                url: 'mapbox://jdarvin.ckyr2zqdea63f21pc7rpvrrk5-1lr4a',
+            });
+
+            this.map.addSource('pasig-flood-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr36n3b19cg26mxupqdsizb-3lb5u',
+            });
+
+
+            //Pasig Dataset - Accesibility
+            this.map.addSource('pasig-accessibility-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr39odp1ceu2amsdcj0eap6-752wz',
+            });
+
+            this.map.addSource('pasig-accessibility-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr3doc73xzp22mti8qpy90v-6fecy',
+            });
+
+            this.map.addSource('pasig-accessibility-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr3g03e38eq20nlbqbdwfdc-10k5g',
             });
 
             //Pasig Dataset - Hazard
             this.map.addSource('pasig-hazard-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckwbomoug0lw728mxgl81joqf-5cf3u',
+                url: 'mapbox://jdarvin.ckyr275y5384220nlqd8yg5j4-0jr6d',
+            });
+
+            this.map.addSource('pasig-hazard-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr2e4hl3exi22nrzh05br0x-06pul',
+            });
+
+            this.map.addSource('pasig-hazard-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr2fek73c0n27nlcrw0cpv8-216ea',
             });
 
             // MARIKINA INITS ==================================================================================
@@ -636,16 +667,16 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_pasig_accessibility',
+                id: 'l_pasig_accessibility_5yr',
                 type: 'fill-extrusion',
-                source: 'pasig-accessibility',
-                'source-layer': 'pasig_accessibility',
+                source: 'pasig-accessibility-5yr',
+                'source-layer': 'pasig_accessibility_5yr',
                 layout: {
                     visibility: 'none',
                 },
                 paint: {
                 'fill-extrusion-color': {
-                    property: 'accessibility',
+                    property: 'accessibility_5yr',
                     stops: [
                         [0, '#FFF0F3'],
                         [0.125, '#FFCCD5'],
@@ -658,7 +689,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility'], 1]],
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_5yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -668,7 +699,72 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_pasig_flood',
+                id: 'l_pasig_accessibility_25yr',
+                type: 'fill-extrusion',
+                source: 'pasig-accessibility-25yr',
+                'source-layer': 'pasig_accessibility_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility_25yr',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_accessibility_100yr',
+                type: 'fill-extrusion',
+                source: 'pasig-accessibility-100yr',
+                'source-layer': 'pasig_accessibility_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility_100yr',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_100yr'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                // ID CHANGED FROM l_pasig_flood to l_pasig_flood_5yr
+                id: 'l_pasig_flood_5yr',
                 type: 'fill-extrusion',
                 source: 'pasig-flood-5yr',
                 'source-layer': 'pasig_flood_5yr',
@@ -696,7 +792,64 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_pasig_hazard',
+                id: 'l_pasig_flood_25yr',
+                type: 'fill-extrusion',
+                source: 'pasig-flood-25yr',
+                'source-layer': 'pasig_flood_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'flood_25yr',
+                    stops: [
+                        [0, '#06106b'],
+                        [0.33, '#3741a1'],
+                        [0.66, '#727ded'],
+                        [1, '#cfd3ff'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_flood_100yr',
+                type: 'fill-extrusion',
+                source: 'pasig-flood-100yr',
+                'source-layer': 'pasig_flood_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'flood_100yr',
+                    stops: [
+                        [0, '#06106b'],
+                        [0.33, '#3741a1'],
+                        [0.66, '#727ded'],
+                        [1, '#cfd3ff'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                // ID CHANGED FROM l_pasig_hazard to l_pasig_hazard_5yr
+                id: 'l_pasig_hazard_5yr',
                 type: 'fill-extrusion',
                 source: 'pasig-hazard-5yr',
                 'source-layer': 'pasig_hazard_5yr',
@@ -714,6 +867,62 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_hazard_25yr',
+                type: 'fill-extrusion',
+                source: 'pasig-hazard-25yr',
+                'source-layer': 'pasig_hazard_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'hazard_25yr',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_hazard_100yr',
+                type: 'fill-extrusion',
+                source: 'pasig-hazard-100yr',
+                'source-layer': 'pasig_hazard_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'hazard_100yr',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
