@@ -454,6 +454,50 @@ const Sidebar = (props) => {
                             </Button>
                         </div>
                     </Box>}
+                    {/* Marikina Accessibility Buttons */}
+                    {layer === "Accessibility" && 
+                    <Box sx={{ '& button': { m: 1 } }}>
+                        <div onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}>
+                            <Button variant="outlined" size="small"
+                                onClick={() => {
+                                    const toActivate = `${city}_accessibility_5yr`;
+
+                                    setLayer('Accessibility');
+                                    props.updateLayerType('accessibility5yr');
+                                    props.updateLayer(toActivate);
+
+                                    handleClose();
+                                }}>
+                                5 Years
+                            </Button>
+                            <Button variant="outlined" size="small"
+                                onClick={() => {
+                                    const toActivate = `${city}_accessibility_25yr`;
+
+                                    setLayer('Accessibility');
+                                    props.updateLayerType('accessibility25yr');
+                                    props.updateLayer(toActivate);
+
+                                    handleClose();
+                                }}>
+                                25 Years
+                            </Button>
+                            <Button variant="outlined" size="small"
+                            onClick={() => {
+                                const toActivate = `${city}_accessibility_100yr`;
+
+                                setLayer('Accessibility');
+                                props.updateLayerType('accessibility100yr');
+                                props.updateLayer(toActivate);
+
+                                handleClose();
+                            }}>
+                                100 Years
+                            </Button>
+                        </div>
+                    </Box>}
                     <hr />
                         <Typography variant="h6"><LayerName layerName={layer} /> Score</Typography>
                         <Typography id="pd">undefined</Typography>

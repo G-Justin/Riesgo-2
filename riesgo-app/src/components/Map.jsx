@@ -127,9 +127,19 @@ export default class Map extends Component {
             });
 
             //Marikina Dataset - Accesibility
-            this.map.addSource('marikina-accessibility', {
+            this.map.addSource('marikina-accessibility-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cky5re8470act27o1w98rious-5kh80',
+                url: 'mapbox://jdarvin.ckyr02q790s9p27mmb1r1bld8-0quh4',
+            });
+
+            this.map.addSource('marikina-accessibility-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr0465h38gp21nlbqethg9d-53io2',
+            });
+
+            this.map.addSource('marikina-accessibility-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyr05lue1mb020l9krvvlkbt-4ilbw',
             });
 
             //Marikina Dataset - Hazard
@@ -236,9 +246,9 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_marikina_accessibility',
+                id: 'l_marikina_accessibility_5yr',
                 type: 'fill-extrusion',
-                source: 'marikina-accessibility',
+                source: 'marikina-accessibility-5yr',
                 'source-layer': 'marikina_accessibility_5yr',
                 layout: {
                     visibility: 'none',
@@ -259,6 +269,70 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_accessibility_25yr',
+                type: 'fill-extrusion',
+                source: 'marikina-accessibility-25yr',
+                'source-layer': 'marikina_accessibility_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility_25yr',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_accessibility_100yr',
+                type: 'fill-extrusion',
+                source: 'marikina-accessibility-100yr',
+                'source-layer': 'marikina_accessibility_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'accessibility_100yr',
+                    stops: [
+                        [0, '#FFF0F3'],
+                        [0.125, '#FFCCD5'],
+                        [0.250, '#FF8FA3'],
+                        [0.375, '#FF4D6D'],
+                        [0.5, '#C9184A'],
+                        [0.625, '#A4133C'],
+                        [0.750, '#800F2F'],
+                        [0.875, '#590D22'],
+                        [1, '#800F2F'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_100yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -688,7 +762,15 @@ export default class Map extends Component {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.hazard_5yr}`
                         : `undefined`;
-                } else if (this.hover_layer === "elevation") {
+                } else if (this.hover_layer === "hazard_25yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.hazard_25yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "hazard_100yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.hazard_100yr}`
+                        : `undefined`;
+                }else if (this.hover_layer === "elevation") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.elevation}`
                         : `undefined`;
@@ -696,9 +778,25 @@ export default class Map extends Component {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.flood_5yr}`
                         : `undefined`;
+                } else if (this.hover_layer === "flood_25yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.flood_25yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "flood_100yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.flood_100yr}`
+                        : `undefined`;
                 } else if (this.hover_layer === "accessibility_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.accessibility_5yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "accessibility_25yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.accessibility_25yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "accessibility_100yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.accessibility_100yr}`
                         : `undefined`;
                 }
 
@@ -756,17 +854,35 @@ export default class Map extends Component {
 
         //Update current layer global variable        
         switch(nextProps.layer_type) {
-            case "hazard":
+            case "hazard5yr":
                 this.hover_layer = "hazard_5yr";
+                break;
+            case "hazard25yr":
+                this.hover_layer = "hazard_25yr";
+                break;
+            case "hazard100yr":
+                this.hover_layer = "hazard_100yr";
                 break;
             case "elevation":
                 this.hover_layer = "elevation"; 
                 break;
-            case "flood":
+            case "flood5yr":
                 this.hover_layer = "flood_5yr";
                 break;
-            case "accessibility":
+            case "flood25yr":
+                this.hover_layer = "flood_25yr";
+                break;
+            case "flood100yr":
+                this.hover_layer = "flood_100yr";
+                break;
+            case "accessibility5yr":
                 this.hover_layer = "accessibility_5yr";
+                break;
+            case "accessibility25yr":
+                this.hover_layer = "accessibility_25yr";
+                break;
+            case "accessibility100yr":
+                this.hover_layer = "accessibility_100yr";
                 break;
 
             default:
