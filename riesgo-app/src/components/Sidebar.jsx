@@ -16,6 +16,7 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
+import PeopleIcon from '@mui/icons-material/People';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -108,6 +109,8 @@ const Sidebar = (props) => {
                 return "Area Accessibility";
             case "Hazard":
                 return "Hazard Level";
+            case "Coverage Score":
+                return "Coverage";
             case "Land Use":
                 return "Land Use";
             case "Sustainability":
@@ -123,13 +126,15 @@ const Sidebar = (props) => {
 
         switch (layerName) {
             case "Flood":
-                return "5 Year flood map data of the selected city.";
+                return "Flood maps describes how susceptible sections within an area towards flooding. It also utilizes return periods where it presents the probability of a flood occuring in a specific period of time.";
             case "Elevation":
                 return "This map visualizes the elevatedness of certain areas around a city.";
             case "Accessibility":
                 return "Accessibility score considers how accessible an area is to vehicles or roads. Generally, the higher the accessibility score, the better people can access it.";
             case "Hazard":
-                return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                return "This map provides visualization on the impact of flood towards human activity and property.";
+            case "Coverage Score":
+                return "Coverage score takes into account the population of a cell and its neighbors within a 2 km radius."    
             case "Land Use":
                 return "Adjust land usage values in order to prioritize certain establishments or zones over others.";
             case "Sustainability":
@@ -175,6 +180,15 @@ const Sidebar = (props) => {
                         <div><span style={{ backgroundColor: '#f6684c' }}></span>Low Hazard</div>
                         <div><span style={{ backgroundColor: '#9d1e69' }}></span>Medium Hazard</div>
                         <div><span style={{ backgroundColor: '#300061' }}></span>High Hazard</div>
+                    </Box>
+                );
+            case "Coverage Score":
+                return (
+                    <Box>
+                        <div><span style={{ backgroundColor: '#300061' }}></span>Rural</div>
+                        <div><span style={{ backgroundColor: '#9d1e69' }}></span>Suburban</div>
+                        <div><span style={{ backgroundColor: '#f6684c' }}></span>Urban</div>
+                        <div><span style={{ backgroundColor: '#fcfbab' }}></span>Dense Urban</div>
                     </Box>
                 );
             default:
@@ -326,7 +340,7 @@ const Sidebar = (props) => {
                     />
                     <BottomNavigationAction
                         label="Coverage"
-                        icon={<EqualizerIcon />}
+                        icon={<PeopleIcon />}
                         onClick={() => {
                             const toActivate = `${city}_coverage_score`;
 
