@@ -47,7 +47,7 @@ const Sidebar = (props) => {
     const [layer, setLayer] = React.useState(0);
 
     //Year Buttons
-    const [alignment, setAlignment] = React.useState('web');
+    const [alignment, setAlignment] = React.useState('5yr_flood');
     const handleYearButtonChange = (event, newAlignment) => {
         if (newAlignment !== null) {
             setAlignment(newAlignment);
@@ -453,7 +453,7 @@ const Sidebar = (props) => {
                                 onChange={handleYearButtonChange}
                             >
                                 <ToggleButton 
-                                    value="5yr_hazard"
+                                    value="5yr_flood"
                                     onClick={() => {
                                         const toActivate = `${city}_hazard_5yr`;
     
@@ -510,7 +510,7 @@ const Sidebar = (props) => {
                                 onChange={handleYearButtonChange}
                             >
                                 <ToggleButton 
-                                    value="5yr_accessibility"
+                                    value="5yr_flood"
                                     onClick={() => {
                                         const toActivate = `${city}_accessibility_5yr`;
     
