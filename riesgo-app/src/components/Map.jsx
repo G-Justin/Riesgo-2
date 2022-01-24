@@ -62,8 +62,8 @@ export default class Map extends Component {
             .addTo(this.map);
          
         function onDragEnd() {
-            const lngLat = marker.getLngLat();
-            console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
+            //const lngLat = marker.getLngLat();
+            //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
          
         marker.on('dragend', onDragEnd);
