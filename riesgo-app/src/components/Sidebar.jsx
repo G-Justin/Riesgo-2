@@ -257,10 +257,10 @@ const Sidebar = (props) => {
                         icon={<WaterIcon />}
 
                         onClick={() => {
-                            const toActivate = `${city}_flood`; //$city gets current city selected
+                            const toActivate = `${city}_flood_5yr`; //$city gets current city selected
 
                             setLayer('Flood'); //Front-end Display name of Layer
-                            props.updateLayerType('flood'); //Back-end name of Layer
+                            props.updateLayerType('flood5yr'); //Back-end name of Layer
                             props.updateLayer(toActivate);  //Load the dynamic regex in the backend
 
                             handleClose();
@@ -275,7 +275,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_hazard_5yr`;
 
                             setLayer('Hazard');
-                            props.updateLayerType('hazard');
+                            props.updateLayerType('hazard5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
@@ -286,10 +286,10 @@ const Sidebar = (props) => {
                         icon={<LocalHospitalIcon />}
 
                         onClick={() => {
-                            const toActivate = `${city}_accessibility`;
+                            const toActivate = `${city}_accessibility_5yr`;
 
                             setLayer('Accessibility');
-                            props.updateLayerType('accessibility');
+                            props.updateLayerType('accessibility5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
