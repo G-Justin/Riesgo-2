@@ -15,9 +15,8 @@ code {
 .riesgo-logo {
   max-height: 100px;
 }
-
    
-  .legend span {
+.legend span {
   border-radius: 50%;
   display: inline-block;
   height: 10px;

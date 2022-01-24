@@ -54,14 +54,20 @@ export default class Map extends Component {
 
         let hoveredStateId = null;
 
-        //Marker
+        //Marker & Popup
+        const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setHTML(
+            '<Button style="margin: 5px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #669aed; color: white; font-size: 12px"><b>ANALYZE</b></Button>'
+        );  
+
         const marker = new mapboxgl.Marker({
             draggable: true
         })
             .setLngLat([121.03693378520076, 14.587247918399061])
+            .setPopup(popup)
             .addTo(this.map);
-         
+        
         function onDragEnd() {
+            marker.togglePopup(popup);
             //const lngLat = marker.getLngLat();
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
