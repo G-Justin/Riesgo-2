@@ -691,7 +691,7 @@ export default class Map extends Component {
                 },
                 paint: {
                     'fill-color': '#627BC1',
-                    'fill-opacity': 0.25
+                    'fill-opacity': 0
                 }
             });
 
@@ -1049,8 +1049,26 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                console.log(displayFeatures);
-
+                // FLOOD
+                document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
+                        ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
+                        : `undefined`;
+                document.getElementById('pd-flood-25yr').innerHTML = displayFeatures.length
+                        ? `<b>Flood Score (25 years):</b> ${displayFeatures[0].properties.flood_25yr}`
+                        : `undefined`;
+                document.getElementById('pd-flood-100yr').innerHTML = displayFeatures.length
+                        ? `<b>Flood Score (100 years):</b> ${displayFeatures[0].properties.flood_100yr}`
+                        : `undefined`;
+                // HAZARD
+                document.getElementById('pd-hazard-5yr').innerHTML = displayFeatures.length
+                        ? `<b>Hazard Score (5 years):</b> ${displayFeatures[0].properties.hazard_5yr}`
+                        : `undefined`;
+                document.getElementById('pd-hazard-25yr').innerHTML = displayFeatures.length
+                        ? `<b>Hazard Score (25 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
+                        : `undefined`;
+                document.getElementById('pd-hazard-100yr').innerHTML = displayFeatures.length
+                        ? `<b>Hazard Score (100 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
+                        : `undefined`;
             });
 
             //Hover Feature Getting

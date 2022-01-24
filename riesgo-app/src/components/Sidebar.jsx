@@ -381,7 +381,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card sx={{ width: 340, position: "absolute", margin: 2, right: 40 }}>
+            <Card sx={{ width: 340, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
                 <CardContent>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
@@ -568,8 +568,18 @@ const Sidebar = (props) => {
                         </div>
                     </Box>}
                     <hr />
-                        <Typography variant="h6"><LayerName layerName={layer} /> Score</Typography>
+                        <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                         <Typography id="pd">undefined</Typography>
+                    <hr />  
+                        <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
+                        <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
+                        <Typography variant="body" id="pd-flood-100yr"></Typography>
+                    <hr />
+                        <Typography variant="body" id="pd-hazard-5yr"></Typography> <br />
+                        <Typography variant="body" id="pd-hazard-25yr"></Typography> <br />
+                        <Typography variant="body" id="pd-hazard-100yr"></Typography>
+                    <hr />
+                        
                 </CardContent>
             </Card>
 
