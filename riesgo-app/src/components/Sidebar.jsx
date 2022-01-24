@@ -243,7 +243,7 @@ const Sidebar = (props) => {
                     />
 
                     <hr />
-                    <Button size="small"><CityName cityName={city} /> Dataset Details</Button>
+                    <Button size="small">Download <CityName cityName={city} /> Dataset</Button>
                 </CardContent>
             </Card>
 
@@ -570,7 +570,8 @@ const Sidebar = (props) => {
                     <hr />
                         <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                         <Typography id="pd">undefined</Typography>
-                    <hr />  
+                    <hr />
+                    <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-100yr"></Typography>
