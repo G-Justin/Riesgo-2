@@ -16,8 +16,10 @@ export default class Map extends Component {
             lat: 14.577,
             lng: 121,
             zoom: 11.16,
-            //pitch: 60,
             bearing: 0.13,
+
+            //Marker Coordinates
+            x: 0, y: 0
         };
     }
 
@@ -57,7 +59,6 @@ export default class Map extends Component {
         const divElement = document.createElement('div');
         const assignBtn = document.createElement('div');
         assignBtn.innerHTML = `<Button class="pBtn" style="margin: 3px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>`
-        //divElement.innerHTML = `<center><h5>Test</h5></center>`;
         divElement.appendChild(assignBtn);
         assignBtn.addEventListener('click', (e) => {
             alert('Button clicked');
@@ -72,14 +73,19 @@ export default class Map extends Component {
             .setPopup(popup)
             .addTo(this.map);
         
-        function onDragEnd() {
+        function onDragEnd(event) {
+            event = window.event || event;
+
             marker.togglePopup(popup);
+            console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
+            this.setState({ x: event.clientX, y: event.clientY });
+
             //const lngLat = marker.getLngLat();
             //divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
-         
-        marker.on('dragend', onDragEnd);
+
+        marker.on('dragend', onDragEnd.bind(this));
 
         //Buttons
         class PitchToggle {
@@ -1007,6 +1013,7 @@ export default class Map extends Component {
 
             this.map.on('mousemove', (e) => {
                 const features = this.map.queryRenderedFeatures(e.point);
+                //console.log(e.point);
                 const displayProperties = [
                     'type',
                     'properties',
@@ -1073,21 +1080,6 @@ export default class Map extends Component {
                         ? `${displayFeatures[0].properties.accessibility_100yr}`
                         : `undefined`;
                 }
-
-                // if (e.features.length > 0) {
-                //     if (hoveredStateId !== null) {
-                //         this.map.setFeatureState(
-                //         { source: 'marikina-elevation', id: hoveredStateId },
-                //         { hover: false }
-                //     );
-                // }
-                
-                // hoveredStateId = e.features[0].id;
-                //     this.map.setFeatureState(
-                //         { source: 'marikina-elevation', id: hoveredStateId },
-                //         { hover: true }
-                //     );
-                // }
             });
 
             this.map.on('mousemove', 'l_marikina_elevation', (e) => {
@@ -1247,7 +1239,7 @@ export default class Map extends Component {
             default:
                 break;
         } 
-        console.log("Hover layer is set to: " + this.hover_layer);
+        console.log("Hover layer is set to: " + this.hover_layer); 
         console.log("The current layer_type is " + layer_type);
 
         //If layer change detected

@@ -12,7 +12,7 @@ import { Typography } from "@mui/material"
 import WaterIcon from '@mui/icons-material/Water';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
+//import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
