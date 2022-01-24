@@ -56,13 +56,11 @@ export default class Map extends Component {
 
         let hoveredStateId = null;
 
+        //Marker & Popup Inits
         const divElement = document.createElement('div');
         const assignBtn = document.createElement('div');
         assignBtn.innerHTML = `<Button class="pBtn" style="margin: 3px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>`
         divElement.appendChild(assignBtn);
-        assignBtn.addEventListener('click', (e) => {
-            alert('Button clicked');
-        });
 
         const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setDOMContent(divElement);
 
@@ -73,6 +71,10 @@ export default class Map extends Component {
             .setPopup(popup)
             .addTo(this.map);
         
+        // assignBtn.addEventListener('click', (e) => {
+        //     alert(marker.getLngLat());
+        // });
+
         function onDragEnd() {
             marker.togglePopup(popup);
             //const lngLat = marker.getLngLat();
@@ -215,6 +217,11 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckwqdjusr0tvs28s10h3pbotb-2z5rw',
             });
 
+            //Marikina Dataset - Complete
+            this.map.addSource('marikina-complete', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyspqham1q9u28ofs0lnpz96-6nduq',
+            });
 
             //PASIG ==================================================================================
             //Pasig Dataset - Land Elevation
@@ -674,6 +681,20 @@ export default class Map extends Component {
                 },
             });
 
+            this.map.addLayer({
+                id: 'l_marikina_complete',
+                type: 'fill',
+                source: 'marikina-complete',
+                'source-layer': 'marikina_complete',
+                layout: {
+                    visibility: 'visible',
+                },
+                paint: {
+                    'fill-color': '#627BC1',
+                    'fill-opacity': 0.25
+                }
+            });
+
             // PASIG INITS ==================================================================================
 
             //Pasig Layer Inits
@@ -1004,17 +1025,35 @@ export default class Map extends Component {
             });
 
             this.map.getCanvas().style.cursor = "default";
-            // this.map.on('mouseenter', 'l_pasig_hazard', () => {
-            //     this.map.getCanvas().style.cursor = "default";
-            // });
 
-            // this.map.on("mouseleave", 'l_pasig_hazard', () => {
-            //     this.map.getCanvas().style.cursor = "pointer";
-            // });
+            //Marker Feature Getting
+            assignBtn.addEventListener('click', (e) => {
+                alert(marker.getLngLat());
+                const features = this.map.queryRenderedFeatures([this.state.x, this.state.y]);
 
-            //Hover over tiles for information
-            //TODO: Retrieve hover_layer from global.
+                const displayProperties = [
+                    'type',
+                    'properties',
+                    'id',
+                    'layer',
+                    'source',
+                    'sourceLayer',
+                    'state'
+                ];
+                     
+                const displayFeatures = features.map((feat) => {
+                    const displayFeat = {};
+                    displayProperties.forEach((prop) => {
+                        displayFeat[prop] = feat[prop];
+                    });
+                    return displayFeat;
+                });
 
+                console.log(displayFeatures);
+
+            });
+
+            //Hover Feature Getting
             this.map.on('mousemove', (e) => {
                 const features = this.map.queryRenderedFeatures(e.point);
                 //console.log(e.point);
