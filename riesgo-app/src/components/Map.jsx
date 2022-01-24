@@ -54,6 +54,20 @@ export default class Map extends Component {
 
         let hoveredStateId = null;
 
+        //Marker
+        const marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([121.03693378520076, 14.587247918399061])
+            .addTo(this.map);
+         
+        function onDragEnd() {
+            const lngLat = marker.getLngLat();
+            console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
+        }
+         
+        marker.on('dragend', onDragEnd);
+
         //Buttons
         class PitchToggle {
             constructor({ bearing = 0, pitch = 45, minpitchzoom = null }) {
