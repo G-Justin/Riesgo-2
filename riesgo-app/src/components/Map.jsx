@@ -74,7 +74,7 @@ export default class Map extends Component {
         
         function onDragEnd() {
             marker.togglePopup(popup);
-            const lngLat = marker.getLngLat();
+            //const lngLat = marker.getLngLat();
             //divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
