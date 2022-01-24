@@ -64,7 +64,7 @@ export default class Map extends Component {
             alert('Button clicked');
         });
 
-        const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: false }).setDOMContent(divElement);
+        const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setDOMContent(divElement);
 
         const marker = new mapboxgl.Marker({
             draggable: true
@@ -73,19 +73,23 @@ export default class Map extends Component {
             .setPopup(popup)
             .addTo(this.map);
         
-        function onDragEnd(event) {
-            event = window.event || event;
-
+        function onDragEnd() {
             marker.togglePopup(popup);
-            console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
-            this.setState({ x: event.clientX, y: event.clientY });
-
             //const lngLat = marker.getLngLat();
             //divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
 
-        marker.on('dragend', onDragEnd.bind(this));
+        function recordPos(event) {
+            event = window.event || event;
+            //console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
+            this.setState({ x: event.clientX, y: event.clientY });
+            console.log(`Mouse X: ${this.state.x}, Mouse Y: ${this.state.y}`);
+        }
+
+        marker.on('dragend', onDragEnd);
+
+        popup.on('open', recordPos.bind(this));
 
         //Buttons
         class PitchToggle {
