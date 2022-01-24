@@ -22,7 +22,7 @@ import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 
 //Select
-import InputLabel from '@mui/material/InputLabel';
+//import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -42,7 +42,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const Sidebar = (props) => {
-    const [city, setCity] = React.useState(0);
+    const [city, setCity] = React.useState('l_marikina');
     const [value, setValue] = React.useState(0);
     const [layer, setLayer] = React.useState(0);
 
@@ -84,11 +84,14 @@ const Sidebar = (props) => {
         const cityName = props.cityName;
 
         if (cityName === "l_manila") {
-            return "Manila, the capital of the Philippines, is a densely populated bayside city on the island of Luzon, which mixes Spanish colonial architecture with modern skyscrapers. Intramuros, a walled city in colonial times, is the heart of Old Manila. It’s home to the baroque 16th-century San Agustin Church as well as Fort Santiago, a storied citadel and former military prison."
+            return ""
+            //return "Manila, the capital of the Philippines, is a densely populated bayside city on the island of Luzon, which mixes Spanish colonial architecture with modern skyscrapers. Intramuros, a walled city in colonial times, is the heart of Old Manila. It’s home to the baroque 16th-century San Agustin Church as well as Fort Santiago, a storied citadel and former military prison."
         } else if (cityName === "l_pasig") {
-            return "Pasig City is a large district with a mix of offices and upscale housing, popular for mall complexes in and around the Ortigas Center area. Hip eateries serving modern Filipino fare cluster in Kapitolyo village, and parks like Greenfield District host weekend markets with local food and crafts."
+            return ""
+            //return "Pasig City is a large district with a mix of offices and upscale housing, popular for mall complexes in and around the Ortigas Center area. Hip eateries serving modern Filipino fare cluster in Kapitolyo village, and parks like Greenfield District host weekend markets with local food and crafts."
         } else if (cityName === "l_marikina") {
-            return "Marikina, officially the City of Marikina, is a 1st class highly urbanized city in the National Capital Region of the Philippines. According to the 2020 census, it has a population of 456,059 people."            
+            return ""
+            //return "Marikina, officially the City of Marikina, is a 1st class highly urbanized city in the National Capital Region of the Philippines. According to the 2020 census, it has a population of 456,059 people."            
         } else {
             return "None Selected"
         }
@@ -189,25 +192,25 @@ const Sidebar = (props) => {
                 <CardContent>
                     <Box sx={{marginBottom: 1, }}>
                         <Link to="/" >
-                            <img src={RiesgoLogo} alt="React Logo" width={"150px"}/>
+                            <img src={RiesgoLogo} alt="React Logo" width={"100px"}/>
                         </Link>
                     </Box>
 
-                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1, fontSize: '5em'}}>
-                        <InputLabel id="demo-simple-select-standard-label">City Select</InputLabel>
+                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1}}>
                         <Select
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={city}
                             onChange={handleChange}
-                            label="City Select"
                             type="text"
+                            sx={{fontSize: '2.25em'}}
                         >
                             <MenuItem value={'l_manila'}><b>Manila</b></MenuItem>
                             <MenuItem value={'l_marikina'}><b>Marikina</b></MenuItem>
                             <MenuItem value={'l_pasig'}><b>Pasig</b></MenuItem>
                         </Select>
                     </FormControl>
+
                     {/* <Typography variant="h5" component="div">
                         <b>
                             <CityName cityName={city} />
@@ -222,17 +225,17 @@ const Sidebar = (props) => {
                         <CityDetails cityName={city} />
                     </Typography>
 
-                    <hr />
                     <DataTable
                         cityName={city}
                     />
+
                     <hr />
                     <Button size="small"><CityName cityName={city} /> Dataset Details</Button>
                 </CardContent>
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, left: 390 }}>
+            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, right: 390 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>

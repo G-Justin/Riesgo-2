@@ -34,14 +34,13 @@ function createData(name, calories, fat, carbs, protein) {
 
     const rows = [
       createData('Population', displayPopulation),
-      createData('Area', displayArea),
-      createData('Elevation', displayElevation),
+      createData('Area (Average)', displayArea),
+      createData('Elevation (Average)', displayElevation),
     ];
 
     return (
       <TableContainer component={Paper}>
         <Table aria-label="caption table">
-          <caption>Dataset details</caption>
           <TableHead>
             <TableRow>
               <TableCell>Properties</TableCell>
