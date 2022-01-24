@@ -381,7 +381,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card sx={{ width: 340, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
+            <Card id="style-1" sx={{ width: 340, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
                 <CardContent>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
