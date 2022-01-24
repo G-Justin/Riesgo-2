@@ -1059,6 +1059,7 @@ export default class Map extends Component {
                 document.getElementById('pd-flood-100yr').innerHTML = displayFeatures.length
                         ? `<b>Flood Score (100 years):</b> ${displayFeatures[0].properties.flood_100yr}`
                         : `undefined`;
+
                 // HAZARD
                 document.getElementById('pd-hazard-5yr').innerHTML = displayFeatures.length
                         ? `<b>Hazard Score (5 years):</b> ${displayFeatures[0].properties.hazard_5yr}`
@@ -1069,6 +1070,22 @@ export default class Map extends Component {
                 document.getElementById('pd-hazard-100yr').innerHTML = displayFeatures.length
                         ? `<b>Hazard Score (100 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
                         : `undefined`;
+
+                // ACCESSIBILITY
+                document.getElementById('pd-accessibility-5yr').innerHTML = displayFeatures.length
+                        ? `<b>Accessibility Score (5 years):</b> ${displayFeatures[0].properties.accessibility_5yr}`
+                        : `undefined`;
+                document.getElementById('pd-accessibility-25yr').innerHTML = displayFeatures.length
+                        ? `<b>Accessibility Score (25 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
+                        : `undefined`;
+                document.getElementById('pd-accessibility-100yr').innerHTML = displayFeatures.length
+                        ? `<b>Accessibility Score (100 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
+                        : `undefined`;
+                        
+                // ELEVATION
+                document.getElementById('pd-elevation').innerHTML = displayFeatures.length
+                ? `<b>Elevation: </b> ${displayFeatures[0].properties.elevation}`
+                : `undefined`;
             });
 
             //Hover Feature Getting

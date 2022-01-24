@@ -579,7 +579,11 @@ const Sidebar = (props) => {
                         <Typography variant="body" id="pd-hazard-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-hazard-100yr"></Typography>
                     <hr />
-                        
+                        <Typography variant="body" id="pd-accessibility-5yr"></Typography> <br />
+                        <Typography variant="body" id="pd-accessibility-25yr"></Typography> <br />
+                        <Typography variant="body" id="pd-accessibility-100yr"></Typography>
+                    <hr />
+                        <Typography variant="body" id="pd-elevation"></Typography>                        
                 </CardContent>
             </Card>
 
