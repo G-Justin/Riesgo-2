@@ -17,6 +17,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
 import PeopleIcon from '@mui/icons-material/People';
+import DownloadIcon from '@mui/icons-material/Download';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -243,7 +244,7 @@ const Sidebar = (props) => {
                     />
 
                     <hr />
-                    <Button size="small">Download <CityName cityName={city} /> Dataset</Button>
+                    <Button size="small">Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small"/></Button>
                 </CardContent>
             </Card>
 
