@@ -56,7 +56,7 @@ export default class Map extends Component {
 
         //Marker & Popup
         const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setHTML(
-            '<Button style="margin: 5px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #669aed; color: white; font-size: 12px"><b>ANALYZE</b></Button>'
+            '<Button style="margin: 5px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>'
         );  
 
         const marker = new mapboxgl.Marker({
