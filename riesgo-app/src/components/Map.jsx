@@ -54,10 +54,16 @@ export default class Map extends Component {
 
         let hoveredStateId = null;
 
-        //Marker & Popup
-        const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setHTML(
-            '<Button style="margin: 3px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>'
-        );  
+        const divElement = document.createElement('div');
+        const assignBtn = document.createElement('div');
+        assignBtn.innerHTML = `<Button class="pBtn" style="margin: 3px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>`
+        //divElement.innerHTML = `<center><h5>Test</h5></center>`;
+        divElement.appendChild(assignBtn);
+        assignBtn.addEventListener('click', (e) => {
+            alert('Button clicked');
+        });
+
+        const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: false }).setDOMContent(divElement);
 
         const marker = new mapboxgl.Marker({
             draggable: true
@@ -68,7 +74,8 @@ export default class Map extends Component {
         
         function onDragEnd() {
             marker.togglePopup(popup);
-            //const lngLat = marker.getLngLat();
+            const lngLat = marker.getLngLat();
+            //divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
          
