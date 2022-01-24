@@ -134,7 +134,7 @@ export default class Map extends Component {
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvwn7fnz0vr920mtehdcswos-5mog7',
+                url: 'mapbox://jdarvin.ckys9udle3ksy22pc4kms5tw9-7r0ki',
             });
 
             //Marikina Dataset - Flood
@@ -210,7 +210,7 @@ export default class Map extends Component {
             //Pasig Dataset - Land Elevation
             this.map.addSource('pasig-elevation', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvukhftv2sy420l4byfi5pem-9hq3c',
+                url: 'mapbox://jdarvin.ckysan4cs3nk629pc085m4n7p-49wf1',
             });
 
             //Pasig Dataset - Flood
@@ -260,6 +260,12 @@ export default class Map extends Component {
             this.map.addSource('pasig-hazard-100yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckyr2fek73c0n27nlcrw0cpv8-216ea',
+            });
+
+            //Pasig Dataset - Coverage
+            this.map.addSource('pasig-coverage-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckysbg5dv1lmt20mxlkp7u5sw-2kqyq',
             });
 
             // MARIKINA INITS ==================================================================================
@@ -959,6 +965,34 @@ export default class Map extends Component {
                 },
             });
 
+            this.map.addLayer({
+                id: 'l_pasig_coverage_score',
+                type: 'fill-extrusion',
+                source: 'pasig-coverage-score',
+                'source-layer': 'pasig_coverage_score',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'coverage_score',
+                    stops: [
+                        [0, '#300061'],
+                        [0.33, '#9d1e69'],
+                        [0.66, '#f6684c'],
+                        [1, '#fcfbab'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
             this.map.getCanvas().style.cursor = "default";
             // this.map.on('mouseenter', 'l_pasig_hazard', () => {
             //     this.map.getCanvas().style.cursor = "default";
@@ -1009,6 +1043,10 @@ export default class Map extends Component {
                 }else if (this.hover_layer === "elevation") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.elevation}`
+                        : `undefined`;
+                } else if (this.hover_layer === "coverage_score") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.coverage_score}`
                         : `undefined`;
                 } else if (this.hover_layer === "flood_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
@@ -1078,6 +1116,88 @@ export default class Map extends Component {
                 }
                 hoveredStateId = null;
             });
+
+            this.map.on('mousemove', 'l_pasig_elevation', (e) => {
+                if (e.features.length > 0) {
+                    if (hoveredStateId !== null) {
+                        this.map.setFeatureState(
+                        { source: 'pasig-elevation', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                
+                hoveredStateId = e.features[0].id;
+                    this.map.setFeatureState(
+                        { source: 'pasig-elevation', id: hoveredStateId },
+                        { hover: true }
+                    );
+                }
+            });
+
+            this.map.on('mouseleave', 'l_pasig_elevation', () => {
+                if (hoveredStateId !== null) {
+                    this.map.setFeatureState(
+                        { source: 'pasig-elevation', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                hoveredStateId = null;
+            });
+
+            this.map.on('mousemove', 'l_marikina_coverage_score', (e) => {
+                if (e.features.length > 0) {
+                    if (hoveredStateId !== null) {
+                        this.map.setFeatureState(
+                        { source: 'marikina-coverage-score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                
+                hoveredStateId = e.features[0].id;
+                    this.map.setFeatureState(
+                        { source: 'marikina-coverage-score', id: hoveredStateId },
+                        { hover: true }
+                    );
+                }
+            });
+
+            
+            this.map.on('mouseleave', 'l_marikina_coverage_score', () => {
+                if (hoveredStateId !== null) {
+                    this.map.setFeatureState(
+                        { source: 'marikina_coverage_score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                hoveredStateId = null;
+            });
+
+            this.map.on('mousemove', 'l_pasig_coverage_score', (e) => {
+                if (e.features.length > 0) {
+                    if (hoveredStateId !== null) {
+                        this.map.setFeatureState(
+                        { source: 'pasig-coverage-score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                
+                hoveredStateId = e.features[0].id;
+                    this.map.setFeatureState(
+                        { source: 'pasig-coverage-score', id: hoveredStateId },
+                        { hover: true }
+                    );
+                }
+            });
+
+            this.map.on('mouseleave', 'l_pasig_coverage_score', () => {
+                if (hoveredStateId !== null) {
+                    this.map.setFeatureState(
+                        { source: 'marikina_pasig_score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                hoveredStateId = null;
+            });
         });
     }
 
@@ -1101,6 +1221,9 @@ export default class Map extends Component {
                 break;
             case "elevation":
                 this.hover_layer = "elevation"; 
+                break;
+            case "coveragescore":
+                this.hover_layer = "coverage_score"; 
                 break;
             case "flood5yr":
                 this.hover_layer = "flood_5yr";
