@@ -31,7 +31,6 @@ import Select from '@mui/material/Select';
 import Slider from './Slider';
 import Fade from '@mui/material/Fade';
 import React from "react";
-import RiesgoLogo from '../assets/riesgo-logo-small.svg';
 import { Box } from "@mui/system";
 
 //Table Data
@@ -190,9 +189,9 @@ const Sidebar = (props) => {
             {/* MAIN CITY SELECT */}
             <Card sx={{ width: 380, position: "absolute", margin: 2 }}>
                 <CardContent>
-                    <Box sx={{marginBottom: 1, }}>
+                    <Box>
                         <Link to="/" >
-                            <img src={RiesgoLogo} alt="React Logo" width={"100px"}/>
+                            <img src="/riesgo-logo-small.svg" alt="React Logo" width={"120px"}/>
                         </Link>
                     </Box>
 
