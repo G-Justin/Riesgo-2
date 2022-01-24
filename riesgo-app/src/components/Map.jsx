@@ -70,10 +70,6 @@ export default class Map extends Component {
             .setLngLat([121.03693378520076, 14.587247918399061])
             .setPopup(popup)
             .addTo(this.map);
-        
-        // assignBtn.addEventListener('click', (e) => {
-        //     alert(marker.getLngLat());
-        // });
 
         function onDragEnd() {
             marker.togglePopup(popup);
@@ -283,6 +279,12 @@ export default class Map extends Component {
             this.map.addSource('pasig-coverage-score', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckysbg5dv1lmt20mxlkp7u5sw-2kqyq',
+            });
+
+            //Pasig Dataset - Complete
+            this.map.addSource('pasig-complete', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyswpdpg1r0m20mx4zsbas59-2nd82',
             });
 
             // MARIKINA INITS ==================================================================================
@@ -1024,11 +1026,27 @@ export default class Map extends Component {
                 },
             });
 
+            this.map.addLayer({
+                id: 'l_pasig_complete',
+                type: 'fill',
+                source: 'pasig-complete',
+                'source-layer': 'pasig_complete',
+                layout: {
+                    visibility: 'visible',
+                },
+                paint: {
+                    'fill-color': '#627BC1',
+                    'fill-opacity': 0
+                }
+            });
+
+            // END OF LAYER INITIALIZATIONS
+
             this.map.getCanvas().style.cursor = "default";
 
             //Marker Feature Getting
             assignBtn.addEventListener('click', (e) => {
-                alert(marker.getLngLat());
+                //alert(marker.getLngLat());
                 const features = this.map.queryRenderedFeatures([this.state.x, this.state.y]);
 
                 const displayProperties = [
