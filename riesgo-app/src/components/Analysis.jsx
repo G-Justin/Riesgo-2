@@ -44,15 +44,15 @@ export default function Analysis(props) {
     var floodData = [
         {
             name: "5 Years",
-            score: analysisState.data[0],
+            score: analysisState.data[0] + 0.05,
         },
         {
             name: "25 Years",
-            score: analysisState.data[1],
+            score: analysisState.data[1] + 0.05,
         },
         {
             name: "100 Years",
-            score: analysisState.data[2],
+            score: analysisState.data[2] + 0.05,
         },
     ];
     
@@ -106,8 +106,7 @@ export default function Analysis(props) {
         >
         <BarChart width={350} height={150} data={floodData}>
             <XAxis dataKey="name" />
-            <YAxis domain={[0, 1]}/>
-            <Tooltip />
+            <YAxis domain={[0, 1]} allowDataOverflow={true}/>
             <Bar dataKey="score">
             {floodData.map((entry, index) => (
                 <Cell fill={getFloodColor(entry.score)} />
