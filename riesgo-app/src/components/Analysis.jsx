@@ -5,6 +5,7 @@ import {
     Bar, 
     Tooltip, 
     XAxis, 
+    YAxis,
     Cell,
 } from "recharts";
 
@@ -30,52 +31,62 @@ const getAccessibilityColor = (p) => {
     if (p >= 0) { return "#ffc2ce"; }
 }
 
+
+
+export default function Analysis(props) {
 const floodData = [
-  {
-    name: "5 Years",
-    a: 1,
-  },
-  {
-    name: "25 Years",
-    a: 0.66,
-  },
-  {
-    name: "100 Years",
-    a: 0.33,
-  },
-];
-
-const hazardData = [
     {
-      name: "5 Years",
-      a: 0.75,
+        name: "5 Years",
+        score: 1,
     },
     {
-      name: "25 Years",
-      a: 0.5,
+        name: "25 Years",
+        score: 0.66,
     },
     {
-      name: "100 Years",
-      a: 0.25,
+        name: "100 Years",
+        score: 0.33,
     },
-  ];
-
-const accessibilityData = [
-    {
-      name: "5 Years",
-      a: 0.75,
-    },
-    {
-      name: "25 Years",
-      a: 0.5,
-    },
-    {
-      name: "100 Years",
-      a: 0.25,
-    },
-];
-
-export default function Analysis() {
+    ];
+    
+    const hazardData = [
+        {
+        name: "5 Years",
+        score: 0.75,
+        },
+        {
+        name: "25 Years",
+        score: 0.5,
+        },
+        {
+        name: "100 Years",
+        score: 0.25,
+        },
+    ];
+    
+    const accessibilityData = [
+        {
+        name: "5 Years",
+        score: 0.75,
+        },
+        {
+        name: "25 Years",
+        score: 0.5,
+        },
+        {
+        name: "100 Years",
+        score: 0.25,
+        },
+    ];
+    
+    const elevationData = [
+        {
+        name: "Elevation | Sea Level",
+        pv: 4300,
+        uv: 3000
+        }
+    ];
+  
   return (
     <div>
     <i>Higher is better*</i>
@@ -87,9 +98,9 @@ export default function Analysis() {
         <BarChart width={320} height={150} data={floodData}>
             <XAxis dataKey="name" />
             <Tooltip />
-            <Bar dataKey="a">
+            <Bar dataKey="score">
             {floodData.map((entry, index) => (
-                <Cell fill={getFloodColor(entry.a)} />
+                <Cell fill={getFloodColor(entry.score)} />
             ))}
             </Bar>
         </BarChart>
@@ -103,9 +114,9 @@ export default function Analysis() {
         <BarChart width={320} height={150} data={hazardData}>
             <XAxis dataKey="name" />
             <Tooltip />
-            <Bar dataKey="a">
+            <Bar dataKey="score">
             {hazardData.map((entry, index) => (
-                <Cell fill={getHazardColor(entry.a)} />
+                <Cell fill={getHazardColor(entry.score)} />
             ))}
             </Bar>
         </BarChart>
@@ -119,12 +130,28 @@ export default function Analysis() {
         <BarChart width={320} height={150} data={accessibilityData}>
             <XAxis dataKey="name" />
             <Tooltip />
-            <Bar dataKey="a">
+            <Bar dataKey="score">
             {accessibilityData.map((entry, index) => (
-                <Cell fill={getAccessibilityColor(entry.a)} />
+                <Cell fill={getAccessibilityColor(entry.score)} />
             ))}
             </Bar>
         </BarChart>
+    </Box>
+
+    <Typography variant="h6">Elevation (from Sea Level)</Typography>
+    <Box 
+        display="flex" 
+        alignItems="center"
+        justifyContent="center">
+            
+        <BarChart width={320} height={200} data={elevationData}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="pv" fill="#82ca9d" />
+            <Bar dataKey="uv" fill="#8884d8" />
+        </BarChart>
+
     </Box>
     </div>
   );
