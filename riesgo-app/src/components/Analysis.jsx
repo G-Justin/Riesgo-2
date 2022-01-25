@@ -90,7 +90,7 @@ export default function Analysis(props) {
         {
         name: "Elevation | Sea Level",
         pv: analysisState.data[9],
-        uv: 1
+        uv: 0.5
         }
     ];
   
