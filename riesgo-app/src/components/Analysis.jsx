@@ -41,56 +41,56 @@ export default function Analysis(props) {
     React.useEffect(() => console.log('Value Changed!'));
     React.useEffect(() => console.log(analysisState.data));
     
-    const floodData = [
+    var floodData = [
         {
             name: "5 Years",
-            score: 1,
+            score: analysisState.data[0],
         },
         {
             name: "25 Years",
-            score: 0.66,
+            score: analysisState.data[1],
         },
         {
             name: "100 Years",
-            score: 0.33,
+            score: analysisState.data[2],
         },
     ];
     
-    const hazardData = [
+    var hazardData = [
         {
         name: "5 Years",
-        score: 0.75,
+        score: analysisState.data[3],
         },
         {
         name: "25 Years",
-        score: 0.5,
+        score: analysisState.data[4],
         },
         {
         name: "100 Years",
-        score: 0.25,
+        score: analysisState.data[5],
         },
     ];
     
-    const accessibilityData = [
+    var accessibilityData = [
         {
         name: "5 Years",
-        score: 0.75,
+        score: analysisState.data[6],
         },
         {
         name: "25 Years",
-        score: 0.5,
+        score: analysisState.data[7],
         },
         {
         name: "100 Years",
-        score: 0.25,
+        score: analysisState.data[8],
         },
     ];
     
-    const elevationData = [
+    var elevationData = [
         {
         name: "Elevation | Sea Level",
-        pv: 4300,
-        uv: 3000
+        pv: analysisState.data[9],
+        uv: 1
         }
     ];
   
@@ -98,14 +98,15 @@ export default function Analysis(props) {
     <div>
     <i>Higher is better*</i>
     <Typography variant="h6">Flood Safety Score</Typography>
-    <p>{analysisState.data}</p>
-    
     <Box 
         display="flex" 
         alignItems="center"
-        justifyContent="center">
-        <BarChart width={320} height={150} data={floodData}>
+        justifyContent="center"
+        marginLeft={-5}
+        >
+        <BarChart width={350} height={150} data={floodData}>
             <XAxis dataKey="name" />
+            <YAxis domain={[0, 1]}/>
             <Tooltip />
             <Bar dataKey="score">
             {floodData.map((entry, index) => (
@@ -119,9 +120,11 @@ export default function Analysis(props) {
     <Box 
         display="flex" 
         alignItems="center"
-        justifyContent="center">
-        <BarChart width={320} height={150} data={hazardData}>
+        justifyContent="center"
+        marginLeft={-5}>
+        <BarChart width={350} height={150} data={hazardData}>
             <XAxis dataKey="name" />
+            <YAxis type="number" domain={[0, 1]}/>
             <Tooltip />
             <Bar dataKey="score">
             {hazardData.map((entry, index) => (
@@ -135,9 +138,11 @@ export default function Analysis(props) {
     <Box 
         display="flex" 
         alignItems="center"
-        justifyContent="center">
-        <BarChart width={320} height={150} data={accessibilityData}>
+        justifyContent="center"
+        marginLeft={-5}>
+        <BarChart width={350} height={150} data={accessibilityData}>
             <XAxis dataKey="name" />
+            <YAxis type="number" domain={[0, 1]}/>
             <Tooltip />
             <Bar dataKey="score">
             {accessibilityData.map((entry, index) => (
@@ -151,11 +156,11 @@ export default function Analysis(props) {
     <Box 
         display="flex" 
         alignItems="center"
-        justifyContent="center">
-            
-        <BarChart width={320} height={200} data={elevationData}>
+        justifyContent="center"
+        marginLeft={-5}>
+        <BarChart width={350} height={200} data={elevationData}>
             <XAxis dataKey="name" />
-            <YAxis />
+            <YAxis type="number" domain={[0, 1]}/>
             <Tooltip />
             <Bar dataKey="pv" fill="#82ca9d" />
             <Bar dataKey="uv" fill="#8884d8" />
