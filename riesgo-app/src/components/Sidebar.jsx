@@ -38,6 +38,9 @@ import { Box } from "@mui/system";
 //Table Data
 import DataTable from './DataTable';
 
+//Analysis Data
+import Analysis from "./Analysis";
+
 //Year Buttons
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -47,6 +50,14 @@ const Sidebar = (props) => {
     const [value, setValue] = React.useState(0);
     const [layer, setLayer] = React.useState(0);
 
+    //Update Analysis Props
+    const [analysisState, setAnalysisState] = React.useState(props);
+    React.useEffect(() => {
+        setAnalysisState(props);
+      }, [props]);
+
+    //React.useEffect(() => console.log('Value Changed!'));
+
     //Year Buttons
     const [alignment, setAlignment] = React.useState('5yr_flood');
     const handleYearButtonChange = (event, newAlignment) => {
@@ -54,6 +65,7 @@ const Sidebar = (props) => {
             setAlignment(newAlignment);
         }
     };
+
 
     //Adjust Weights Ui
     const [open, setOpen] = React.useState(false);
@@ -249,7 +261,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, right: 390 }}>
+            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, right: 410 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
@@ -382,7 +394,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="style-1" sx={{ width: 340, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
+            <Card id="style-1" sx={{ width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
                 <CardContent>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
@@ -572,7 +584,8 @@ const Sidebar = (props) => {
                         <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                         <Typography id="pd">undefined</Typography>
                     <hr />
-                    <Typography variant="h6"><b>Marker Details</b></Typography>  
+                        <Analysis data = {analysisState.marker_prop} />
+                        {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-100yr"></Typography>
@@ -585,7 +598,7 @@ const Sidebar = (props) => {
                         <Typography variant="body" id="pd-accessibility-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-accessibility-100yr"></Typography>
                     <hr />
-                        <Typography variant="body" id="pd-elevation"></Typography>                        
+                        <Typography variant="body" id="pd-elevation"></Typography>                         */}
                 </CardContent>
             </Card>
 
