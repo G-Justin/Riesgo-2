@@ -19,7 +19,10 @@ export default class Map extends Component {
             bearing: 0.13,
 
             //Marker Coordinates
-            x: 0, y: 0
+            x: 0, y: 0,
+
+            //Marker Properties
+            markerProp: []
         };
     }
 
@@ -55,11 +58,12 @@ export default class Map extends Component {
         });
 
         let hoveredStateId = null;
+        let tempMarkerArray = [];
 
         //Marker & Popup Inits
         const divElement = document.createElement('div');
         const assignBtn = document.createElement('div');
-        assignBtn.innerHTML = `<Button class="pBtn" style="margin: 3px; border: none; padding: 10px; width: 100px; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button>`
+        assignBtn.innerHTML = `<center><Button class="pBtn" style="margin: 3px; border: none; padding: 10px; width: 100%; font-family: Roboto; background-color: #3fb1ce; color: white; font-size: 12px; border-radius: 20px;"><b>ANALYZE</b></Button></center>`
         divElement.appendChild(assignBtn);
 
         const popup = new mapboxgl.Popup({ offset: 25, closeOnMove: true }).setDOMContent(divElement);
@@ -73,8 +77,9 @@ export default class Map extends Component {
 
         function onDragEnd() {
             marker.togglePopup(popup);
-            //const lngLat = marker.getLngLat();
-            //divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+            const lngLat = marker.getLngLat();
+            divElement.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+            divElement.appendChild(assignBtn);
             //console.log(`Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`);
         }
 
@@ -86,7 +91,6 @@ export default class Map extends Component {
         }
 
         marker.on('dragend', onDragEnd);
-
         popup.on('open', recordPos.bind(this));
 
         //Buttons
@@ -1067,43 +1071,58 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                // FLOOD
-                document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
-                        ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
-                        : `undefined`;
-                document.getElementById('pd-flood-25yr').innerHTML = displayFeatures.length
-                        ? `<b>Flood Score (25 years):</b> ${displayFeatures[0].properties.flood_25yr}`
-                        : `undefined`;
-                document.getElementById('pd-flood-100yr').innerHTML = displayFeatures.length
-                        ? `<b>Flood Score (100 years):</b> ${displayFeatures[0].properties.flood_100yr}`
-                        : `undefined`;
+                // FLOOD YOU ARE HERE
+                tempMarkerArray[0] = displayFeatures[0].properties.flood_5yr;
+                tempMarkerArray[1] = displayFeatures[0].properties.flood_25yr;
+                tempMarkerArray[2] = displayFeatures[0].properties.flood_100yr;
+                tempMarkerArray[3] = displayFeatures[0].properties.hazard_5yr;
+                tempMarkerArray[4] = displayFeatures[0].properties.hazard_25yr;
+                tempMarkerArray[5] = displayFeatures[0].properties.hazard_100yr;
+                tempMarkerArray[6] = displayFeatures[0].properties.accessibility_5yr;
+                tempMarkerArray[7] = displayFeatures[0].properties.accessibility_25yr;
+                tempMarkerArray[8] = displayFeatures[0].properties.accessibility_100yr;
+                tempMarkerArray[9] = displayFeatures[0].properties.elevation;
 
-                // HAZARD
-                document.getElementById('pd-hazard-5yr').innerHTML = displayFeatures.length
-                        ? `<b>Hazard Score (5 years):</b> ${displayFeatures[0].properties.hazard_5yr}`
-                        : `undefined`;
-                document.getElementById('pd-hazard-25yr').innerHTML = displayFeatures.length
-                        ? `<b>Hazard Score (25 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
-                        : `undefined`;
-                document.getElementById('pd-hazard-100yr').innerHTML = displayFeatures.length
-                        ? `<b>Hazard Score (100 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
-                        : `undefined`;
+                this.setState({ markerProp: tempMarkerArray });
 
-                // ACCESSIBILITY
-                document.getElementById('pd-accessibility-5yr').innerHTML = displayFeatures.length
-                        ? `<b>Accessibility Score (5 years):</b> ${displayFeatures[0].properties.accessibility_5yr}`
-                        : `undefined`;
-                document.getElementById('pd-accessibility-25yr').innerHTML = displayFeatures.length
-                        ? `<b>Accessibility Score (25 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
-                        : `undefined`;
-                document.getElementById('pd-accessibility-100yr').innerHTML = displayFeatures.length
-                        ? `<b>Accessibility Score (100 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
-                        : `undefined`;
+                console.log("Look at this " + this.state.markerProp);
+
+                // document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
+                //         ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-flood-25yr').innerHTML = displayFeatures.length
+                //         ? `<b>Flood Score (25 years):</b> ${displayFeatures[0].properties.flood_25yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-flood-100yr').innerHTML = displayFeatures.length
+                //         ? `<b>Flood Score (100 years):</b> ${displayFeatures[0].properties.flood_100yr}`
+                //         : `undefined`;
+
+                // // HAZARD
+                // document.getElementById('pd-hazard-5yr').innerHTML = displayFeatures.length
+                //         ? `<b>Hazard Score (5 years):</b> ${displayFeatures[0].properties.hazard_5yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-hazard-25yr').innerHTML = displayFeatures.length
+                //         ? `<b>Hazard Score (25 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-hazard-100yr').innerHTML = displayFeatures.length
+                //         ? `<b>Hazard Score (100 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
+                //         : `undefined`;
+
+                // // ACCESSIBILITY
+                // document.getElementById('pd-accessibility-5yr').innerHTML = displayFeatures.length
+                //         ? `<b>Accessibility Score (5 years):</b> ${displayFeatures[0].properties.accessibility_5yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-accessibility-25yr').innerHTML = displayFeatures.length
+                //         ? `<b>Accessibility Score (25 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
+                //         : `undefined`;
+                // document.getElementById('pd-accessibility-100yr').innerHTML = displayFeatures.length
+                //         ? `<b>Accessibility Score (100 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
+                //         : `undefined`;
                         
-                // ELEVATION
-                document.getElementById('pd-elevation').innerHTML = displayFeatures.length
-                ? `<b>Elevation: </b> ${displayFeatures[0].properties.elevation}`
-                : `undefined`;
+                // // ELEVATION
+                // document.getElementById('pd-elevation').innerHTML = displayFeatures.length
+                // ? `<b>Elevation: </b> ${displayFeatures[0].properties.elevation}`
+                // : `undefined`;
             });
 
             //Hover Feature Getting

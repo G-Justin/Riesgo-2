@@ -38,6 +38,9 @@ import { Box } from "@mui/system";
 //Table Data
 import DataTable from './DataTable';
 
+//Analysis Data
+import Analysis from "./Analysis";
+
 //Year Buttons
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -572,7 +575,8 @@ const Sidebar = (props) => {
                         <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                         <Typography id="pd">undefined</Typography>
                     <hr />
-                    <Typography variant="h6"><b>Marker Details</b></Typography>  
+                        <Analysis />
+                        {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-100yr"></Typography>
@@ -585,7 +589,7 @@ const Sidebar = (props) => {
                         <Typography variant="body" id="pd-accessibility-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-accessibility-100yr"></Typography>
                     <hr />
-                        <Typography variant="body" id="pd-elevation"></Typography>                        
+                        <Typography variant="body" id="pd-elevation"></Typography>                         */}
                 </CardContent>
             </Card>
 
