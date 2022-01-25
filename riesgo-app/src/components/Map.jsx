@@ -1085,8 +1085,8 @@ export default class Map extends Component {
 
                 this.setState({ markerProp: tempMarkerArray });
 
-                console.log("Look at this " + this.state.markerProp);
-
+                this.props.updateMarkerProp(tempMarkerArray);
+                console.log("Look at this " + tempMarkerArray);
                 // document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
                 //         ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
                 //         : `undefined`;

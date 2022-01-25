@@ -50,6 +50,14 @@ const Sidebar = (props) => {
     const [value, setValue] = React.useState(0);
     const [layer, setLayer] = React.useState(0);
 
+    //Update Analysis Props
+    const [analysisState, setAnalysisState] = React.useState(props);
+    React.useEffect(() => {
+        setAnalysisState(props);
+      }, [props]);
+
+    //React.useEffect(() => console.log('Value Changed!'));
+
     //Year Buttons
     const [alignment, setAlignment] = React.useState('5yr_flood');
     const handleYearButtonChange = (event, newAlignment) => {
@@ -57,6 +65,7 @@ const Sidebar = (props) => {
             setAlignment(newAlignment);
         }
     };
+
 
     //Adjust Weights Ui
     const [open, setOpen] = React.useState(false);
@@ -575,7 +584,7 @@ const Sidebar = (props) => {
                         <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                         <Typography id="pd">undefined</Typography>
                     <hr />
-                        <Analysis />
+                        <Analysis data = {analysisState.marker_prop} />
                         {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />

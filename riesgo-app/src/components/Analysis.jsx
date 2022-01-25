@@ -31,22 +31,29 @@ const getAccessibilityColor = (p) => {
     if (p >= 0) { return "#ffc2ce"; }
 }
 
-
-
 export default function Analysis(props) {
-const floodData = [
-    {
-        name: "5 Years",
-        score: 1,
-    },
-    {
-        name: "25 Years",
-        score: 0.66,
-    },
-    {
-        name: "100 Years",
-        score: 0.33,
-    },
+
+    const [analysisState, setAnalysisState] = React.useState(props);
+    React.useEffect(() => {
+        setAnalysisState(props);
+      }, [props]);
+
+    React.useEffect(() => console.log('Value Changed!'));
+    React.useEffect(() => console.log(analysisState.data));
+    
+    const floodData = [
+        {
+            name: "5 Years",
+            score: 1,
+        },
+        {
+            name: "25 Years",
+            score: 0.66,
+        },
+        {
+            name: "100 Years",
+            score: 0.33,
+        },
     ];
     
     const hazardData = [
@@ -91,6 +98,8 @@ const floodData = [
     <div>
     <i>Higher is better*</i>
     <Typography variant="h6">Flood Safety Score</Typography>
+    <p>{analysisState.data}</p>
+    
     <Box 
         display="flex" 
         alignItems="center"

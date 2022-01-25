@@ -14,10 +14,12 @@ export default class App extends React.Component {
     this.state = {
       city: '',
       layer: '',
-      layer_type: 'flood'
+      layer_type: 'flood',
+      marker_prop: []
     };
 
     this.updateLayer = this.updateLayer.bind(this);
+    this.updateMarkerProp = this.updateMarkerProp.bind(this);
     this.updateCity = this.updateCity.bind(this);
   }
 
@@ -48,12 +50,23 @@ export default class App extends React.Component {
     });
   }
 
+  updateMarkerProp = (markerProp) => {
+    let {marker_prop} = this.state;
+    marker_prop = markerProp;
+
+    this.setState({
+      marker_prop
+    });
+  }
+
   render() {
     const {
       layer,
       city,
-      layer_type
+      layer_type,
+      marker_prop
     } = this.state;
+
     return (
       <div className="App">
         <Routes>
@@ -63,28 +76,20 @@ export default class App extends React.Component {
                 <Sidebar 
                   updateLayer = {this.updateLayer}
                   updateCity = {this.updateCity}
-                  updateLayerType = {this.updateLayerType}/>
+                  updateLayerType = {this.updateLayerType}
+                  
+                  marker_prop = {marker_prop}
+                  />
                 <Map 
                   layer={layer}
                   city={city}
                   layer_type = {layer_type}
-                  updateLayer = {this.updateLayer}/>
+
+                  updateLayer = {this.updateLayer}
+                  updateMarkerProp = {this.updateMarkerProp}
+                  />
                 </>}/>
         </Routes>
-          {/* <React.StrictMode>
-              <Sidebar
-                updateLayer = {this.updateLayer}
-                updateCity = {this.updateCity}
-                updateLayerType = {this.updateLayerType}
-              />
-              
-              <Map 
-                layer={layer}
-                city={city}
-                layer_type = {layer_type}
-                updateLayer = {this.updateLayer}
-              />
-          </React.StrictMode> */}
       </div>
     );
   }
