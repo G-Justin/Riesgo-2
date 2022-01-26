@@ -47,8 +47,9 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
-    const [value, setValue] = React.useState(0);
     const [layer, setLayer] = React.useState(0);
+
+    const [value, setValue] = React.useState(0);
 
     //Update Analysis Props
     const [analysisState, setAnalysisState] = React.useState(props);
@@ -377,25 +378,12 @@ const Sidebar = (props) => {
                             props.updateLayer(toActivate);
                         }}
                     />
-                    {/* <BottomNavigationAction
-                        label="Recommender"
-                        icon={<FavoriteIcon />} 
-                        onClick={() => {
-                            const toActivate = `${city}_sustainability`;
-
-                            setLayer('Sustainability');
-                            props.updateLayerType('sustainability');
-                            props.updateLayer(toActivate);
-
-                            handleClose();
-                        }}
-                    /> */}
                 </BottomNavigation>
             </Paper>
 
             {/* Right */}
-            <Card id="style-1" sx={{ width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
-                <CardContent>
+            <Card id="style-1" sx={{overflowX: "hidden", width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
+                <CardContent sx={{overflowX: "hidden"}}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
                     </Typography>
