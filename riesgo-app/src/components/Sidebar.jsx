@@ -12,7 +12,6 @@ import { Typography } from "@mui/material"
 import WaterIcon from '@mui/icons-material/Water';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
-//import EqualizerIcon from '@mui/icons-material/Equalizer';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
@@ -55,7 +54,7 @@ const Sidebar = (props) => {
     const [analysisState, setAnalysisState] = React.useState(props);
     React.useEffect(() => {
         setAnalysisState(props);
-      }, [props]);
+    }, [props]);
 
     //React.useEffect(() => console.log('Value Changed!'));
 
@@ -125,11 +124,10 @@ const Sidebar = (props) => {
                 return "Hazard Level";
             case "Coverage Score":
                 return "Coverage";
-            case "Land Use":
+            case "Land Use Score":
                 return "Land Use";
             case "Sustainability":
                 return "Sustainability";
-
             default:
                 return ""
         }
@@ -148,8 +146,8 @@ const Sidebar = (props) => {
             case "Hazard":
                 return "This map provides visualization on the impact of flood towards human activity and property.";
             case "Coverage Score":
-                return "Coverage score takes into account the population of a cell and its neighbors within a 2 km radius."    
-            case "Land Use":
+                return "Coverage score takes into account the population of a cell and its neighbors within a 2 km radius."
+            case "Land Use Score":
                 return "Adjust land usage values in order to prioritize certain establishments or zones over others.";
             case "Sustainability":
                 return "Sustainability";
@@ -205,6 +203,15 @@ const Sidebar = (props) => {
                         <div><span style={{ backgroundColor: '#fcfbab' }}></span>Dense Urban</div>
                     </Box>
                 );
+            case "Land Use Score":
+                return (
+                    <Box>
+                        <div><span style={{ backgroundColor: '#fff9d9' }}></span>Residential</div>
+                        <div><span style={{ backgroundColor: '#fff3b3' }}></span>Industrial</div>
+                        <div><span style={{ backgroundColor: '#ffe973' }}></span>Commercial</div>
+                        <div><span style={{ backgroundColor: '#ffdd26' }}></span>Open Space</div>
+                    </Box>
+                );
             default:
                 return "Select a map to view details."
         }
@@ -219,18 +226,18 @@ const Sidebar = (props) => {
                 <CardContent>
                     <Box>
                         <Link to="/" >
-                            <img src="/riesgo-logo-small.svg" alt="React Logo" width={"120px"}/>
+                            <img src="/riesgo-logo-small.svg" alt="React Logo" width={"120px"} />
                         </Link>
                     </Box>
 
-                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1}}>
+                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
                         <Select
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={city}
                             onChange={handleChange}
                             type="text"
-                            sx={{fontSize: '2.25em'}}
+                            sx={{ fontSize: '2.25em' }}
                         >
                             <MenuItem value={'l_manila'}><b>Manila</b></MenuItem>
                             <MenuItem value={'l_marikina'}><b>Marikina</b></MenuItem>
@@ -257,7 +264,7 @@ const Sidebar = (props) => {
                     />
 
                     <hr />
-                    <Button size="small">Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small"/></Button>
+                    <Button size="small">Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
                 </CardContent>
             </Card>
 
@@ -343,10 +350,10 @@ const Sidebar = (props) => {
                         label="Land Usage"
                         icon={<HouseIcon />}
                         onClick={() => {
-                            const toActivate = `${city}_landuse`;
+                            const toActivate = `${city}_land_use_score`;
 
-                            setLayer('Land Use');
-                            props.updateLayerType('landuse');
+                            setLayer('Land Use Score');
+                            props.updateLayerType('landusescore');
                             props.updateLayer(toActivate);
 
                             handleOpen();
@@ -382,8 +389,8 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="style-1" sx={{overflowX: "hidden", width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
-                <CardContent sx={{overflowX: "hidden"}}>
+            <Card id="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
+                <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
                     </Typography>
@@ -395,185 +402,185 @@ const Sidebar = (props) => {
                     </Typography>
 
                     {/* Marikina Flood Buttons */}
-                    {layer === "Flood" && 
-                    <Box display="flex" 
-                    alignItems="center"
-                    justifyContent="center"
-                    paddingTop="0.5em">
-                        <div onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}>
-                            <ToggleButtonGroup
-                                color="primary"
-                                value={alignment}
-                                exclusive
-                                onChange={handleYearButtonChange}
-                            >
+                    {layer === "Flood" &&
+                        <Box display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            paddingTop="0.5em">
+                            <div onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}>
+                                <ToggleButtonGroup
+                                    color="primary"
+                                    value={alignment}
+                                    exclusive
+                                    onChange={handleYearButtonChange}
+                                >
 
-                                <ToggleButton 
-                                    value="5yr_flood"
-                                    onClick={() => {
-                                        const toActivate = `${city}_flood_5yr`;
-    
-                                        setLayer('Flood');
-                                        props.updateLayerType('flood5yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    5 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="25yr_flood"
-                                    onClick={() => {
-                                        const toActivate = `${city}_flood_25yr`;
-    
-                                        setLayer('Flood');
-                                        props.updateLayerType('flood25yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    25 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="100yr_flood"
-                                    onClick={() => {
-                                        const toActivate = `${city}_flood_100yr`;
-        
-                                        setLayer('Flood');
-                                        props.updateLayerType('flood100yr');
-                                        props.updateLayer(toActivate);
-        
-                                        handleClose();
-                                    }}>
-                                    100 Years
-                                </ToggleButton>
+                                    <ToggleButton
+                                        value="5yr_flood"
+                                        onClick={() => {
+                                            const toActivate = `${city}_flood_5yr`;
 
-                            </ToggleButtonGroup>
-                        </div>
-                    </Box>}
+                                            setLayer('Flood');
+                                            props.updateLayerType('flood5yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        5 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="25yr_flood"
+                                        onClick={() => {
+                                            const toActivate = `${city}_flood_25yr`;
+
+                                            setLayer('Flood');
+                                            props.updateLayerType('flood25yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        25 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="100yr_flood"
+                                        onClick={() => {
+                                            const toActivate = `${city}_flood_100yr`;
+
+                                            setLayer('Flood');
+                                            props.updateLayerType('flood100yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        100 Years
+                                    </ToggleButton>
+
+                                </ToggleButtonGroup>
+                            </div>
+                        </Box>}
 
                     {/* Marikina Hazard Buttons */}
-                    {layer === "Hazard" && 
-                    <Box display="flex" 
-                    alignItems="center"
-                    justifyContent="center"
-                    paddingTop="0.5em">
-                        <div onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}>
-                            <ToggleButtonGroup
-                                color="primary"
-                                value={alignment}
-                                exclusive
-                                onChange={handleYearButtonChange}
-                            >
-                                <ToggleButton 
-                                    value="5yr_flood"
-                                    onClick={() => {
-                                        const toActivate = `${city}_hazard_5yr`;
-    
-                                        setLayer('Hazard');
-                                        props.updateLayerType('hazard5yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    5 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="25yr_hazard"
-                                    onClick={() => {
-                                        const toActivate = `${city}_hazard_25yr`;
-    
-                                        setLayer('Hazard');
-                                        props.updateLayerType('hazard25yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    25 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="100yr_hazard"
-                                    onClick={() => {
-                                        const toActivate = `${city}_hazard_100yr`;
-        
-                                        setLayer('Hazard');
-                                        props.updateLayerType('hazard100yr');
-                                        props.updateLayer(toActivate);
-        
-                                        handleClose();
-                                    }}>
-                                    100 Years
-                                </ToggleButton>
-                            </ToggleButtonGroup>
-                        </div>
-                    </Box>}
+                    {layer === "Hazard" &&
+                        <Box display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            paddingTop="0.5em">
+                            <div onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}>
+                                <ToggleButtonGroup
+                                    color="primary"
+                                    value={alignment}
+                                    exclusive
+                                    onChange={handleYearButtonChange}
+                                >
+                                    <ToggleButton
+                                        value="5yr_flood"
+                                        onClick={() => {
+                                            const toActivate = `${city}_hazard_5yr`;
+
+                                            setLayer('Hazard');
+                                            props.updateLayerType('hazard5yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        5 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="25yr_hazard"
+                                        onClick={() => {
+                                            const toActivate = `${city}_hazard_25yr`;
+
+                                            setLayer('Hazard');
+                                            props.updateLayerType('hazard25yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        25 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="100yr_hazard"
+                                        onClick={() => {
+                                            const toActivate = `${city}_hazard_100yr`;
+
+                                            setLayer('Hazard');
+                                            props.updateLayerType('hazard100yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        100 Years
+                                    </ToggleButton>
+                                </ToggleButtonGroup>
+                            </div>
+                        </Box>}
                     {/* Marikina Accessibility Buttons */}
-                    {layer === "Accessibility" && 
-                    <Box display="flex" 
-                    alignItems="center"
-                    justifyContent="center"
-                    paddingTop="0.5em">
-                        <div onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}>
-                            <ToggleButtonGroup
-                                color="primary"
-                                value={alignment}
-                                exclusive
-                                onChange={handleYearButtonChange}
-                            >
-                                <ToggleButton 
-                                    value="5yr_flood"
-                                    onClick={() => {
-                                        const toActivate = `${city}_accessibility_5yr`;
-    
-                                        setLayer('Accessibility');
-                                        props.updateLayerType('accessibility5yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    5 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="25yr_accessibility"
-                                    onClick={() => {
-                                        const toActivate = `${city}_accessibility_25yr`;
-    
-                                        setLayer('Accessibility');
-                                        props.updateLayerType('accessibility25yr');
-                                        props.updateLayer(toActivate);
-    
-                                        handleClose();
-                                    }}>
-                                    25 Years
-                                </ToggleButton>
-                                <ToggleButton 
-                                    value="100yr_accessibility"
-                                    onClick={() => {
-                                        const toActivate = `${city}_accessibility_100yr`;
-        
-                                        setLayer('Accessibility');
-                                        props.updateLayerType('accessibility100yr');
-                                        props.updateLayer(toActivate);
-        
-                                        handleClose();
-                                    }}>
-                                    100 Years
-                                </ToggleButton>
-                            </ToggleButtonGroup>
-                        </div>
-                    </Box>}
+                    {layer === "Accessibility" &&
+                        <Box display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            paddingTop="0.5em">
+                            <div onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}>
+                                <ToggleButtonGroup
+                                    color="primary"
+                                    value={alignment}
+                                    exclusive
+                                    onChange={handleYearButtonChange}
+                                >
+                                    <ToggleButton
+                                        value="5yr_flood"
+                                        onClick={() => {
+                                            const toActivate = `${city}_accessibility_5yr`;
+
+                                            setLayer('Accessibility');
+                                            props.updateLayerType('accessibility5yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        5 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="25yr_accessibility"
+                                        onClick={() => {
+                                            const toActivate = `${city}_accessibility_25yr`;
+
+                                            setLayer('Accessibility');
+                                            props.updateLayerType('accessibility25yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        25 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="100yr_accessibility"
+                                        onClick={() => {
+                                            const toActivate = `${city}_accessibility_100yr`;
+
+                                            setLayer('Accessibility');
+                                            props.updateLayerType('accessibility100yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        100 Years
+                                    </ToggleButton>
+                                </ToggleButtonGroup>
+                            </div>
+                        </Box>}
                     <hr />
-                        <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
-                        <Typography id="pd">undefined</Typography>
+                    <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
+                    <Typography id="pd">undefined</Typography>
                     <hr />
-                        <Analysis data = {analysisState.marker_prop} />
-                        {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
+                    <Analysis data={analysisState.marker_prop} />
+                    {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-100yr"></Typography>

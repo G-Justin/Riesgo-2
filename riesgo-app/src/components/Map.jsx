@@ -146,63 +146,63 @@ export default class Map extends Component {
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckys9udle3ksy22pc4kms5tw9-7r0ki',
+                url: 'mapbox://jdarvin.ckyvjy9cr061v20ny1pqqpzg4-1tz9z',
             });
 
             //Marikina Dataset - Flood
             this.map.addSource('marikina-flood-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckvwn9xfe08rj27mh6imu5voh-6d3nm',
+                url: 'mapbox://jdarvin.ckyvixt8i4gxm22nr9cik1uzh-675wm',
             });
 
             this.map.addSource('marikina-flood-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckydvd9jo1r7j28lc3xbpf4yi-7hlgt',
+                url: 'mapbox://jdarvin.ckyvj6nx59e8s27po1koykqat-1hxgf',
             });
 
             this.map.addSource('marikina-flood-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckydvi6585f9l20pd9xzdf5va-7e9nx',
+                url: 'mapbox://jdarvin.ckyvj9p0n06i629palksl1uwf-0jypt',
             });
 
             //Marikina Dataset - Accessibility
             this.map.addSource('marikina-accessibility-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr02q790s9p27mmb1r1bld8-0quh4',
+                url: 'mapbox://jdarvin.ckyvjkiuz0cf727qixm3d9eay-1i5wu',
             });
 
             this.map.addSource('marikina-accessibility-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr0465h38gp21nlbqethg9d-53io2',
+                url: 'mapbox://jdarvin.ckyvjs8xn4z4422mt1fkr3jo0-56xkr',
             });
 
             this.map.addSource('marikina-accessibility-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr05lue1mb020l9krvvlkbt-4ilbw',
+                url: 'mapbox://jdarvin.ckyvjx5xt05in21ny4zb1vsow-8pd2j',
             });
 
             //Marikina Dataset - Hazard
             this.map.addSource('marikina-hazard-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckwbom3cs01no20lt2yp1pjm1-6cfhe',
+                url: 'mapbox://jdarvin.ckyvjase506st28oreaqu4pif-1ot2h',
             });
 
             this.map.addSource('marikina-hazard-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cky9m9rqy2ein23o8nl3wa3d4-7er72',
+                url: 'mapbox://jdarvin.ckyvjgfx40g2q29n51oqu1lqu-6qmtm',
             });
 
             
             this.map.addSource('marikina-hazard-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyd2ul0g00d821rv0uoe5ku3-8jsqf',
+                url: 'mapbox://jdarvin.ckyvjhy0u9m3s20pd4zaz2vph-58s7a',
             });
 
 
             //Marikina Dataset - Coverage
             this.map.addSource('marikina-coverage-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cky9ka8pz08x427s1lbi28iis-7rog5',
+                url: 'mapbox://jdarvin.ckyvk0aw806i821nyxusj9myv-0rv3m',
             });
 
             //Marikina Dataset - Land Use (FAKE)
@@ -211,16 +211,29 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckwqdmyyy0ql924pfweq7ptc6-2a6zr',
             });
 
+            //Marikina Dataset - Land Use 
+            this.map.addSource('marikina-land-use', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyvdvfae0d4o21n5hg25jncv-98lpz',
+            });
+
+            //Marikina Dataset - Land Use Score
+            this.map.addSource('marikina-land-use-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyvdzrdlb3xj20pcsc17yc2r-8joi9',
+            });
+
+
             //Marikina Dataset - Sustainability (FAKE)
             this.map.addSource('fake-marikina-sustainability-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckwqdjusr0tvs28s10h3pbotb-2z5rw',
             });
 
-            //Marikina Dataset - Complete
+            //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyspqham1q9u28ofs0lnpz96-6nduq',
+                url: 'mapbox://jdarvin.ckyvifns79h7121podjkhhpo4-98lw8',
             });
 
             //PASIG ==================================================================================
@@ -632,16 +645,16 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_marikina_landuse',
+                id: 'l_marikina_land_use_score',
                 type: 'fill-extrusion',
-                source: 'fake-marikina-land-use',
-                'source-layer': 'fake_marikina_land_use',
+                source: 'marikina-land-use-score',
+                'source-layer': 'marikina_land_use_score',
                 layout: {
                     visibility: 'none',
                 },
                 paint: {
                 'fill-extrusion-color': {
-                    property: 'land_use',
+                    property: 'land_use_score',
                     stops: [
                         [0, '#fff9d9'],
                         [0.33, '#fff3b3'],
@@ -649,7 +662,7 @@ export default class Map extends Component {
                         [1, '#ffdd26'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'land_use'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'land_use_score'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
@@ -1162,14 +1175,6 @@ export default class Map extends Component {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.hazard_100yr}`
                         : `undefined`;
-                }else if (this.hover_layer === "elevation") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.elevation}`
-                        : `undefined`;
-                } else if (this.hover_layer === "coverage_score") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.coverage_score}`
-                        : `undefined`;
                 } else if (this.hover_layer === "flood_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.flood_5yr}`
@@ -1194,7 +1199,19 @@ export default class Map extends Component {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.accessibility_100yr}`
                         : `undefined`;
-                }
+                } else if (this.hover_layer === "elevation") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.elevation}`
+                        : `undefined`;
+                } else if (this.hover_layer === "land_use_score") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.land_use_score}`
+                        : `undefined`;
+                } else if (this.hover_layer === "coverage_score") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.coverage_score}`
+                        : `undefined`;
+                } 
             });
 
             this.map.on('mousemove', 'l_marikina_elevation', (e) => {
@@ -1305,6 +1322,33 @@ export default class Map extends Component {
                 }
                 hoveredStateId = null;
             });
+
+            this.map.on('mousemove', 'l_marikina_land_use_score', (e) => {
+                if (e.features.length > 0) {
+                    if (hoveredStateId !== null) {
+                        this.map.setFeatureState(
+                        { source: 'marikina-land-use-score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                
+                hoveredStateId = e.features[0].id;
+                    this.map.setFeatureState(
+                        { source: 'marikina-land-use-score', id: hoveredStateId },
+                        { hover: true }
+                    );
+                }
+            });
+
+            this.map.on('mouseleave', 'l_marikina_land_use_score', () => {
+                if (hoveredStateId !== null) {
+                    this.map.setFeatureState(
+                        { source: 'marikina-land-use-score', id: hoveredStateId },
+                        { hover: false }
+                    );
+                }
+                hoveredStateId = null;
+            });
         });
     }
 
@@ -1326,12 +1370,6 @@ export default class Map extends Component {
             case "hazard100yr":
                 this.hover_layer = "hazard_100yr";
                 break;
-            case "elevation":
-                this.hover_layer = "elevation"; 
-                break;
-            case "coveragescore":
-                this.hover_layer = "coverage_score"; 
-                break;
             case "flood5yr":
                 this.hover_layer = "flood_5yr";
                 break;
@@ -1350,7 +1388,15 @@ export default class Map extends Component {
             case "accessibility100yr":
                 this.hover_layer = "accessibility_100yr";
                 break;
-
+            case "elevation":
+                this.hover_layer = "elevation"; 
+                break;
+            case "coveragescore":
+                this.hover_layer = "coverage_score"; 
+                break;
+            case "landusescore":
+                this.hover_layer = "land_use_score"; 
+                break;
             default:
                 break;
         } 
