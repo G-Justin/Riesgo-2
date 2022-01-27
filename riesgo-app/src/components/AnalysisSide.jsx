@@ -53,6 +53,8 @@ export default function AnalysisSide(props) {
             setScoreColor("#340042");
             return "Unrecommended"; 
         }
+
+        return "undefined"
     }
 
   return (
