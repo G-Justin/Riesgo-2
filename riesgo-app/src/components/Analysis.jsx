@@ -38,8 +38,8 @@ export default function Analysis(props) {
         setAnalysisState(props);
       }, [props]);
 
-    React.useEffect(() => console.log('Value Changed!'));
-    React.useEffect(() => console.log(analysisState.data));
+    //React.useEffect(() => console.log('Value Changed!'));
+    //React.useEffect(() => console.log(analysisState.data));
     
     var floodData = [
         {
@@ -93,7 +93,7 @@ export default function Analysis(props) {
         uv: 0.5
         }
     ];
-  
+    
   return (
     <div>
     <i>Higher is better*</i>

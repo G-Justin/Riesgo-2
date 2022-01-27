@@ -39,6 +39,7 @@ import DataTable from './DataTable';
 
 //Analysis Data
 import Analysis from "./Analysis";
+import AnalysisSide from "./AnalysisSide";
 
 //Year Buttons
 import ToggleButton from '@mui/material/ToggleButton';
@@ -71,7 +72,7 @@ const Sidebar = (props) => {
     const [open, setOpen] = React.useState(false);
 
     //Handle Open Land Usage (Default)
-    const handleOpen = () => setOpen(true);
+    // const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const handleChange = (event) => {
@@ -125,7 +126,7 @@ const Sidebar = (props) => {
             case "Coverage Score":
                 return "Coverage";
             case "Land Use Score":
-                return "Land Use";
+                return "Land Usability";
             case "Sustainability":
                 return "Sustainability";
             default:
@@ -148,7 +149,7 @@ const Sidebar = (props) => {
             case "Coverage Score":
                 return "Coverage score takes into account the population of a cell and its neighbors within a 2 km radius."
             case "Land Use Score":
-                return "Adjust land usage values in order to prioritize certain establishments or zones over others.";
+                return "The land usability score represents which areas in this grid are most suitable for situating new evacuation centers.";
             case "Sustainability":
                 return "Sustainability";
             default:
@@ -206,10 +207,10 @@ const Sidebar = (props) => {
             case "Land Use Score":
                 return (
                     <Box>
-                        <div><span style={{ backgroundColor: '#fff9d9' }}></span>Residential</div>
-                        <div><span style={{ backgroundColor: '#fff3b3' }}></span>Industrial</div>
-                        <div><span style={{ backgroundColor: '#ffe973' }}></span>Commercial</div>
-                        <div><span style={{ backgroundColor: '#ffdd26' }}></span>Open Space</div>
+                        <div><span style={{ backgroundColor: '#340042' }}></span>Unrecommended Area</div>
+                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Medium Usability</div>
+                        <div><span style={{ backgroundColor: '#4ec050' }}></span>High Usability</div>
+                        <div><span style={{ backgroundColor: '#fcba03' }}></span>Recommended Area</div>
                     </Box>
                 );
             default:
@@ -269,7 +270,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ minWidth: 150, position: "absolute", margin: 2, right: 410 }}>
+            <Card id="labels" sx={{ width: 200, height: 150, position: "absolute", margin: 2, right: 410 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
@@ -356,7 +357,7 @@ const Sidebar = (props) => {
                             props.updateLayerType('landusescore');
                             props.updateLayer(toActivate);
 
-                            handleOpen();
+                            //handleOpen();
                         }}
                     />
                     <BottomNavigationAction
@@ -597,6 +598,12 @@ const Sidebar = (props) => {
                 </CardContent>
             </Card>
 
+            {/* Pie Chart */}
+            <Card id="style-1" sx={{ overflowX: "hidden", width: 200, maxHeight: 600, overflow: 'auto', position: "absolute", margin: 2, right: 410, top: 160 }}>
+                <CardContent sx={{ overflowX: "hidden" }}>
+                    <AnalysisSide data={analysisState.marker_prop} />
+                </CardContent>
+            </Card>
 
             {/* Land Usage Modal */}
             <Fade in={open}>

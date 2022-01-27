@@ -57,7 +57,7 @@ export default class Map extends Component {
           bearing: 0.13
         });
 
-        let hoveredStateId = null;
+        // let hoveredStateId = null;
         let tempMarkerArray = [];
 
         //Marker & Popup Inits
@@ -656,13 +656,18 @@ export default class Map extends Component {
                 'fill-extrusion-color': {
                     property: 'land_use_score',
                     stops: [
-                        [0, '#fff9d9'],
-                        [0.33, '#fff3b3'],
-                        [0.66, '#ffe973'],
-                        [1, '#ffdd26'],
+                        [0, '#340045'],
+                        [0.125, '#371865'],
+                        [0.250, '#2e3c78'],
+                        [0.375, '#26557b'],
+                        [0.5, '#1e7f7a'],
+                        [0.625, '#249f6f'],
+                        [0.750, '#51c34e'],
+                        [0.875, '#b4dc1d'],
+                        [1, '#fce51e'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'land_use_score'], 1]],
+                'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
@@ -1095,11 +1100,14 @@ export default class Map extends Component {
                 tempMarkerArray[7] = displayFeatures[0].properties.accessibility_25yr;
                 tempMarkerArray[8] = displayFeatures[0].properties.accessibility_100yr;
                 tempMarkerArray[9] = displayFeatures[0].properties.elevation;
+                tempMarkerArray[10] = displayFeatures[0].properties.land_use_score;     // Gridmap
+                tempMarkerArray[11] = displayFeatures[0].properties.land_use;           // Data Visualization 
 
                 this.setState({ markerProp: tempMarkerArray });
 
                 this.props.updateMarkerProp(tempMarkerArray);
-                console.log("Look at this " + tempMarkerArray);
+                console.log("Sending... " + tempMarkerArray);
+
                 // document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
                 //         ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
                 //         : `undefined`;
@@ -1214,141 +1222,141 @@ export default class Map extends Component {
                 } 
             });
 
-            this.map.on('mousemove', 'l_marikina_elevation', (e) => {
-                if (e.features.length > 0) {
-                    if (hoveredStateId !== null) {
-                        this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
+            // this.map.on('mousemove', 'l_marikina_elevation', (e) => {
+            //     if (e.features.length > 0) {
+            //         if (hoveredStateId !== null) {
+            //             this.map.setFeatureState(
+            //             { source: 'marikina-elevation', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
                 
-                hoveredStateId = e.features[0].id;
-                    this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
-                        { hover: true }
-                    );
-                }
-            });
+            //     hoveredStateId = e.features[0].id;
+            //         this.map.setFeatureState(
+            //             { source: 'marikina-elevation', id: hoveredStateId },
+            //             { hover: true }
+            //         );
+            //     }
+            // });
 
-            this.map.on('mouseleave', 'l_marikina_elevation', () => {
-                if (hoveredStateId !== null) {
-                    this.map.setFeatureState(
-                        { source: 'marikina-elevation', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
-                hoveredStateId = null;
-            });
+            // this.map.on('mouseleave', 'l_marikina_elevation', () => {
+            //     if (hoveredStateId !== null) {
+            //         this.map.setFeatureState(
+            //             { source: 'marikina-elevation', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
+            //     hoveredStateId = null;
+            // });
 
-            this.map.on('mousemove', 'l_pasig_elevation', (e) => {
-                if (e.features.length > 0) {
-                    if (hoveredStateId !== null) {
-                        this.map.setFeatureState(
-                        { source: 'pasig-elevation', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
+            // this.map.on('mousemove', 'l_pasig_elevation', (e) => {
+            //     if (e.features.length > 0) {
+            //         if (hoveredStateId !== null) {
+            //             this.map.setFeatureState(
+            //             { source: 'pasig-elevation', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
                 
-                hoveredStateId = e.features[0].id;
-                    this.map.setFeatureState(
-                        { source: 'pasig-elevation', id: hoveredStateId },
-                        { hover: true }
-                    );
-                }
-            });
+            //     hoveredStateId = e.features[0].id;
+            //         this.map.setFeatureState(
+            //             { source: 'pasig-elevation', id: hoveredStateId },
+            //             { hover: true }
+            //         );
+            //     }
+            // });
 
-            this.map.on('mouseleave', 'l_pasig_elevation', () => {
-                if (hoveredStateId !== null) {
-                    this.map.setFeatureState(
-                        { source: 'pasig-elevation', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
-                hoveredStateId = null;
-            });
+            // this.map.on('mouseleave', 'l_pasig_elevation', () => {
+            //     if (hoveredStateId !== null) {
+            //         this.map.setFeatureState(
+            //             { source: 'pasig-elevation', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
+            //     hoveredStateId = null;
+            // });
 
-            this.map.on('mousemove', 'l_marikina_coverage_score', (e) => {
-                if (e.features.length > 0) {
-                    if (hoveredStateId !== null) {
-                        this.map.setFeatureState(
-                        { source: 'marikina-coverage-score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
+            // this.map.on('mousemove', 'l_marikina_coverage_score', (e) => {
+            //     if (e.features.length > 0) {
+            //         if (hoveredStateId !== null) {
+            //             this.map.setFeatureState(
+            //             { source: 'marikina-coverage-score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
                 
-                hoveredStateId = e.features[0].id;
-                    this.map.setFeatureState(
-                        { source: 'marikina-coverage-score', id: hoveredStateId },
-                        { hover: true }
-                    );
-                }
-            });
+            //     hoveredStateId = e.features[0].id;
+            //         this.map.setFeatureState(
+            //             { source: 'marikina-coverage-score', id: hoveredStateId },
+            //             { hover: true }
+            //         );
+            //     }
+            // });
 
             
-            this.map.on('mouseleave', 'l_marikina_coverage_score', () => {
-                if (hoveredStateId !== null) {
-                    this.map.setFeatureState(
-                        { source: 'marikina_coverage_score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
-                hoveredStateId = null;
-            });
+            // this.map.on('mouseleave', 'l_marikina_coverage_score', () => {
+            //     if (hoveredStateId !== null) {
+            //         this.map.setFeatureState(
+            //             { source: 'marikina_coverage_score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
+            //     hoveredStateId = null;
+            // });
 
-            this.map.on('mousemove', 'l_pasig_coverage_score', (e) => {
-                if (e.features.length > 0) {
-                    if (hoveredStateId !== null) {
-                        this.map.setFeatureState(
-                        { source: 'pasig-coverage-score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
+            // this.map.on('mousemove', 'l_pasig_coverage_score', (e) => {
+            //     if (e.features.length > 0) {
+            //         if (hoveredStateId !== null) {
+            //             this.map.setFeatureState(
+            //             { source: 'pasig-coverage-score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
                 
-                hoveredStateId = e.features[0].id;
-                    this.map.setFeatureState(
-                        { source: 'pasig-coverage-score', id: hoveredStateId },
-                        { hover: true }
-                    );
-                }
-            });
+            //     hoveredStateId = e.features[0].id;
+            //         this.map.setFeatureState(
+            //             { source: 'pasig-coverage-score', id: hoveredStateId },
+            //             { hover: true }
+            //         );
+            //     }
+            // });
 
-            this.map.on('mouseleave', 'l_pasig_coverage_score', () => {
-                if (hoveredStateId !== null) {
-                    this.map.setFeatureState(
-                        { source: 'marikina_pasig_score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
-                hoveredStateId = null;
-            });
+            // this.map.on('mouseleave', 'l_pasig_coverage_score', () => {
+            //     if (hoveredStateId !== null) {
+            //         this.map.setFeatureState(
+            //             { source: 'marikina_pasig_score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
+            //     hoveredStateId = null;
+            // });
 
-            this.map.on('mousemove', 'l_marikina_land_use_score', (e) => {
-                if (e.features.length > 0) {
-                    if (hoveredStateId !== null) {
-                        this.map.setFeatureState(
-                        { source: 'marikina-land-use-score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
+            // this.map.on('mousemove', 'l_marikina_land_use_score', (e) => {
+            //     if (e.features.length > 0) {
+            //         if (hoveredStateId !== null) {
+            //             this.map.setFeatureState(
+            //             { source: 'marikina-land-use-score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
                 
-                hoveredStateId = e.features[0].id;
-                    this.map.setFeatureState(
-                        { source: 'marikina-land-use-score', id: hoveredStateId },
-                        { hover: true }
-                    );
-                }
-            });
+            //     hoveredStateId = e.features[0].id;
+            //         this.map.setFeatureState(
+            //             { source: 'marikina-land-use-score', id: hoveredStateId },
+            //             { hover: true }
+            //         );
+            //     }
+            // });
 
-            this.map.on('mouseleave', 'l_marikina_land_use_score', () => {
-                if (hoveredStateId !== null) {
-                    this.map.setFeatureState(
-                        { source: 'marikina-land-use-score', id: hoveredStateId },
-                        { hover: false }
-                    );
-                }
-                hoveredStateId = null;
-            });
+            // this.map.on('mouseleave', 'l_marikina_land_use_score', () => {
+            //     if (hoveredStateId !== null) {
+            //         this.map.setFeatureState(
+            //             { source: 'marikina-land-use-score', id: hoveredStateId },
+            //             { hover: false }
+            //         );
+            //     }
+            //     hoveredStateId = null;
+            // });
         });
     }
 
@@ -1400,8 +1408,8 @@ export default class Map extends Component {
             default:
                 break;
         } 
-        console.log("Hover layer is set to: " + this.hover_layer); 
-        console.log("The current layer_type is " + layer_type);
+        //console.log("Hover layer is set to: " + this.hover_layer); 
+        //console.log("The current layer_type is " + layer_type);
 
         //If layer change detected
         if(nextProps.layer !== layer) {
@@ -1422,7 +1430,7 @@ export default class Map extends Component {
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
             this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
 
-            console.log(nextProps.layer_type)
+            //console.log(nextProps.layer_type)
         }
         //Refresh layer if city changed
         if(nextProps.city !== city) {
