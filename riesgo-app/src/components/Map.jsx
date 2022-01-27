@@ -146,63 +146,63 @@ export default class Map extends Component {
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjy9cr061v20ny1pqqpzg4-1tz9z',
+                url: 'mapbox://jdarvin.ckywuimih03mp29ogcfl1l5k3-1amre',
             });
 
             //Marikina Dataset - Flood
             this.map.addSource('marikina-flood-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvixt8i4gxm22nr9cik1uzh-675wm',
+                url: 'mapbox://jdarvin.ckywucljr4l8s20nlr43bbhaa-9mni5',
             });
 
             this.map.addSource('marikina-flood-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvj6nx59e8s27po1koykqat-1hxgf',
+                url: 'mapbox://jdarvin.ckywue3f880bu29o06wuapmxl-08ysj',
             });
 
             this.map.addSource('marikina-flood-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvj9p0n06i629palksl1uwf-0jypt',
+                url: 'mapbox://jdarvin.ckywuf6sf5adl22mti7i8ej4w-33r8q',
             });
 
             //Marikina Dataset - Accessibility
             this.map.addSource('marikina-accessibility-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjkiuz0cf727qixm3d9eay-1i5wu',
+                url: 'mapbox://jdarvin.ckywukmxs80dr29o0gtnwpae1-8tnce',
             });
 
             this.map.addSource('marikina-accessibility-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjs8xn4z4422mt1fkr3jo0-56xkr',
+                url: 'mapbox://jdarvin.ckywulov90cxt22oy9qxdt38v-3p8pk',
             });
 
             this.map.addSource('marikina-accessibility-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjx5xt05in21ny4zb1vsow-8pd2j',
+                url: 'mapbox://jdarvin.ckywumw7z0r8w29n5c0t9imby-2j96f',
             });
 
             //Marikina Dataset - Hazard
             this.map.addSource('marikina-hazard-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjase506st28oreaqu4pif-1ot2h',
+                url: 'mapbox://jdarvin.ckywug1km0dyj25oygyd8itut-2mru7',
             });
 
             this.map.addSource('marikina-hazard-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjgfx40g2q29n51oqu1lqu-6qmtm',
+                url: 'mapbox://jdarvin.ckywugvng03a828nxlrsbhd4g-4n9m9',
             });
 
             
             this.map.addSource('marikina-hazard-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvjhy0u9m3s20pd4zaz2vph-58s7a',
+                url: 'mapbox://jdarvin.ckywuhprl0r7h29n55ghzo2uy-2ih6f',
             });
 
 
             //Marikina Dataset - Coverage
             this.map.addSource('marikina-coverage-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvk0aw806i821nyxusj9myv-0rv3m',
+                url: 'mapbox://jdarvin.ckywujtfe03l827pk2ss4csbp-0vd71',
             });
 
             //Marikina Dataset - Land Use (FAKE)
@@ -214,13 +214,13 @@ export default class Map extends Component {
             //Marikina Dataset - Land Use 
             this.map.addSource('marikina-land-use', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvdvfae0d4o21n5hg25jncv-98lpz',
+                url: 'mapbox://jdarvin.ckywuovru0ae827mgxmzdjr6o-3uk99',
             });
 
             //Marikina Dataset - Land Use Score
             this.map.addSource('marikina-land-use-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvdzrdlb3xj20pcsc17yc2r-8joi9',
+                url: 'mapbox://jdarvin.ckywunz7z0hux23ornzsk2hgv-0636f',
             });
 
 
@@ -233,7 +233,7 @@ export default class Map extends Component {
             //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyvifns79h7121podjkhhpo4-98lw8',
+                url: 'mapbox://jdarvin.ckywuzwun9s0128pdhcoy4odv-8h5ab',
             });
 
             //PASIG ==================================================================================
