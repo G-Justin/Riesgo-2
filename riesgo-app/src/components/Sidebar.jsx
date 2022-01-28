@@ -208,7 +208,7 @@ const Sidebar = (props) => {
                 return (
                     <Box>
                         <div><span style={{ backgroundColor: '#340042' }}></span>Unrecommended Area</div>
-                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Medium Usability</div>
+                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Slight Usability</div>
                         <div><span style={{ backgroundColor: '#4ec050' }}></span>High Usability</div>
                         <div><span style={{ backgroundColor: '#fcba03' }}></span>Recommended Area</div>
                     </Box>
@@ -298,7 +298,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_flood_5yr`; //$city gets current city selected
 
                             setLayer('Flood'); //Front-end Display name of Layer
-                            props.updateLayerType('flood5yr'); //Back-end name of Layer
+                            props.updateLayerType('flood_5yr'); //Back-end name of Layer
                             props.updateLayer(toActivate);  //Load the dynamic regex in the backend
 
                             handleClose();
@@ -313,7 +313,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_hazard_5yr`;
 
                             setLayer('Hazard');
-                            props.updateLayerType('hazard5yr');
+                            props.updateLayerType('hazard_5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
@@ -327,7 +327,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_accessibility_5yr`;
 
                             setLayer('Accessibility');
-                            props.updateLayerType('accessibility5yr');
+                            props.updateLayerType('accessibility_5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
@@ -354,7 +354,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_land_use_score`;
 
                             setLayer('Land Use Score');
-                            props.updateLayerType('landusescore');
+                            props.updateLayerType('land_use_score');
                             props.updateLayer(toActivate);
 
                             //handleOpen();

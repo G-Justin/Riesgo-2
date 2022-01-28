@@ -26,7 +26,8 @@ export default function AnalysisSide(props) {
     
     const [scoreColor, setScoreColor] = React.useState(0);
 
-    var landUseScore = analysisState.data[10];
+    var landUseScore   = analysisState.data[10];
+    var landUseDisplay = analysisState.data[11];
 
     const data = [
         { name: 'Group A', value: 400 },
@@ -34,7 +35,7 @@ export default function AnalysisSide(props) {
         { name: 'Group C', value: 500 },
       ];
 
-      function LandUsability(props) {
+    function LandUsability(props) {
         const ascore = props.score;
 
         if (ascore >= 0.8)  { 
@@ -55,6 +56,11 @@ export default function AnalysisSide(props) {
         }
 
         return "undefined"
+    }
+
+    function LandUseDisplay(props) {
+      // This function acts as a RegEx for Justin's stupid string format
+        
     }
 
   return (

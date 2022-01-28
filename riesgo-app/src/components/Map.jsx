@@ -298,6 +298,18 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckysbg5dv1lmt20mxlkp7u5sw-2kqyq',
             });
 
+            //Pasig Dataset - Land Use 
+            this.map.addSource('pasig-land-use', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyxzswrf0ril2eny8lgf3u5m-1i0xd',
+            });
+
+            //Pasig Dataset - Land Use Score
+            this.map.addSource('pasig-land-use-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckyxzv6ao02cc27ndgti2q724-2c015',
+            });
+
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
                 type: 'vector',
@@ -1039,6 +1051,39 @@ export default class Map extends Component {
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_land_use_score',
+                type: 'fill-extrusion',
+                source: 'pasig-land-use-score',
+                'source-layer': 'pasig_land_use_score',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'land_use_score',
+                    stops: [
+                        [0, '#340045'],
+                        [0.125, '#371865'],
+                        [0.250, '#2e3c78'],
+                        [0.375, '#26557b'],
+                        [0.5, '#1e7f7a'],
+                        [0.625, '#249f6f'],
+                        [0.750, '#51c34e'],
+                        [0.875, '#b4dc1d'],
+                        [1, '#fce51e'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
