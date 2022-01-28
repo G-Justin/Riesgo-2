@@ -366,7 +366,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_coverage_score`;
 
                             setLayer('Coverage Score');
-                            props.updateLayerType('coveragescore');
+                            props.updateLayerType('coverage_score');
                             props.updateLayer(toActivate);
 
                             handleClose();
