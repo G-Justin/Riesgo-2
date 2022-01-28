@@ -65,7 +65,7 @@ export default function AnalysisSide(props) {
 
   return (
     <div>
-    <Typography variant="h6">Area Details</Typography>
+    <Typography variant="h6">Marked Area Land Use Distribution</Typography>
     <Box display="flex" 
         alignItems="center"
         justifyContent="center"

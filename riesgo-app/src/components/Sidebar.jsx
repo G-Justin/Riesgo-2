@@ -48,7 +48,6 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
     const [layer, setLayer] = React.useState(0);
-
     const [value, setValue] = React.useState(0);
 
     //Update Analysis Props
@@ -153,7 +152,7 @@ const Sidebar = (props) => {
             case "Sustainability":
                 return "Sustainability";
             default:
-                return "Select a map to view details."
+                return "You are currently not selecting a map. Select a layer map below to view its details."
         }
     }
 
@@ -214,7 +213,7 @@ const Sidebar = (props) => {
                     </Box>
                 );
             default:
-                return "Select a map to view details."
+                return "You are currently not selecting a map. Select a layer map below to view its details."
         }
     }
 
