@@ -6,7 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
-mapboxgl.accessToken = 'pk.eyJ1IjoiamRhcnZpbiIsImEiOiJja3Y5a3lhN3EyZmIyMnVubnk0cXF3MWF2In0.oIcZ8fwDPMESBa-3qhx07w';
+mapboxgl.accessToken = 'pk.eyJ1IjoiamRhcnZpbiIsImEiOiJja3l6bHN6MXowdmkzMm9tdm1sbWlxdmpiIn0.lN3lfmSjh3KPZX1SwzTXVA';
 
 export default class Map extends Component {
     constructor(props) {
@@ -233,7 +233,7 @@ export default class Map extends Component {
             //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckywuzwun9s0128pdhcoy4odv-8h5ab',
+                url: 'mapbox://jdarvin.ckyzlg5vl08us29ll5igfakzt-4rfg2',
             });
 
             //PASIG ==================================================================================
@@ -1213,7 +1213,7 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                //console.log("We are doing: " + this.hover_layer);
+                console.log("We are doing: " + this.hover_layer);
 
                 //Supposed to be current_layer
                 if(this.hover_layer === "hazard_5yr") {
@@ -1414,40 +1414,40 @@ export default class Map extends Component {
 
         //Update current layer global variable        
         switch(nextProps.layer_type) {
-            case "hazard5yr":
+            case "hazard_5yr":
                 this.hover_layer = "hazard_5yr";
                 break;
-            case "hazard25yr":
+            case "hazard_25yr":
                 this.hover_layer = "hazard_25yr";
                 break;
-            case "hazard100yr":
+            case "hazard_100yr":
                 this.hover_layer = "hazard_100yr";
                 break;
-            case "flood5yr":
+            case "flood_5yr":
                 this.hover_layer = "flood_5yr";
                 break;
-            case "flood25yr":
+            case "flood_25yr":
                 this.hover_layer = "flood_25yr";
                 break;
-            case "flood100yr":
+            case "flood_100yr":
                 this.hover_layer = "flood_100yr";
                 break;
-            case "accessibility5yr":
+            case "accessibility_5yr":
                 this.hover_layer = "accessibility_5yr";
                 break;
-            case "accessibility25yr":
+            case "accessibility_25yr":
                 this.hover_layer = "accessibility_25yr";
                 break;
-            case "accessibility100yr":
+            case "accessibility_100yr":
                 this.hover_layer = "accessibility_100yr";
                 break;
             case "elevation":
                 this.hover_layer = "elevation"; 
                 break;
-            case "coveragescore":
+            case "coverage_score":
                 this.hover_layer = "coverage_score"; 
                 break;
-            case "landusescore":
+            case "land_use_score":
                 this.hover_layer = "land_use_score"; 
                 break;
             default:

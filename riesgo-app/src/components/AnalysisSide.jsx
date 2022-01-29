@@ -27,7 +27,7 @@ export default function AnalysisSide(props) {
     const [scoreColor, setScoreColor] = React.useState(0);
 
     var landUseScore   = analysisState.data[10];
-    var landUseDisplay = analysisState.data[11];
+    //var landUseDisplay = analysisState.data[11];
 
     const data = [
         { name: 'Group A', value: 400 },

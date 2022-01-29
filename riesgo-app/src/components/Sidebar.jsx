@@ -423,7 +423,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_flood_5yr`;
 
                                             setLayer('Flood');
-                                            props.updateLayerType('flood5yr');
+                                            props.updateLayerType('flood_5yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -436,7 +436,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_flood_25yr`;
 
                                             setLayer('Flood');
-                                            props.updateLayerType('flood25yr');
+                                            props.updateLayerType('flood_25yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -449,7 +449,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_flood_100yr`;
 
                                             setLayer('Flood');
-                                            props.updateLayerType('flood100yr');
+                                            props.updateLayerType('flood_100yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -482,7 +482,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_hazard_5yr`;
 
                                             setLayer('Hazard');
-                                            props.updateLayerType('hazard5yr');
+                                            props.updateLayerType('hazard_5yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -495,7 +495,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_hazard_25yr`;
 
                                             setLayer('Hazard');
-                                            props.updateLayerType('hazard25yr');
+                                            props.updateLayerType('hazard_25yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -508,7 +508,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_hazard_100yr`;
 
                                             setLayer('Hazard');
-                                            props.updateLayerType('hazard100yr');
+                                            props.updateLayerType('hazard_100yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -539,7 +539,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_accessibility_5yr`;
 
                                             setLayer('Accessibility');
-                                            props.updateLayerType('accessibility5yr');
+                                            props.updateLayerType('accessibility_5yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -552,7 +552,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_accessibility_25yr`;
 
                                             setLayer('Accessibility');
-                                            props.updateLayerType('accessibility25yr');
+                                            props.updateLayerType('accessibility_25yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -565,7 +565,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_accessibility_100yr`;
 
                                             setLayer('Accessibility');
-                                            props.updateLayerType('accessibility100yr');
+                                            props.updateLayerType('accessibility_100yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();

@@ -86,14 +86,6 @@ export default function Analysis(props) {
         },
     ];
     
-    var elevationData = [
-        {
-        name: "Elevation | Sea Level",
-        pv: analysisState.data[9],
-        uv: 0.5
-        }
-    ];
-    
   return (
     <div>
     <i>Higher is better*</i>
@@ -151,21 +143,8 @@ export default function Analysis(props) {
         </BarChart>
     </Box>
 
-    <Typography variant="h6">Elevation (from Sea Level)</Typography>
-    <Box 
-        display="flex" 
-        alignItems="center"
-        justifyContent="center"
-        marginLeft={-5}>
-        <BarChart width={350} height={200} data={elevationData}>
-            <XAxis dataKey="name" />
-            <YAxis type="number" domain={[0, 1]}/>
-            <Tooltip />
-            <Bar dataKey="pv" fill="#82ca9d" />
-            <Bar dataKey="uv" fill="#8884d8" />
-        </BarChart>
-
-    </Box>
+    <Typography variant="h6">Elevation (Above Sea Level)</Typography>
+    <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
     </div>
   );
 }
