@@ -235,7 +235,7 @@ export default function AnalysisSide(props) {
           <Pie
             data={data}
             cx="50%"
-            cy="50%"
+            cy="43%"
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={100}
