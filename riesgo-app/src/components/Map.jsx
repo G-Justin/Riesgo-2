@@ -22,7 +22,9 @@ export default class Map extends Component {
             x: 0, y: 0,
 
             //Marker Properties
-            markerProp: []
+            markerProp: [],
+
+            currentCity: "l_marikina"
         };
     }
 
@@ -205,12 +207,6 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckywujtfe03l827pk2ss4csbp-0vd71',
             });
 
-            //Marikina Dataset - Land Use (FAKE)
-            this.map.addSource('fake-marikina-land-use', {
-                type: 'vector',
-                url: 'mapbox://jdarvin.ckwqdmyyy0ql924pfweq7ptc6-2a6zr',
-            });
-
             //Marikina Dataset - Land Use 
             this.map.addSource('marikina-land-use', {
                 type: 'vector',
@@ -233,7 +229,7 @@ export default class Map extends Component {
             //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyzlg5vl08us29ll5igfakzt-4rfg2',
+                url: 'mapbox://jdarvin.ckyzsf1tw0yy120qp3n22yn03-0kndf',
             });
 
             //PASIG ==================================================================================
@@ -1134,7 +1130,7 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                // FLOOD YOU ARE HERE
+                // Hook data to array
                 tempMarkerArray[0] = displayFeatures[0].properties.flood_5yr;
                 tempMarkerArray[1] = displayFeatures[0].properties.flood_25yr;
                 tempMarkerArray[2] = displayFeatures[0].properties.flood_100yr;
@@ -1146,49 +1142,32 @@ export default class Map extends Component {
                 tempMarkerArray[8] = displayFeatures[0].properties.accessibility_100yr;
                 tempMarkerArray[9] = displayFeatures[0].properties.elevation;
                 tempMarkerArray[10] = displayFeatures[0].properties.land_use_score;     // Gridmap
-                tempMarkerArray[11] = displayFeatures[0].properties.land_use;           // Data Visualization 
+
+                //Vector Layer Data
+                console.log("We are on " + this.state.currentCity);
+
+                if(this.state.currentCity === "l_marikina") {
+                    tempMarkerArray[11] = displayFeatures[0].properties.cemetery;
+                    tempMarkerArray[12] = displayFeatures[0].properties.commercial;
+                    tempMarkerArray[13] = displayFeatures[0].properties.farmland;
+                    tempMarkerArray[14] = displayFeatures[0].properties.forest;
+                    tempMarkerArray[15] = displayFeatures[0].properties.grass;
+                    tempMarkerArray[16] = displayFeatures[0].properties.heath;
+                    tempMarkerArray[17] = displayFeatures[0].properties.industrial;
+                    tempMarkerArray[18] = displayFeatures[0].properties.meadow;
+                    tempMarkerArray[19] = displayFeatures[0].properties.park;
+                    tempMarkerArray[20] = displayFeatures[0].properties.recreation_ground;
+                    tempMarkerArray[21] = displayFeatures[0].properties.residential;
+    
+                    tempMarkerArray[22] = displayFeatures[0].properties.retail;
+                    tempMarkerArray[23] = displayFeatures[0].properties.scrub;
+                    tempMarkerArray[24] = displayFeatures[0].properties.unclassified;
+                }
 
                 this.setState({ markerProp: tempMarkerArray });
-
                 this.props.updateMarkerProp(tempMarkerArray);
+
                 console.log("Sending... " + tempMarkerArray);
-
-                // document.getElementById('pd-flood-5yr').innerHTML = displayFeatures.length
-                //         ? `<b>Flood Score (5 years):</b> ${displayFeatures[0].properties.flood_5yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-flood-25yr').innerHTML = displayFeatures.length
-                //         ? `<b>Flood Score (25 years):</b> ${displayFeatures[0].properties.flood_25yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-flood-100yr').innerHTML = displayFeatures.length
-                //         ? `<b>Flood Score (100 years):</b> ${displayFeatures[0].properties.flood_100yr}`
-                //         : `undefined`;
-
-                // // HAZARD
-                // document.getElementById('pd-hazard-5yr').innerHTML = displayFeatures.length
-                //         ? `<b>Hazard Score (5 years):</b> ${displayFeatures[0].properties.hazard_5yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-hazard-25yr').innerHTML = displayFeatures.length
-                //         ? `<b>Hazard Score (25 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-hazard-100yr').innerHTML = displayFeatures.length
-                //         ? `<b>Hazard Score (100 years):</b> ${displayFeatures[0].properties.hazard_25yr}`
-                //         : `undefined`;
-
-                // // ACCESSIBILITY
-                // document.getElementById('pd-accessibility-5yr').innerHTML = displayFeatures.length
-                //         ? `<b>Accessibility Score (5 years):</b> ${displayFeatures[0].properties.accessibility_5yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-accessibility-25yr').innerHTML = displayFeatures.length
-                //         ? `<b>Accessibility Score (25 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
-                //         : `undefined`;
-                // document.getElementById('pd-accessibility-100yr').innerHTML = displayFeatures.length
-                //         ? `<b>Accessibility Score (100 years):</b> ${displayFeatures[0].properties.accessibility_25yr}`
-                //         : `undefined`;
-                        
-                // // ELEVATION
-                // document.getElementById('pd-elevation').innerHTML = displayFeatures.length
-                // ? `<b>Elevation: </b> ${displayFeatures[0].properties.elevation}`
-                // : `undefined`;
             });
 
             //Hover Feature Getting
@@ -1213,7 +1192,7 @@ export default class Map extends Component {
                     return displayFeat;
                 });
 
-                console.log("We are doing: " + this.hover_layer);
+                //console.log("We are doing: " + this.hover_layer);
 
                 //Supposed to be current_layer
                 if(this.hover_layer === "hazard_5yr") {
@@ -1492,6 +1471,7 @@ export default class Map extends Component {
                 'visible'
             );
             console.log(`Enabled ${nextProps.city}_${layer_type}`);
+            this.setState({currentCity: nextProps.city});
             
             this.props.updateLayer(`${nextProps.city}_${layer_type}`);
 
