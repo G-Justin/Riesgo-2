@@ -216,7 +216,7 @@ export default class Map extends Component {
             //Marikina Dataset - Land Use Score
             this.map.addSource('marikina-land-use-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckywunz7z0hux23ornzsk2hgv-0636f',
+                url: 'mapbox://jdarvin.ckyzyutp30qo120nvalbm6j1s-5xfb1',
             });
 
 

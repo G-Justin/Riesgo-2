@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
 
 const COLORS = ['#ff5d5d', '#0088FE', '#FFBB28','#8bff5d', '#0088FE', '#5dffd1','#5dabff', '#865dff', '#ef5dff','#ff5d5d', '#0088FE', '#FFBB28','#ff5d5d', '#0088FE', '#FFBB28'];
@@ -81,7 +81,61 @@ export default function AnalysisSide(props) {
     const loadoutArray = marikinaLoadout;
     for(let i = 0; i < loadoutArray.length; i++) {
       if(loadoutArray[i] > 0) {
-        var a = {name: i, value: loadoutArray[i]}
+
+        var setName = ""
+
+        switch(i) {
+          case 0:
+            setName = "Cemetery"
+            break;
+          case 1:
+            setName = "Commercial"
+            break;
+          case 2:
+            setName = "Farmland"
+            break;
+          case 3:
+            setName = "Forest"
+            break;
+          case 4:
+            setName = "Grass"
+            break;
+          case 5:
+            setName = "Heath"
+            break;
+          case 6:
+            setName = "Industrial"
+            break;
+          case 7:
+            setName = "Meadow"
+            break;
+          case 8:
+            setName = "Park"
+            break;
+          case 9:
+            setName = "RecreationGrounds"
+            break;
+          case 10:
+            setName = "Residential"
+            break;
+          case 11:
+            setName = "Retail"
+            break;
+          case 12:
+            setName = "Scrub"
+            break;
+          case 13:
+            setName = "Unclassified"
+            break;
+          case 14:
+            setName = "Military"
+            break;
+          
+          default:
+            break;
+        }
+
+        var a = {name: setName, value: loadoutArray[i]}
         tempDataState.push(a)
       }
     }
@@ -96,49 +150,49 @@ export default function AnalysisSide(props) {
 
       for(let i = 0; i < tofilter.length; i++) {
         switch(tofilter[i].name) {
-          case 0:
+          case "Cemetery":
             statisticArray[pos] = `${tofilter[i].value}% Cemetery`;
             break;
-          case 1:
+          case "Commercial":
             statisticArray[pos] = `${tofilter[i].value}% Commercial`;
             break;
-          case 2:
+          case "Farmland":
             statisticArray[pos] = `${tofilter[i].value}% Farmland`;
             break;
-          case 3:
+          case "Forest":
             statisticArray[pos] = `${tofilter[i].value}% Forest`;
             break;
-          case 4:
+          case "Grass":
             statisticArray[pos] = `${tofilter[i].value}% Grass`;
             break;
-          case 5:
+          case "Heath":
             statisticArray[pos] = `${tofilter[i].value}% Heath`;
             break;
-          case 6:
+          case "Industrial":
             statisticArray[pos] = `${tofilter[i].value}% Industrial`;
             break;
-          case 7:
+          case "Meadow":
             statisticArray[pos] = `${tofilter[i].value}% Meadow`;
             break;
-          case 8:
+          case "Park":
             statisticArray[pos] = `${tofilter[i].value}% Park`;
             break;
-          case 9:
+          case "RecreationGrounds":
             statisticArray[pos] = `${tofilter[i].value}% Recreation Grounds`;
             break;
-          case 10:
+          case "Residential":
             statisticArray[pos] = `${tofilter[i].value}% Residential`;
             break;
-          case 11:
+          case "Retail":
             statisticArray[pos] = `${tofilter[i].value}% Retail`;
             break;
-          case 12:
+          case "Scrub":
             statisticArray[pos] = `${tofilter[i].value}% Scrub`;
             break;
-          case 13:
+          case "Unclassified":
             statisticArray[pos] = `${tofilter[i].value}% Unclassified`;
             break;
-          case 14:
+          case "Military":
             statisticArray[pos] = `${tofilter[i].value}% Military`;
             break;
           
@@ -150,7 +204,7 @@ export default function AnalysisSide(props) {
 
       switch(statisticArray.length) {
         case 0:
-          return null
+          return `This area is undefined`
         case 1:
           return `This area is ${statisticArray[0]}`
         case 2:
@@ -175,14 +229,16 @@ export default function AnalysisSide(props) {
         alignItems="center"
         justifyContent="center"
         >
-        <PieChart width={175} height={175}>
+        <PieChart width={370} height={250}>
+          <Legend />
+          <Tooltip />
           <Pie
             data={data}
             cx="50%"
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={100}
             fill="#8884d8"
             dataKey="value"
           >
@@ -193,7 +249,7 @@ export default function AnalysisSide(props) {
         </PieChart>
     </Box>
     <Typography variant="body">
-        <WriteUp data={data} /> <hr />
+        <i><WriteUp data={data} /></i> <hr />
         {/* This area is <b style={{color: "#ff5d5d"}}>33% Residential</b>, <b style={{color: "#00C49F"}}>25% Industrial</b> and <b style={{color: "#FFBB28"}}>42% Farmland</b>. <hr />  */}
         It is marked <b style={{color: scoreColor}}><LandUsability score={landUseScore}/></b> for situating flood evacuation centers.
     </Typography>

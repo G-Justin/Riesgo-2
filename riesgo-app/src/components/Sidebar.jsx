@@ -597,8 +597,8 @@ const Sidebar = (props) => {
                 </CardContent>
             </Card>
 
-            {/* Pie Chart */}
-            <Card id="style-1" sx={{ overflowX: "hidden", width: 200, maxHeight: 600, overflow: 'auto', position: "absolute", margin: 2, right: 410, top: 160 }}>
+            {/* Pie Chart ORIGINALLY: width: 200, maxHeight: 600 right: 410, top: 160 */}
+            <Card id="style-1" sx={{ overflowX: "hidden", width: 380, maxHeight: 500, overflow: 'auto', position: "absolute", margin: 2, left: 0, top: 430 }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <AnalysisSide data={analysisState.marker_prop} />
                 </CardContent>
