@@ -309,7 +309,7 @@ export default class Map extends Component {
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyswpdpg1r0m20mx4zsbas59-2nd82',
+                url: 'mapbox://jdarvin.ckyzx8yn50prh21lllu3m25j8-2d3yn',
             });
 
             // MARIKINA INITS ==================================================================================
@@ -1146,7 +1146,8 @@ export default class Map extends Component {
                 //Vector Layer Data
                 console.log("We are on " + this.state.currentCity);
 
-                if(this.state.currentCity === "l_marikina") {
+                //if(this.state.currentCity === "l_marikina") {
+                    //Marikina Goes First
                     tempMarkerArray[11] = displayFeatures[0].properties.cemetery;
                     tempMarkerArray[12] = displayFeatures[0].properties.commercial;
                     tempMarkerArray[13] = displayFeatures[0].properties.farmland;
@@ -1162,7 +1163,10 @@ export default class Map extends Component {
                     tempMarkerArray[22] = displayFeatures[0].properties.retail;
                     tempMarkerArray[23] = displayFeatures[0].properties.scrub;
                     tempMarkerArray[24] = displayFeatures[0].properties.unclassified;
-                }
+
+                    //Pasig Next (only military)
+                    tempMarkerArray[25] = displayFeatures[0].properties.military;
+                //}
 
                 this.setState({ markerProp: tempMarkerArray });
                 this.props.updateMarkerProp(tempMarkerArray);

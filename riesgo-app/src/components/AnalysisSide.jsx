@@ -32,6 +32,7 @@ export default function AnalysisSide(props) {
     //TODO: Pasig / Manila Validation and Loadout
 
     // Marikina Loadout
+    // This implementation is retarded
     var marikinaLoadout = [
       analysisState.data[11], // 1
       analysisState.data[12],
@@ -46,7 +47,8 @@ export default function AnalysisSide(props) {
       analysisState.data[21],
       analysisState.data[22],
       analysisState.data[23],
-      analysisState.data[24]
+      analysisState.data[24],
+      analysisState.data[25]
     ]
 
     function LandUsability(props) {
@@ -135,6 +137,9 @@ export default function AnalysisSide(props) {
             break;
           case 13:
             statisticArray[pos] = `${tofilter[i].value}% Unclassified`;
+            break;
+          case 14:
+            statisticArray[pos] = `${tofilter[i].value}% Military`;
             break;
           
           default:
