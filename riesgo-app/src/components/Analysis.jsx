@@ -111,24 +111,6 @@ export default function Analysis(props) {
   return (
     <div>
     <i>Higher is better*</i>
-    <Typography variant="h6">Sustainability Score</Typography>
-    <Box 
-        display="flex" 
-        alignItems="center"
-        justifyContent="center"
-        marginLeft={-5}
-        >
-        <BarChart width={350} height={150} data={sustainabilityData}>
-            <XAxis dataKey="name" />
-            <YAxis domain={[0, 0.65]} allowDataOverflow={true}/>
-            <Bar dataKey="score">
-            {sustainabilityData.map((entry, index) => (
-                <Cell fill={getSustainabilityColor(entry.score)} />
-            ))}
-            </Bar>
-        </BarChart>
-    </Box>
-
     <Typography variant="h6">Flood Safety Score</Typography>
     <Box 
         display="flex" 
@@ -178,6 +160,24 @@ export default function Analysis(props) {
             <Bar dataKey="score">
             {accessibilityData.map((entry, index) => (
                 <Cell fill={getAccessibilityColor(entry.score)} />
+            ))}
+            </Bar>
+        </BarChart>
+    </Box>
+
+    <Typography variant="h6">Overall Sustainability Score</Typography>
+    <Box 
+        display="flex" 
+        alignItems="center"
+        justifyContent="center"
+        marginLeft={-5}
+        >
+        <BarChart width={350} height={150} data={sustainabilityData}>
+            <XAxis dataKey="name" />
+            <YAxis domain={[0, 0.65]} allowDataOverflow={true}/>
+            <Bar dataKey="score">
+            {sustainabilityData.map((entry, index) => (
+                <Cell fill={getSustainabilityColor(entry.score)} />
             ))}
             </Bar>
         </BarChart>
