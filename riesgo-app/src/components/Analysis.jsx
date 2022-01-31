@@ -120,7 +120,7 @@ export default function Analysis(props) {
         >
         <BarChart width={350} height={150} data={sustainabilityData}>
             <XAxis dataKey="name" />
-            <YAxis domain={[0, 1]} allowDataOverflow={true}/>
+            <YAxis domain={[0, 0.65]} allowDataOverflow={true}/>
             <Bar dataKey="score">
             {sustainabilityData.map((entry, index) => (
                 <Cell fill={getSustainabilityColor(entry.score)} />
