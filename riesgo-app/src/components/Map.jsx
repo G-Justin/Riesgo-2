@@ -220,10 +220,20 @@ export default class Map extends Component {
             });
 
 
-            //Marikina Dataset - Sustainability (FAKE)
-            this.map.addSource('fake-marikina-sustainability-5yr', {
+            //Marikina Dataset - Sustainability 
+            this.map.addSource('marikina-sustainability-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckwqdjusr0tvs28s10h3pbotb-2z5rw',
+                url: 'mapbox://jdarvin.ckz0ygzyu0xba20lls3ndp7xo-9u482',
+            });
+
+            this.map.addSource('marikina-sustainability-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckz0yhwt50gtm24pfrv7hq0z6-7qhuv',
+            });
+
+            this.map.addSource('marikina-sustainability-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckz0yk63n0xc320lldp6whzg8-2vaz1',
             });
 
             //Marikina Dataset - Complete 
@@ -305,6 +315,24 @@ export default class Map extends Component {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckyxzv6ao02cc27ndgti2q724-2c015',
             });
+
+           //Pasig Dataset - Sustainability 
+           this.map.addSource('pasig-sustainability-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckz1i2aof133v20s1onsvi9qc-745hx',
+            });
+
+            this.map.addSource('pasig-sustainability-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckz1ix3am039o21mzlbcb1ktl-8rtk8',
+            });
+
+            this.map.addSource('pasig-sustainability-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.ckz1j2poi0phe29rt5a0fbm96-6kfya',
+            });
+
+            
 
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
@@ -686,16 +714,16 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
-                id: 'l_marikina_sustainability',
+                id: 'l_marikina_sustainability_5yr',
                 type: 'fill-extrusion',
-                source: 'fake-marikina-sustainability-5yr',
-                'source-layer': 'fake_marikina_sustainability_5yr',
+                source: 'marikina-sustainability-5yr',
+                'source-layer': 'marikina_sustainability_5yr',
                 layout: {
                     visibility: 'none',
                 },
                 paint: {
                 'fill-extrusion-color': {
-                    property: 'sustainability_5yr',
+                    property: 'SUSTAINABILITY_5yr',
                     stops: [
                         [0, '#ff3d3d'],
                         [0.33, '#e0762f'],
@@ -703,7 +731,63 @@ export default class Map extends Component {
                         [1, '#2fe02f'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'sustainability_5yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_sustainability_25yr',
+                type: 'fill-extrusion',
+                source: 'marikina-sustainability-25yr',
+                'source-layer': 'marikina_sustainability_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'SUSTAINABILITY_25yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_marikina_sustainability_100yr',
+                type: 'fill-extrusion',
+                source: 'marikina-sustainability-100yr',
+                'source-layer': 'marikina_sustainability_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'SUSTAINABILITY_100yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
                 'fill-extrusion-opacity': 0,
 
                 'fill-extrusion-opacity-transition': {
@@ -1090,6 +1174,90 @@ export default class Map extends Component {
             });
 
             this.map.addLayer({
+                id: 'l_pasig_sustainability_5yr',
+                type: 'fill-extrusion',
+                source: 'pasig-sustainability-5yr',
+                'source-layer': 'pasig_sustainability_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'SUSTAINABILITY_5yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_sustainability_25yr',
+                type: 'fill-extrusion',
+                source: 'pasig-sustainability-25yr',
+                'source-layer': 'pasig_sustainability_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'SUSTAINABILITY_25yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_pasig_sustainability_100yr',
+                type: 'fill-extrusion',
+                source: 'pasig-sustainability-100yr',
+                'source-layer': 'pasig_sustainability_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                'fill-extrusion-color': {
+                    property: 'SUSTAINABILITY_100yr',
+                    stops: [
+                        [0, '#ff3d3d'],
+                        [0.33, '#e0762f'],
+                        [0.66, '#d4e02f'],
+                        [1, '#2fe02f'],
+                    ],
+                },
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
+                'fill-extrusion-opacity': 0,
+
+                'fill-extrusion-opacity-transition': {
+                    duration: 400,
+                    delay: 0,
+                },
+                },
+            });
+
+            this.map.addLayer({
                 id: 'l_pasig_complete',
                 type: 'fill',
                 source: 'pasig-complete',
@@ -1234,6 +1402,18 @@ export default class Map extends Component {
                 } else if (this.hover_layer === "accessibility_100yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.accessibility_100yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "SUSTAINABILITY_5yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.SUSTAINABILITY_5yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "SUSTAINABILITY_25yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.SUSTAINABILITY_25yr}`
+                        : `undefined`;
+                } else if (this.hover_layer === "SUSTAINABILITY_100yr") {
+                    document.getElementById('pd').innerHTML = displayFeatures.length
+                        ? `${displayFeatures[0].properties.SUSTAINABILITY_100yr}`
                         : `undefined`;
                 } else if (this.hover_layer === "elevation") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
@@ -1423,6 +1603,15 @@ export default class Map extends Component {
                 break;
             case "accessibility_100yr":
                 this.hover_layer = "accessibility_100yr";
+                break;
+            case "SUSTAINABILITY_5yr":
+                this.hover_layer = "SUSTAINABILITY_5yr";
+                break;
+            case "SUSTAINABILITY_25yr":
+                this.hover_layer = "SUSTAINABILITY_25yr";
+                break;
+            case "SUSTAINABILITY_100yr":
+                this.hover_layer = "SUSTAINABILITY_100yr";
                 break;
             case "elevation":
                 this.hover_layer = "elevation"; 

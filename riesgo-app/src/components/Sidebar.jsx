@@ -17,6 +17,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
 import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -212,6 +213,15 @@ const Sidebar = (props) => {
                         <div><span style={{ backgroundColor: '#fcba03' }}></span>Recommended Area</div>
                     </Box>
                 );
+            case "Sustainability":
+                return (
+                    <Box>
+                        <div><span style={{ backgroundColor: '#ff3d3d' }}></span>Unsuitable</div>
+                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slight Suitable</div>
+                        <div><span style={{ backgroundColor: '#d4e02f' }}></span>High Suitable</div>
+                        <div><span style={{ backgroundColor: '#2fe02f' }}></span>Recommended Area</div>
+                    </Box>
+                );
             default:
                 return "You are currently not selecting a map. Select a layer map below to view its details."
         }
@@ -373,6 +383,19 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction
+                        label="Sustainability"
+                        icon={<LightbulbIcon />}
+                        onClick={() => {
+                            const toActivate = `${city}_sustainability_5yr`;
+
+                            setLayer('Sustainability');
+                            props.updateLayerType('SUSTAINABILITY_5yr');
+                            props.updateLayer(toActivate);
+
+                            handleClose();
+                        }}
+                    />
+                    <BottomNavigationAction
                         label="None"
                         icon={<BlockIcon />}
 
@@ -401,7 +424,7 @@ const Sidebar = (props) => {
                         <LayerDetails layerName={layer} />
                     </Typography>
 
-                    {/* Marikina Flood Buttons */}
+                    {/* Flood Buttons */}
                     {layer === "Flood" &&
                         <Box display="flex"
                             alignItems="center"
@@ -461,7 +484,7 @@ const Sidebar = (props) => {
                             </div>
                         </Box>}
 
-                    {/* Marikina Hazard Buttons */}
+                    {/* Hazard Buttons */}
                     {layer === "Hazard" &&
                         <Box display="flex"
                             alignItems="center"
@@ -518,7 +541,7 @@ const Sidebar = (props) => {
                                 </ToggleButtonGroup>
                             </div>
                         </Box>}
-                    {/* Marikina Accessibility Buttons */}
+                    {/* Accessibility Buttons */}
                     {layer === "Accessibility" &&
                         <Box display="flex"
                             alignItems="center"
@@ -566,6 +589,64 @@ const Sidebar = (props) => {
 
                                             setLayer('Accessibility');
                                             props.updateLayerType('accessibility_100yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        100 Years
+                                    </ToggleButton>
+                                </ToggleButtonGroup>
+                            </div>
+                        </Box>}
+
+                    {/* Sustainability Buttons */}
+                    {layer === "Sustainability" &&
+                        <Box display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            paddingTop="0.5em">
+                            <div onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}>
+                                <ToggleButtonGroup
+                                    color="primary"
+                                    value={alignment}
+                                    exclusive
+                                    onChange={handleYearButtonChange}
+                                >
+                                    <ToggleButton
+                                        value="5yr_sustainability"
+                                        onClick={() => {
+                                            const toActivate = `${city}_SUSTAINABILITY_5yr`;
+
+                                            setLayer('Sustainability');
+                                            props.updateLayerType('SUSTAINABILITY_5yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        5 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="25yr_sustainability"
+                                        onClick={() => {
+                                            const toActivate = `${city}_sustainability_25yr`;
+
+                                            setLayer('Sustainability');
+                                            props.updateLayerType('SUSTAINABILITY_25yr');
+                                            props.updateLayer(toActivate);
+
+                                            handleClose();
+                                        }}>
+                                        25 Years
+                                    </ToggleButton>
+                                    <ToggleButton
+                                        value="100yr_sustainability"
+                                        onClick={() => {
+                                            const toActivate = `${city}_sustainability_100yr`;
+
+                                            setLayer('Sustainability');
+                                            props.updateLayerType('SUSTAINABILITY_100yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
