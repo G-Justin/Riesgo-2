@@ -617,7 +617,7 @@ const Sidebar = (props) => {
                                     <ToggleButton
                                         value="5yr_sustainability"
                                         onClick={() => {
-                                            const toActivate = `${city}_SUSTAINABILITY_5yr`;
+                                            const toActivate = `${city}_sustainability_5yr`;
 
                                             setLayer('Sustainability');
                                             props.updateLayerType('SUSTAINABILITY_5yr');
