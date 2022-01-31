@@ -56,19 +56,19 @@ export default function AnalysisSide(props) {
 
         if (ascore >= 0.8)  { 
             setScoreColor("#fcba03");
-            return "Recommended"; 
+            return "Available"; 
         }
         if (ascore < .80 && ascore >= .50) { 
             setScoreColor("#4ec050");
-            return "Highly Usable"; 
+            return "Slightly Available"; 
         }
         if (ascore < .50 && ascore >= .20) { 
             setScoreColor("#216d7b");
-            return "Slightly Usable"; 
+            return "Barely Available"; 
         }
         if (ascore < .20 && ascore >= 0) { 
             setScoreColor("#340042");
-            return "Unrecommended"; 
+            return "Unavailable"; 
         }
 
         return "undefined"
@@ -251,7 +251,7 @@ export default function AnalysisSide(props) {
     <Typography variant="body">
         <i><WriteUp data={data} /></i> <hr />
         {/* This area is <b style={{color: "#ff5d5d"}}>33% Residential</b>, <b style={{color: "#00C49F"}}>25% Industrial</b> and <b style={{color: "#FFBB28"}}>42% Farmland</b>. <hr />  */}
-        It is marked <b style={{color: scoreColor}}><LandUsability score={landUseScore}/></b> for situating flood evacuation centers.
+        With a score of <b style={{color: scoreColor}}>{landUseScore}</b>, <br />This area is marked <b style={{color: scoreColor}}><LandUsability score={landUseScore}/></b> for situating flood evacuation centers.
     </Typography>
     </div>
   );

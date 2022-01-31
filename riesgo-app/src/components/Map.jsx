@@ -140,7 +140,7 @@ export default class Map extends Component {
             }
         }
 
-        this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "top-right");
+        this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "top-right"); // Make this bottom right
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
         this.map.on('style.load', () => {
@@ -404,7 +404,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_5yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -436,7 +436,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_25yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -468,7 +468,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_100yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -869,7 +869,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_5yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -901,7 +901,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_25yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
@@ -933,7 +933,7 @@ export default class Map extends Component {
                         [1, '#800F2F'],
                     ],
                 },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'accessibility_100yr'], 1]],
+                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
                 'fill-extrusion-opacity': 0,
                 'fill-extrusion-opacity-transition': {
                     duration: 400,
