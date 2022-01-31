@@ -252,68 +252,68 @@ export default class Map extends Component {
             //Pasig Dataset - Flood
             this.map.addSource('pasig-flood-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr2wzd28f5q21podjpe8xuf-4qoa8',
+                url: 'mapbox://jdarvin.ckz2cua2m091229mne9hrkoag-9i41e',
             });
 
             this.map.addSource('pasig-flood-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr2zqdea63f21pc7rpvrrk5-1lr4a',
+                url: 'mapbox://jdarvin.ckz2cws0h20uq28ny6dyf3qa8-689jl',
             });
 
             this.map.addSource('pasig-flood-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr36n3b19cg26mxupqdsizb-3lb5u',
+                url: 'mapbox://jdarvin.ckz2cxxq218ky27nmx2jvlh5q-314de',
             });
 
 
-            //Pasig Dataset - Accesibility
+            //Pasig Dataset - Accessibility
             this.map.addSource('pasig-accessibility-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr39odp1ceu2amsdcj0eap6-752wz',
+                url: 'mapbox://jdarvin.ckz2d77d621ky20nyj3ketf8o-9ilec',
             });
 
             this.map.addSource('pasig-accessibility-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr3doc73xzp22mti8qpy90v-6fecy',
+                url: 'mapbox://jdarvin.ckz2d89xc09j527s6kku5w07v-06ndb',
             });
 
             this.map.addSource('pasig-accessibility-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr3g03e38eq20nlbqbdwfdc-10k5g',
+                url: 'mapbox://jdarvin.ckz2da3hk0wm029rt2xnf0ou8-25gbu',
             });
 
             //Pasig Dataset - Hazard
             this.map.addSource('pasig-hazard-5yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr275y5384220nlqd8yg5j4-0jr6d',
+                url: 'mapbox://jdarvin.ckz2cz6hr21zk21nyj7ahl1t5-0bgqd',
             });
 
             this.map.addSource('pasig-hazard-25yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr2e4hl3exi22nrzh05br0x-06pul',
+                url: 'mapbox://jdarvin.ckz2d05m40ymp20qf4cufrxop-4gewj',
             });
 
             this.map.addSource('pasig-hazard-100yr', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyr2fek73c0n27nlcrw0cpv8-216ea',
+                url: 'mapbox://jdarvin.ckz2d3f4a08qc20pl2nw2pvdf-2efh8',
             });
 
             //Pasig Dataset - Coverage
             this.map.addSource('pasig-coverage-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckysbg5dv1lmt20mxlkp7u5sw-2kqyq',
+                url: 'mapbox://jdarvin.ckz2d4wjs9a0w22o04q7f33ep-09gu3',
             });
 
             //Pasig Dataset - Land Use 
             this.map.addSource('pasig-land-use', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyxzswrf0ril2eny8lgf3u5m-1i0xd',
+                url: 'mapbox://jdarvin.ckz2dy4px1azc21nvnqx9ivvw-91erc',
             });
 
             //Pasig Dataset - Land Use Score
             this.map.addSource('pasig-land-use-score', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyxzv6ao02cc27ndgti2q724-2c015',
+                url: 'mapbox://jdarvin.ckz2e1y3x004q2aric1v60frz-2pnui',
             });
 
            //Pasig Dataset - Sustainability 
