@@ -291,7 +291,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: 300, right: 300}} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: "13%", right: "13%"}} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
