@@ -140,9 +140,9 @@ export default class Map extends Component {
             }
         }
 
-        this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "top-right"); // Make this bottom right
-        this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
+        this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+        this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "bottom-right"); // Make this bottom right
+        
         this.map.on('style.load', () => {
             //MARIKINA ==================================================================================
             //Marikina Dataset - Land Elevation

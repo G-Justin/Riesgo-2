@@ -279,7 +279,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ width: 200, height: 150, position: "absolute", margin: 2, right: 410 }}>
+            <Card id="labels" sx={{ width: 200, height: 150, position: "absolute", margin: 2, right: 370 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
@@ -291,10 +291,11 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: 300, right: 300}} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
+                    sx={{borderRadius: 16}}
                     onChange={(event, newValue) => {
                         setValue(newValue);
                     }}
@@ -412,7 +413,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 40 }}>
+            <Card id="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 800, overflow: 'auto', position: "absolute", margin: 2, right: 0 }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
