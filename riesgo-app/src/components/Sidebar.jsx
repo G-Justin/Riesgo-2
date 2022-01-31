@@ -579,6 +579,7 @@ const Sidebar = (props) => {
                     <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
                     <Typography id="pd">undefined</Typography>
                     <hr />
+                    <AnalysisSide data={analysisState.marker_prop} /> <hr />
                     <Analysis data={analysisState.marker_prop} />
                     {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
@@ -598,11 +599,11 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Pie Chart ORIGINALLY: width: 200, maxHeight: 600 right: 410, top: 160 */}
-            <Card id="style-1" sx={{ overflowX: "hidden", width: 380, maxHeight: 500, overflow: 'auto', position: "absolute", margin: 2, left: 0, top: 430 }}>
+            {/* <Card id="style-1" sx={{ overflowX: "hidden", width: 380, maxHeight: 500, overflow: 'auto', position: "absolute", margin: 2, left: 0, top: 430 }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <AnalysisSide data={analysisState.marker_prop} />
                 </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Land Usage Modal */}
             <Fade in={open}>
