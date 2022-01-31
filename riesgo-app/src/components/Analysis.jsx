@@ -31,6 +31,13 @@ const getAccessibilityColor = (p) => {
     if (p >= 0) { return "#ffc2ce"; }
 }
 
+const getSustainabilityColor = (p) => {
+    if (p >= .6) { return "#2fe02f"; }
+    if (p < .6 && p >= .4) { return "#2fe02f"; }
+    if (p < .4 && p >= .2) { return "#d4e02f"; }
+    if (p < .2) { return "#e0762f"; }
+}
+
 export default function Analysis(props) {
 
     const [analysisState, setAnalysisState] = React.useState(props);
@@ -85,10 +92,43 @@ export default function Analysis(props) {
         score: analysisState.data[8],
         },
     ];
+
+    var sustainabilityData = [
+        {
+        name: "5 Years",
+        score: analysisState.data[26],
+        },
+        {
+        name: "25 Years",
+        score: analysisState.data[27],
+        },
+        {
+        name: "100 Years",
+        score: analysisState.data[28],
+        },
+    ];
     
   return (
     <div>
     <i>Higher is better*</i>
+    <Typography variant="h6">Sustainability Score</Typography>
+    <Box 
+        display="flex" 
+        alignItems="center"
+        justifyContent="center"
+        marginLeft={-5}
+        >
+        <BarChart width={350} height={150} data={sustainabilityData}>
+            <XAxis dataKey="name" />
+            <YAxis domain={[0, 1]} allowDataOverflow={true}/>
+            <Bar dataKey="score">
+            {sustainabilityData.map((entry, index) => (
+                <Cell fill={getSustainabilityColor(entry.score)} />
+            ))}
+            </Bar>
+        </BarChart>
+    </Box>
+
     <Typography variant="h6">Flood Safety Score</Typography>
     <Box 
         display="flex" 

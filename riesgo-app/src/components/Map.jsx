@@ -142,7 +142,7 @@ export default class Map extends Component {
 
         this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
         this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "bottom-right"); // Make this bottom right
-        
+
         this.map.on('style.load', () => {
             //MARIKINA ==================================================================================
             //Marikina Dataset - Land Elevation
@@ -726,9 +726,9 @@ export default class Map extends Component {
                     property: 'SUSTAINABILITY_5yr',
                     stops: [
                         [0, '#ff3d3d'],
-                        [0.33, '#e0762f'],
-                        [0.66, '#d4e02f'],
-                        [1, '#2fe02f'],
+                        [0.1625, '#e0762f'],
+                        [0.325, '#d4e02f'],
+                        [0.65, '#2fe02f'],
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
@@ -754,9 +754,9 @@ export default class Map extends Component {
                     property: 'SUSTAINABILITY_25yr',
                     stops: [
                         [0, '#ff3d3d'],
-                        [0.33, '#e0762f'],
-                        [0.66, '#d4e02f'],
-                        [1, '#2fe02f'],
+                        [0.1625, '#e0762f'],
+                        [0.325, '#d4e02f'],
+                        [0.65, '#2fe02f'],
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
@@ -782,9 +782,9 @@ export default class Map extends Component {
                     property: 'SUSTAINABILITY_100yr',
                     stops: [
                         [0, '#ff3d3d'],
-                        [0.33, '#e0762f'],
-                        [0.66, '#d4e02f'],
-                        [1, '#2fe02f'],
+                        [0.1625, '#e0762f'],
+                        [0.325, '#d4e02f'],
+                        [0.65, '#2fe02f'],
                     ],
                 },
                 'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
@@ -1335,6 +1335,11 @@ export default class Map extends Component {
                     //Pasig Next (only military)
                     tempMarkerArray[25] = displayFeatures[0].properties.military;
                 //}
+
+                //Sustainability
+                tempMarkerArray[26] = displayFeatures[0].properties.SUSTAINABILITY_5yr;
+                tempMarkerArray[27] = displayFeatures[0].properties.SUSTAINABILITY_25yr;
+                tempMarkerArray[28] = displayFeatures[0].properties.SUSTAINABILITY_100yr;
 
                 this.setState({ markerProp: tempMarkerArray });
                 this.props.updateMarkerProp(tempMarkerArray);
