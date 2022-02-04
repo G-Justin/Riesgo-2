@@ -130,7 +130,7 @@ const Sidebar = (props) => {
             case "Sustainability":
                 return "Sustainability";
             default:
-                return ""
+                return "No Layer Selected"
         }
     }
 
@@ -658,10 +658,10 @@ const Sidebar = (props) => {
                             </div>
                         </Box>}
                     <hr />
-                    <Typography variant="h6"><LayerName layerName={layer} /> Score (Hover)</Typography>
+                    <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
                     <Typography id="pd">undefined</Typography>
-                    <hr />
-                    <AnalysisSide data={analysisState.marker_prop} /> <hr />
+                    
+                    <AnalysisSide data={analysisState.marker_prop} />
                     <Analysis data={analysisState.marker_prop} />
                     {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />

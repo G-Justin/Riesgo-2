@@ -221,9 +221,16 @@ export default function AnalysisSide(props) {
           return null
       }
     }
-    
+
+  if(landUseScore === undefined) {
+    return (
+      <div></div>
+    )
+  }
+
   return (
     <div>
+    <hr />
     <Typography variant="h6">Marked Area Land Use Distribution</Typography>
     <Box display="flex" 
         alignItems="center"
@@ -253,6 +260,7 @@ export default function AnalysisSide(props) {
         {/* This area is <b style={{color: "#ff5d5d"}}>33% Residential</b>, <b style={{color: "#00C49F"}}>25% Industrial</b> and <b style={{color: "#FFBB28"}}>42% Farmland</b>. <hr />  */}
         With a score of <b style={{color: scoreColor}}>{landUseScore}</b>, <br />This area is marked <b style={{color: scoreColor}}><LandUsability score={landUseScore}/></b> for situating flood evacuation centers.
     </Typography>
+    <hr />
     </div>
   );
 }

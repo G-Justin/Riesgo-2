@@ -107,7 +107,13 @@ export default function Analysis(props) {
         score: analysisState.data[28],
         },
     ];
-    
+
+    if(analysisState.data[0] === undefined) {
+        return (
+          <div></div>
+        )
+    }
+
   return (
     <div>
     <i>Higher is better*</i>
