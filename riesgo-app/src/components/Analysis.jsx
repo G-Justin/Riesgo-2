@@ -379,8 +379,9 @@ export default function Analysis(props) {
                 default:
                     return (<div></div>)
             }
-        }
-        else {
+        } else if (props.cityName === "l_pasig") {
+
+        } else {
             return (<div></div>)
         }
     }
