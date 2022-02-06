@@ -18,6 +18,7 @@ import HouseIcon from '@mui/icons-material/House';
 import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import RoomIcon from '@mui/icons-material/Room';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -50,6 +51,7 @@ const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
     const [layer, setLayer] = React.useState(0);
     const [value, setValue] = React.useState(0);
+    const [selected, setSelected] = React.useState(true);
 
     //Update Analysis Props
     const [analysisState, setAnalysisState] = React.useState(props);
@@ -66,6 +68,21 @@ const Sidebar = (props) => {
             setAlignment(newAlignment);
         }
     };
+
+    //Marker Toggle
+    function hide() {
+        let markers = document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center");
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].style.visibility = "hidden";
+        }
+    }
+
+    function show() {
+        let markers = document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center");
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].style.visibility = "visible";
+        }
+    }
 
 
     //Adjust Weights Ui
@@ -291,11 +308,11 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: "15%", right: "15%"}} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: "15%", right: "15%" }} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
-                    sx={{borderRadius: 16}}
+                    sx={{ borderRadius: 16 }}
                     onChange={(event, newValue) => {
                         setValue(newValue);
                     }}
@@ -660,32 +677,11 @@ const Sidebar = (props) => {
                     <hr />
                     <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
                     <Typography id="pd">undefined</Typography>
-                    
-                    <AnalysisSide data={analysisState.marker_prop}/>
-                    <Analysis data={analysisState.marker_prop} cityName={city} layerName={layer}/>
-                    {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
-                        <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
-                        <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
-                        <Typography variant="body" id="pd-flood-100yr"></Typography>
-                    <hr />
-                        <Typography variant="body" id="pd-hazard-5yr"></Typography> <br />
-                        <Typography variant="body" id="pd-hazard-25yr"></Typography> <br />
-                        <Typography variant="body" id="pd-hazard-100yr"></Typography>
-                    <hr />
-                        <Typography variant="body" id="pd-accessibility-5yr"></Typography> <br />
-                        <Typography variant="body" id="pd-accessibility-25yr"></Typography> <br />
-                        <Typography variant="body" id="pd-accessibility-100yr"></Typography>
-                    <hr />
-                        <Typography variant="body" id="pd-elevation"></Typography>                         */}
+
+                    <AnalysisSide data={analysisState.marker_prop} selected={selected} />
+                    <Analysis data={analysisState.marker_prop} cityName={city} layerName={layer} selected={selected} />
                 </CardContent>
             </Card>
-
-            {/* Pie Chart ORIGINALLY: width: 200, maxHeight: 600 right: 410, top: 160 */}
-            {/* <Card id="style-1" sx={{ overflowX: "hidden", width: 380, maxHeight: 500, overflow: 'auto', position: "absolute", margin: 2, left: 0, top: 430 }}>
-                <CardContent sx={{ overflowX: "hidden" }}>
-                    <AnalysisSide data={analysisState.marker_prop} />
-                </CardContent>
-            </Card> */}
 
             {/* Land Usage Modal */}
             <Fade in={open}>
@@ -701,6 +697,25 @@ const Sidebar = (props) => {
                     </CardContent>
                 </Card>
             </Fade>
+
+            <Card sx={{ position: "absolute", margin: 2, right: 30, bottom: 95 }}>
+                <ToggleButton
+                    color="primary"
+                    value="check"
+                    selected={selected}
+                    onChange={() => {
+                        setSelected(!selected);
+
+                        if(selected) {
+                            hide()
+                        } else {
+                            show()
+                        }
+                    }}
+                >
+                    <RoomIcon />
+                </ToggleButton>
+            </Card>
 
         </div>
     )

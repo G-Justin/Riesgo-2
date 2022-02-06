@@ -640,11 +640,13 @@ export default function Analysis(props) {
                 default:
                     return (<div></div>)
 
-            }} else {
-                return (<div></div>)
             }
+        } else {
+            return (<div></div>)
         }
+    }
 
+    if (props.selected === true) {
         return (
             <div>
                 <i>Higher is better*</i>
@@ -724,4 +726,8 @@ export default function Analysis(props) {
                 <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
             </div>
         );
+    } else {
+        return (<div></div>)
     }
+
+}
