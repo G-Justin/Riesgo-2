@@ -3,7 +3,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
@@ -41,12 +40,6 @@ function createData(name, calories, fat, carbs, protein) {
     return (
       <TableContainer component={Paper}>
         <Table aria-label="caption table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Properties</TableCell>
-              <TableCell align="right">Values</TableCell>
-            </TableRow>
-          </TableHead>
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.name}>
