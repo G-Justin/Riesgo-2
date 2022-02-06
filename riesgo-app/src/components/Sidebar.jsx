@@ -279,7 +279,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ width: 200, height: 150, position: "absolute", margin: 2, right: 370 }}>
+            <Card id="labels" sx={{ width: 200, height: 160, position: "absolute", margin: 2, right: 370 }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>

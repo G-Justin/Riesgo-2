@@ -127,7 +127,7 @@ export default function Analysis(props) {
                 },
             ];
 
-            var marikinaAveAccessebility = [
+            var marikinaAveAccessibility = [
                 {
                     name: "5 Years",
                     score: 0.2212615467,
@@ -161,22 +161,18 @@ export default function Analysis(props) {
                 {
                     name: "0%",
                     uv: 0,
-                    amt: 2400
                 },
                 {
                     name: "25%",
                     uv: 0.3682170543,
-                    amt: 2400
                 },
                 {
                     name: "50%",
                     uv: 0.4444444444,
-                    amt: 2210
                 },
                 {
                     name: "75%",
                     uv: 0.5600775194,
-                    amt: 2290
                 },
             ];
 
@@ -261,12 +257,12 @@ export default function Analysis(props) {
                                 justifyContent="center"
                                 marginLeft={-5}
                             >
-                                <BarChart width={350} height={150} data={marikinaAveAccessebility}>
+                                <BarChart width={350} height={150} data={marikinaAveAccessibility}>
                                     <XAxis dataKey="name" />
                                     <YAxis domain={[0, 1]} allowDataOverflow={true} />
                                     <Tooltip />
                                     <Bar dataKey="score">
-                                        {marikinaAveAccessebility.map((entry, index) => (
+                                        {marikinaAveAccessibility.map((entry, index) => (
                                             <Cell fill={getAccessibilityColor(entry.score)} />
                                         ))}
                                     </Bar>
@@ -380,89 +376,352 @@ export default function Analysis(props) {
                     return (<div></div>)
             }
         } else if (props.cityName === "l_pasig") {
+            var pasigAveFlood = [
+                {
+                    name: "5 Years",
+                    score: 0.357,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.277,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.203,
+                },
+            ];
 
-        } else {
-            return (<div></div>)
+            var pasigAveAccessibility = [
+                {
+                    name: "5 Years",
+                    score: 0.1175587994,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.1018568817,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.0907469560,
+                },
+            ];
+
+
+            var pasigAveHazard = [
+                {
+                    name: "5 Years",
+                    score: 0.2635470244,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.2236609845,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.1868695512,
+                },
+            ];
+
+            const pasigAveCoverage = [
+                {
+                    name: "0%",
+                    uv: 0,
+                },
+                {
+                    name: "25%",
+                    uv: 0.3682170543,
+                },
+                {
+                    name: "50%",
+                    uv: 0.4444444444,
+                },
+                {
+                    name: "75%",
+                    uv: 0.5600775194,
+                },
+            ];
+
+            const pasigAveSustainability = [
+                {
+                    name: "5 Years",
+                    score: 0.2062165431,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.1923195537,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.1803442139,
+                },
+            ];
+
+            // Very Difficult 
+            const COLORS = ['#ff5d5d', '#0088FE', '#FFBB28', '#00C49F'];
+
+            const RADIAN = Math.PI / 180;
+            const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                return (
+                    <text x={x} y={y} fill="white" fontWeight="bold" fontFamily="Roboto" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                        {`${(percent * 100).toFixed(0)}%`}
+                    </text>
+                );
+            };
+
+            const data = [
+                { name: "Nature", value: 110.1842063 },
+                { name: "Residential/Recreation", value: 141.4571586 },
+                { name: "Commercial/Industrial", value: 113.0017227 },
+                { name: "Farmland", value: 34.79628571 }
+            ];
+
+            switch (props.layerName) {
+                case "Flood":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="h6">Pasig Average Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={pasigAveFlood}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {pasigAveFlood.map((entry, index) => (
+                                            <Cell fill={getFloodColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Elevation":
+                    return (<div>
+                        {/* <Typography variant="h6">Average Elevation</Typography>
+                        <Typography variant="h4"><b>20.47 Meters</b></Typography> */}
+                    </div>)
+                case "Accessibility":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="h6">Pasig Average Accessibility Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={pasigAveAccessibility}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {pasigAveAccessibility.map((entry, index) => (
+                                            <Cell fill={getAccessibilityColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Hazard":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="h6">Pasig Average Hazard Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={pasigAveHazard}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {pasigAveHazard.map((entry, index) => (
+                                            <Cell fill={getHazardColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Coverage Score":
+                    return (<div>
+                        <hr />
+                        <Typography variant="h6">Coverage Score Distribution</Typography>
+                        <AreaChart
+                            width={320}
+                            height={200}
+                            data={pasigAveCoverage}
+                            margin={{
+                                top: 10,
+                                right: 30,
+                                left: -5,
+                                bottom: 0
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+                        </AreaChart>
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                            standard dummy text ever since the 1500s</Typography>
+                    </div>)
+                case "Land Use Score":
+                    return (<div>
+                        <hr />
+                        <Typography variant="h6">Pasig Land Usage Distribution</Typography>
+                        <PieChart width={320} height={300}>
+                            <Legend />
+                            <Tooltip />
+                            <Pie
+                                data={data}
+                                cx="50%"
+                                cy="40%"
+                                labelLine={false}
+                                label={renderCustomizedLabel}
+                                outerRadius={100}
+                                fill="#8884d8"
+                                dataKey="value"
+                            >
+                                {data.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                        </PieChart>
+                        <Typography variant='body1'>31% Nature 22% Residential 25% Commercial 23% Farmland</Typography>
+                    </div>)
+                case "Sustainability":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="h6">Pasig Average Sustainability Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={pasigAveSustainability}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {pasigAveSustainability.map((entry, index) => (
+                                            <Cell fill={getSustainabilityColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                default:
+                    return (<div></div>)
+
+            }} else {
+                return (<div></div>)
+            }
         }
+
+        return (
+            <div>
+                <i>Higher is better*</i>
+                <Typography variant="h6">Flood Safety Score</Typography>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-5}
+                >
+                    <BarChart width={350} height={150} data={floodData}>
+                        <XAxis dataKey="name" />
+                        <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                        <Bar dataKey="score">
+                            {floodData.map((entry, index) => (
+                                <Cell fill={getFloodColor(entry.score)} />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </Box>
+
+                <Typography variant="h6">Hazard Safety Score</Typography>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-5}>
+                    <BarChart width={350} height={150} data={hazardData}>
+                        <XAxis dataKey="name" />
+                        <YAxis type="number" domain={[0, 1]} />
+                        <Tooltip />
+                        <Bar dataKey="score">
+                            {hazardData.map((entry, index) => (
+                                <Cell fill={getHazardColor(entry.score)} />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </Box>
+
+                <Typography variant="h6">Area Accessibility Score</Typography>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-5}>
+                    <BarChart width={350} height={150} data={accessibilityData}>
+                        <XAxis dataKey="name" />
+                        <YAxis type="number" domain={[0, 1]} />
+                        <Tooltip />
+                        <Bar dataKey="score">
+                            {accessibilityData.map((entry, index) => (
+                                <Cell fill={getAccessibilityColor(entry.score)} />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </Box>
+
+                <Typography variant="h6">Overall Sustainability Score</Typography>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-5}
+                >
+                    <BarChart width={350} height={150} data={sustainabilityData}>
+                        <XAxis dataKey="name" />
+                        <YAxis domain={[0, 0.65]} allowDataOverflow={true} />
+                        <Bar dataKey="score">
+                            {sustainabilityData.map((entry, index) => (
+                                <Cell fill={getSustainabilityColor(entry.score)} />
+                            ))}
+                        </Bar>
+                    </BarChart>
+                </Box>
+
+                <Typography variant="h6">Elevation (Above Sea Level)</Typography>
+                <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
+            </div>
+        );
     }
-
-    return (
-        <div>
-            <i>Higher is better*</i>
-            <Typography variant="h6">Flood Safety Score</Typography>
-            <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                marginLeft={-5}
-            >
-                <BarChart width={350} height={150} data={floodData}>
-                    <XAxis dataKey="name" />
-                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
-                    <Bar dataKey="score">
-                        {floodData.map((entry, index) => (
-                            <Cell fill={getFloodColor(entry.score)} />
-                        ))}
-                    </Bar>
-                </BarChart>
-            </Box>
-
-            <Typography variant="h6">Hazard Safety Score</Typography>
-            <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                marginLeft={-5}>
-                <BarChart width={350} height={150} data={hazardData}>
-                    <XAxis dataKey="name" />
-                    <YAxis type="number" domain={[0, 1]} />
-                    <Tooltip />
-                    <Bar dataKey="score">
-                        {hazardData.map((entry, index) => (
-                            <Cell fill={getHazardColor(entry.score)} />
-                        ))}
-                    </Bar>
-                </BarChart>
-            </Box>
-
-            <Typography variant="h6">Area Accessibility Score</Typography>
-            <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                marginLeft={-5}>
-                <BarChart width={350} height={150} data={accessibilityData}>
-                    <XAxis dataKey="name" />
-                    <YAxis type="number" domain={[0, 1]} />
-                    <Tooltip />
-                    <Bar dataKey="score">
-                        {accessibilityData.map((entry, index) => (
-                            <Cell fill={getAccessibilityColor(entry.score)} />
-                        ))}
-                    </Bar>
-                </BarChart>
-            </Box>
-
-            <Typography variant="h6">Overall Sustainability Score</Typography>
-            <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                marginLeft={-5}
-            >
-                <BarChart width={350} height={150} data={sustainabilityData}>
-                    <XAxis dataKey="name" />
-                    <YAxis domain={[0, 0.65]} allowDataOverflow={true} />
-                    <Bar dataKey="score">
-                        {sustainabilityData.map((entry, index) => (
-                            <Cell fill={getSustainabilityColor(entry.score)} />
-                        ))}
-                    </Bar>
-                </BarChart>
-            </Box>
-
-            <Typography variant="h6">Elevation (Above Sea Level)</Typography>
-            <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
-        </div>
-    );
-}
