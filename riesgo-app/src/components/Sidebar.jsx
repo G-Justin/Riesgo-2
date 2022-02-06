@@ -217,8 +217,8 @@ const Sidebar = (props) => {
                 return (
                     <Box>
                         <div><span style={{ backgroundColor: '#ff3d3d' }}></span>Unsuitable</div>
-                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slight Suitable</div>
-                        <div><span style={{ backgroundColor: '#d4e02f' }}></span>High Suitable</div>
+                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slightly Suitable</div>
+                        <div><span style={{ backgroundColor: '#fcd874' }}></span>Highly Suitable</div>
                         <div><span style={{ backgroundColor: '#2fe02f' }}></span>Recommended Area</div>
                     </Box>
                 );
@@ -661,8 +661,8 @@ const Sidebar = (props) => {
                     <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
                     <Typography id="pd">undefined</Typography>
                     
-                    <AnalysisSide data={analysisState.marker_prop} />
-                    <Analysis data={analysisState.marker_prop} />
+                    <AnalysisSide data={analysisState.marker_prop}/>
+                    <Analysis data={analysisState.marker_prop} cityName={city} layerName={layer}/>
                     {/* <Typography variant="h6"><b>Marker Details</b></Typography>  
                         <Typography variant="body" id="pd-flood-5yr"></Typography> <br />
                         <Typography variant="body" id="pd-flood-25yr"></Typography> <br />
