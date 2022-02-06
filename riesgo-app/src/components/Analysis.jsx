@@ -108,7 +108,7 @@ export default function Analysis(props) {
         },
     ];
 
-    if (analysisState.data[0] === undefined) { // If pin is not dropped
+    if (props.selected === false) { // If pin is not dropped
 
         if (props.cityName === "l_marikina") {
 
@@ -646,7 +646,7 @@ export default function Analysis(props) {
         }
     }
 
-    if (props.selected === true) {
+    else if (props.selected === true) {
         return (
             <div>
                 <i>Higher is better*</i>
