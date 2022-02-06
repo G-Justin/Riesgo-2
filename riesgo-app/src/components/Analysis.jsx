@@ -35,10 +35,10 @@ const getAccessibilityColor = (p) => {
 }
 
 const getSustainabilityColor = (p) => {
-    if (p >= .6) { return "#2fe02f"; }
-    if (p < .6 && p >= .4) { return "#2fe02f"; }
-    if (p < .4 && p >= .2) { return "#fcba03"; }
-    if (p < .2) { return "#e0762f"; }
+    if (p >= .55) { return "#2fe02f"; }
+    if (p < .55 && p >= .4) { return "#fcd874"; }
+    if (p < .4 && p >= .2) { return "#e0762f"; }
+    if (p < .2) { return "#ff3d3d"; }
 }
 
 export default function Analysis(props) {
@@ -714,6 +714,7 @@ export default function Analysis(props) {
                     <BarChart width={350} height={150} data={sustainabilityData}>
                         <XAxis dataKey="name" />
                         <YAxis domain={[0, 0.65]} allowDataOverflow={true} />
+                        <Tooltip />
                         <Bar dataKey="score">
                             {sustainabilityData.map((entry, index) => (
                                 <Cell fill={getSustainabilityColor(entry.score)} />

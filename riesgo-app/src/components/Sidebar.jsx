@@ -60,6 +60,25 @@ const Sidebar = (props) => {
     }, [props]);
 
     //React.useEffect(() => console.log('Value Changed!'));
+    function download(url, filename) {
+        fetch(url)
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+            })
+            .catch(console.error);
+    }
+
+    function handleDownload () {
+        if(city === 'l_marikina') {
+            download("/datasets/mrkna_test.json","marikina.json")
+        } else if (city === 'l_pasig') {
+            download("/datasets/pasig_test.json","pasig.json")
+        }
+    };
 
     //Year Buttons
     const [alignment, setAlignment] = React.useState('5yr_flood');
@@ -224,19 +243,19 @@ const Sidebar = (props) => {
             case "Land Use Score":
                 return (
                     <Box>
-                        <div><span style={{ backgroundColor: '#340042' }}></span>Unrecommended Area</div>
-                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Slight Usability</div>
-                        <div><span style={{ backgroundColor: '#4ec050' }}></span>High Usability</div>
-                        <div><span style={{ backgroundColor: '#fcba03' }}></span>Recommended Area</div>
+                        <div><span style={{ backgroundColor: '#340042' }}></span>Unusable Area</div>
+                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Slightly Usable Area</div>
+                        <div><span style={{ backgroundColor: '#4ec050' }}></span>Usable Area</div>
+                        <div><span style={{ backgroundColor: '#fcba03' }}></span>Highly Usable Area</div>
                     </Box>
                 );
             case "Sustainability":
                 return (
                     <Box>
                         <div><span style={{ backgroundColor: '#ff3d3d' }}></span>Unsuitable</div>
-                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slightly Suitable</div>
-                        <div><span style={{ backgroundColor: '#fcd874' }}></span>Highly Suitable</div>
-                        <div><span style={{ backgroundColor: '#2fe02f' }}></span>Recommended Area</div>
+                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slightly Suitable Area</div>
+                        <div><span style={{ backgroundColor: '#fcd874' }}></span>Suitable Area</div>
+                        <div><span style={{ backgroundColor: '#2fe02f' }}></span>Highly Suitable Area</div>
                     </Box>
                 );
             default:
@@ -291,7 +310,7 @@ const Sidebar = (props) => {
                     />
 
                     <hr />
-                    <Button size="small">Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
+                    <Button size="small" onClick={handleDownload}>Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
                 </CardContent>
             </Card>
 
@@ -706,7 +725,7 @@ const Sidebar = (props) => {
                     onChange={() => {
                         setSelected(!selected);
 
-                        if(selected) {
+                        if (selected) {
                             hide()
                         } else {
                             show()
