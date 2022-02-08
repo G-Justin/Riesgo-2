@@ -355,7 +355,7 @@ export default function Analysis(props) {
                         <div>
                             <hr />
                             <Typography variant="overline">years are represented as <b>return periods</b></Typography>
-                            <Typography variant="h6">Marikina Average Sustainability Score</Typography>
+                            <Typography variant="h6">Marikina Average Suitability Score</Typography>
                             <Box
                                 display="flex"
                                 alignItems="center"
@@ -625,7 +625,7 @@ export default function Analysis(props) {
                         <div>
                             <hr />
                             <Typography variant="overline">years are represented as <b>return periods</b></Typography>
-                            <Typography variant="h6">Pasig Average Sustainability Score</Typography>
+                            <Typography variant="h6">Pasig Average Suitability Score</Typography>
                             <Box
                                 display="flex"
                                 alignItems="center"

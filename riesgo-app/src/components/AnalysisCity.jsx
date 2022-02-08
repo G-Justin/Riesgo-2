@@ -95,6 +95,7 @@ export default function AnalysisCity(props) {
         return (
             <div>
                 <Typography variant='h6'>City Suitability Distribution</Typography>
+                <Typography variant='overline'>for each dataset return period</Typography>
                 <Box
                     display="flex"
                     alignItems="center"

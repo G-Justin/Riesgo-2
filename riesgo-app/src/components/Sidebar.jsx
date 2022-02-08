@@ -169,7 +169,7 @@ const Sidebar = (props) => {
             case "Land Use Score":
                 return "Land Usability";
             case "Sustainability":
-                return "Sustainability";
+                return "Suitability";
             default:
                 return "No Layer Selected"
         }
@@ -192,7 +192,7 @@ const Sidebar = (props) => {
             case "Land Use Score":
                 return "The land usability score represents which areas in this grid are most suitable for situating new evacuation centers.";
             case "Sustainability":
-                return "Sustainability";
+                return "The suitability score is based on all layers and measures the suitability of a cell for building an evacuation center.";
             default:
                 return "You are currently not selecting a map. Select a layer map below to view its details."
         }
@@ -428,7 +428,7 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction
-                        label="Sustainability"
+                        label="Suitability"
                         icon={<LightbulbIcon />}
                         onClick={() => {
                             const toActivate = `${city}_sustainability_5yr`;
