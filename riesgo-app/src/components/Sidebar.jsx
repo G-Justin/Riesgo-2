@@ -13,7 +13,6 @@ import WaterIcon from '@mui/icons-material/Water';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import WarningIcon from '@mui/icons-material/Warning';
-import BlockIcon from '@mui/icons-material/Block';
 import HouseIcon from '@mui/icons-material/House';
 import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -51,8 +50,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
     const [layer, setLayer] = React.useState(0);
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(null);
     const [selected, setSelected] = React.useState(true);
+
+    if (value != null) {
+        document.getElementById('sidebar-analysis').style.visibility = "visible";
+        document.getElementById('labels').style.visibility = "visible";
+    }
 
     //Update Analysis Props
     const [analysisState, setAnalysisState] = React.useState(props);
@@ -73,11 +77,11 @@ const Sidebar = (props) => {
             .catch(console.error);
     }
 
-    function handleDownload () {
-        if(city === 'l_marikina') {
-            download("/datasets/mrkna_test.json","marikina.json")
+    function handleDownload() {
+        if (city === 'l_marikina') {
+            download("/datasets/mrkna_test.json", "marikina.json")
         } else if (city === 'l_pasig') {
-            download("/datasets/pasig_test.json","pasig.json")
+            download("/datasets/pasig_test.json", "pasig.json")
         }
     };
 
@@ -269,8 +273,8 @@ const Sidebar = (props) => {
 
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card sx={{ width: 380, position: "absolute", margin: 2 }}>
-                <CardContent>
+            <Card className="style-1 scroll-left-container" sx={{ width: 380, maxHeight: 780, position: "absolute", margin: 2, overflow: 'auto' }}>
+                <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
                     <Box>
                         <Link to="/" >
                             <img src="/riesgo-logo-small.svg" alt="React Logo" width={"120px"} />
@@ -310,7 +314,7 @@ const Sidebar = (props) => {
                         cityName={city}
                     />
                     <hr />
-                    <AnalysisCity 
+                    <AnalysisCity
                         cityName={city}
                     />
                     <hr />
@@ -319,7 +323,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ width: 200, height: 160, position: "absolute", margin: 2, right: 370 }}>
+            <Card id="labels" sx={{ width: 200, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'hidden' }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
@@ -331,7 +335,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: "15%", right: "15%" }} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: "20%", right: "20%" }} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
@@ -436,7 +440,7 @@ const Sidebar = (props) => {
                             handleClose();
                         }}
                     />
-                    <BottomNavigationAction
+                    {/* <BottomNavigationAction
                         label="None"
                         icon={<BlockIcon />}
 
@@ -448,12 +452,12 @@ const Sidebar = (props) => {
                             props.updateLayerType('none');
                             props.updateLayer(toActivate);
                         }}
-                    />
+                    /> */}
                 </BottomNavigation>
             </Paper>
 
             {/* Right */}
-            <Card id="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 780, overflow: 'auto', position: "absolute", margin: 2, right: 0 }}>
+            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 780, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
@@ -464,7 +468,6 @@ const Sidebar = (props) => {
                     <Typography variant="body" align="justify">
                         <LayerDetails layerName={layer} />
                     </Typography>
-
                     {/* Flood Buttons */}
                     {layer === "Flood" &&
                         <Box display="flex"
@@ -474,6 +477,8 @@ const Sidebar = (props) => {
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
+                                <hr />
+                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -534,6 +539,8 @@ const Sidebar = (props) => {
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
+                                <hr />
+                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -591,6 +598,8 @@ const Sidebar = (props) => {
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
+                                <hr />
+                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -649,6 +658,8 @@ const Sidebar = (props) => {
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
+                                <hr />
+                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}

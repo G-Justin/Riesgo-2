@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import {
-    LineChart,
-    Line,
     XAxis,
     YAxis,
     CartesianGrid,
+    BarChart,
+    Bar,
     // Tooltip,
     Legend
 } from "recharts";
@@ -61,20 +61,48 @@ export default function AnalysisCity(props) {
                 twentyfive_yr: 10,
                 hundred_yr: 5,
                 amt: 2100
-            }
+            },
+            {
+                name: "0.7",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.8",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.9",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "1",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
         ];
 
         return (
             <div>
-                <Typography variant='h6'>Marikina Sustainability Distribution</Typography>
+                <Typography variant='h6'>City Suitability Distribution</Typography>
                 <Box
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     marginLeft={-2}
                 >
-                    <LineChart
-                        width={340}
+                    <BarChart
+                        width={380}
                         height={250}
                         data={data}
                         margin={{
@@ -87,15 +115,58 @@ export default function AnalysisCity(props) {
                         <YAxis />
                         {/* <Tooltip /> */}
                         <Legend />
-                        <Line
-                            type="monotone"
-                            dataKey="twentyfive_yr"
-                            stroke="#8884d8"
-                        />
-                        <Line type="monotone" dataKey="five_yr" stroke="#82ca9d" />
-                        <Line type="monotone" dataKey="hundred_yr" stroke="#ca8282" />
-                    </LineChart>
+                        <Bar dataKey="five_yr" fill="#82ca9d" />
+                    </BarChart>
                 </Box>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-2}
+                >
+                    <BarChart
+                        width={380}
+                        height={250}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            bottom: 5
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        {/* <Tooltip /> */}
+                        <Legend />
+                        <Bar dataKey="twentyfive_yr" fill="#8884d8" />
+                    </BarChart>
+                </Box>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-2}
+                >
+                    <BarChart
+                        width={380}
+                        height={250}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            bottom: 5
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        {/* <Tooltip /> */}
+                        <Legend />
+                        <Bar dataKey="hundred_yr" fill="#ca8282" />
+                    </BarChart>
+                </Box>
+                <hr />
+                <Typography variant='h6'>Mean Suitability Score: 0.3</Typography>
+                <Typography variant='overline'>(Applies for all return periods)</Typography>
             </div>
         );
     } else if (props.cityName === 'l_pasig') {
@@ -148,20 +219,48 @@ export default function AnalysisCity(props) {
                 twentyfive_yr: 10,
                 hundred_yr: 5,
                 amt: 2100
-            }
+            },
+            {
+                name: "0.7",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.8",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.9",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "1",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
         ];
 
         return (
             <div>
-                <Typography variant='h6'>Pasig Sustainability Distribution</Typography>
+                <Typography variant='h6'>City Suitability Distribution</Typography>
                 <Box
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     marginLeft={-2}
                 >
-                    <LineChart
-                        width={340}
+                    <BarChart
+                        width={380}
                         height={250}
                         data={data}
                         margin={{
@@ -174,15 +273,58 @@ export default function AnalysisCity(props) {
                         <YAxis />
                         {/* <Tooltip /> */}
                         <Legend />
-                        <Line
-                            type="monotone"
-                            dataKey="twentyfive_yr"
-                            stroke="#8884d8"
-                        />
-                        <Line type="monotone" dataKey="five_yr" stroke="#82ca9d" />
-                        <Line type="monotone" dataKey="hundred_yr" stroke="#ca8282" />
-                    </LineChart>
+                        <Bar dataKey="five_yr" fill="#82ca9d" />
+                    </BarChart>
                 </Box>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-2}
+                >
+                    <BarChart
+                        width={380}
+                        height={250}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            bottom: 5
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        {/* <Tooltip /> */}
+                        <Legend />
+                        <Bar dataKey="twentyfive_yr" fill="#8884d8" />
+                    </BarChart>
+                </Box>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginLeft={-2}
+                >
+                    <BarChart
+                        width={380}
+                        height={250}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            bottom: 5
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        {/* <Tooltip /> */}
+                        <Legend />
+                        <Bar dataKey="hundred_yr" fill="#ca8282" />
+                    </BarChart>
+                </Box>
+                <hr />
+                <Typography variant='h6'>Mean Suitability Score: 0.19</Typography>
+                <Typography variant='overline'>(Applies for all return periods)</Typography>
             </div>
         );
     } else {

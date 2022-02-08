@@ -24,24 +24,34 @@ code {
   width: 10px;
 }
 
-#style-1::-webkit-scrollbar-track
+.style-1::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 	border-radius: 10px;
 	background-color: #F5F5F5;
 }
 
-#style-1::-webkit-scrollbar
+.style-1::-webkit-scrollbar
 {
 	width: 12px;
 	background-color: #F5F5F5;
 }
 
-#style-1::-webkit-scrollbar-thumb
+.style-1::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
 	background-color: #cecece;
+}
+
+.scroll-left {
+  direction:ltr;
+}
+
+.scroll-left-container {
+  direction: rtl;
+  overflow:auto;
+
 }
 
 .mapboxgl-ctrl-pitchtoggle-3d {

@@ -219,7 +219,8 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
-                            <Typography variant="h6">Marikina Average Safety Score</Typography>
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Marikina Average Flood Safety Score</Typography>
                             <Box
                                 display="flex"
                                 alignItems="center"
@@ -250,6 +251,7 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Marikina Average Accessibility Safety Score</Typography>
                             <Box
                                 display="flex"
@@ -276,6 +278,7 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Marikina Average Hazard Safety Score</Typography>
                             <Box
                                 display="flex"
@@ -345,12 +348,13 @@ export default function Analysis(props) {
                             </Pie>
                         </PieChart>
                         <hr />
-                        <Typography variant='body1'><b>Marikina City</b> is rougly <b style={{color: "#ff5d5d"}}>31% Nature,</b> <b style={{color: "#0088fe"}}>22% Residential,</b> <b style={{color: "#ffbb28"}}>25% Commercial</b> and <b style={{color: "#00c49f"}}>23% Farmland</b></Typography>
+                        <Typography variant='body1'><b>Marikina City</b> is rougly <b style={{ color: "#ff5d5d" }}>31% Nature,</b> <b style={{ color: "#0088fe" }}>22% Residential,</b> <b style={{ color: "#ffbb28" }}>25% Commercial</b> and <b style={{ color: "#00c49f" }}>23% Farmland</b></Typography>
                     </div>)
                 case "Sustainability":
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Marikina Average Sustainability Score</Typography>
                             <Box
                                 display="flex"
@@ -485,7 +489,8 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
-                            <Typography variant="h6">Pasig Average Safety Score</Typography>
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Pasig Average Flood Safety Score</Typography>
                             <Box
                                 display="flex"
                                 alignItems="center"
@@ -516,6 +521,7 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Pasig Average Accessibility Safety Score</Typography>
                             <Box
                                 display="flex"
@@ -542,6 +548,7 @@ export default function Analysis(props) {
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Pasig Average Hazard Safety Score</Typography>
                             <Box
                                 display="flex"
@@ -611,12 +618,13 @@ export default function Analysis(props) {
                             </Pie>
                         </PieChart>
                         <hr />
-                        <Typography variant='body1'><b>Pasig City</b> is rougly <b style={{color: "#ff5d5d"}}>27% Nature,</b> <b style={{color: "#0088fe"}}>35% Residential,</b> <b style={{color: "#ffbb28"}}>28% Commercial</b> and <b style={{color: "#00c49f"}}>8.5% Farmland</b></Typography>
+                        <Typography variant='body1'><b>Pasig City</b> is rougly <b style={{ color: "#ff5d5d" }}>27% Nature,</b> <b style={{ color: "#0088fe" }}>35% Residential,</b> <b style={{ color: "#ffbb28" }}>28% Commercial</b> and <b style={{ color: "#00c49f" }}>8.5% Farmland</b></Typography>
                     </div>)
                 case "Sustainability":
                     return (
                         <div>
                             <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                             <Typography variant="h6">Pasig Average Sustainability Score</Typography>
                             <Box
                                 display="flex"
@@ -651,7 +659,8 @@ export default function Analysis(props) {
     else if (props.selected === true) {
         return (
             <div>
-                <i>Higher is better*</i>
+                <i>Higher is better *</i> <br />
+                <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                 <Typography variant="h6">Flood Safety Score</Typography>
                 <Box
                     display="flex"
