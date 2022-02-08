@@ -42,6 +42,7 @@ import DataTable from './DataTable';
 //Analysis Data
 import Analysis from "./Analysis";
 import AnalysisSide from "./AnalysisSide";
+import AnalysisCity from "./AnalysisCity";
 
 //Year Buttons
 import ToggleButton from '@mui/material/ToggleButton';
@@ -308,7 +309,10 @@ const Sidebar = (props) => {
                     <DataTable
                         cityName={city}
                     />
-
+                    <hr />
+                    <AnalysisCity 
+                        cityName={city}
+                    />
                     <hr />
                     <Button size="small" onClick={handleDownload}>Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
                 </CardContent>

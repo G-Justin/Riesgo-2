@@ -344,7 +344,8 @@ export default function Analysis(props) {
                                 ))}
                             </Pie>
                         </PieChart>
-                        <Typography variant='body1'>31% Nature 22% Residential 25% Commercial 23% Farmland</Typography>
+                        <hr />
+                        <Typography variant='body1'><b>Marikina City</b> is rougly <b style={{color: "#ff5d5d"}}>31% Nature,</b> <b style={{color: "#0088fe"}}>22% Residential,</b> <b style={{color: "#ffbb28"}}>25% Commercial</b> and <b style={{color: "#00c49f"}}>23% Farmland</b></Typography>
                     </div>)
                 case "Sustainability":
                     return (
@@ -609,7 +610,8 @@ export default function Analysis(props) {
                                 ))}
                             </Pie>
                         </PieChart>
-                        <Typography variant='body1'>31% Nature 22% Residential 25% Commercial 23% Farmland</Typography>
+                        <hr />
+                        <Typography variant='body1'><b>Pasig City</b> is rougly <b style={{color: "#ff5d5d"}}>27% Nature,</b> <b style={{color: "#0088fe"}}>35% Residential,</b> <b style={{color: "#ffbb28"}}>28% Commercial</b> and <b style={{color: "#00c49f"}}>8.5% Farmland</b></Typography>
                     </div>)
                 case "Sustainability":
                     return (
