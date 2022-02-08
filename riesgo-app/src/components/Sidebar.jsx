@@ -258,9 +258,10 @@ const Sidebar = (props) => {
                 return (
                     <Box>
                         <div><span style={{ backgroundColor: '#ff3d3d' }}></span>Unsuitable</div>
-                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Slightly Suitable Area</div>
+                        <div><span style={{ backgroundColor: '#e0762f' }}></span>Very Low Suitability</div>
                         <div><span style={{ backgroundColor: '#fcd874' }}></span>Suitable Area</div>
-                        <div><span style={{ backgroundColor: '#2fe02f' }}></span>Highly Suitable Area</div>
+                        <div><span style={{ backgroundColor: '#2fe02f' }}></span>High Suitability</div>
+                        <div><span style={{ backgroundColor: '#88e02f' }}></span>Very High Suitability</div>
                     </Box>
                 );
             default:
