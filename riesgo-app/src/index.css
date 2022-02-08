@@ -12,6 +12,140 @@ code {
     monospace;
 }
 
+/** Header CSS **/
+header {
+  width: 1290px;
+  margin: auto;
+  max-width: 95%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+header .logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .btn-faq {
+  display: flex;
+  flex-direction: column;
+}
+
+header .btn-faq button {
+  font-family: inherit;
+  padding: 10px 30px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #36D1DC;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  line-height: 27px;
+  text-align: left;
+  color: #36D1DC;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+/** End of Header CSS **/
+
+/** Body CSS **/
+  .body-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+  .body-section .container-body {
+    width: 1290px;
+    margin: auto;
+    max-width: 95%;
+}
+
+.body-section .content-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body-section .content-body .left-side {
+  width: 700px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-section .content-body .left-side h1 {
+  font-weight: 700;
+  font-size: 70px;
+  letter-spacing: -0.01em;
+  line-height: 97px;
+  text-align: left;
+  color: #1e1c24;
+}
+
+.body-section .content-body .left-side p {
+  width: 90%;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 35px;
+  text-align: left;
+  color: #b1aaaa;
+  margin-top: 15px;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #36D1DC 0%,  #5B86E5  51%, #36D1DC  100%)}
+
+.btn-grad {
+  font-family: inherit;
+  font-weight: bold;
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border: none !important;
+  border-radius: 40px;
+  display: block;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.body-section .content-body .right-side {
+  width: 580px;
+  height: 520px;
+  position: relative;
+}
+
+/** End of Body CSS **/
+
+/** Footer CSS **/
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  border-top: 1px solid #E6E6E6;
+}
+
+/** End Footer CSS **/
+
 .riesgo-logo {
   max-height: 100px;
 }

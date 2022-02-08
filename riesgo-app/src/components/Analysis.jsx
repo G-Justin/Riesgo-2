@@ -238,8 +238,9 @@ export default function Analysis(props) {
                                     </Bar>
                                 </BarChart>
                             </Box>
-                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s</Typography>
+                            <Typography variant='body1'>
+                                Average risk assessment of the area's flood safety score of 5, 25, and 100 return period.
+                            </Typography>
                         </div>
                     )
                 case "Elevation":
