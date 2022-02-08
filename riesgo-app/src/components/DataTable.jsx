@@ -33,8 +33,8 @@ function createData(name, calories, fat, carbs, protein) {
 
     const rows = [
       createData('Population', displayPopulation),
-      createData('Area (Average)', displayArea),
-      createData('Elevation (Average)', displayElevation),
+      createData('Area', displayArea),
+      createData('Elevation', displayElevation),
     ];
 
     return (
