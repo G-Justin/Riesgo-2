@@ -434,7 +434,7 @@ const Sidebar = (props) => {
                             const toActivate = `${city}_sustainability_5yr`;
 
                             setLayer('Sustainability');
-                            props.updateLayerType('SUSTAINABILITY_5yr');
+                            props.updateLayerType('sustainability_5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
@@ -672,7 +672,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_sustainability_5yr`;
 
                                             setLayer('Sustainability');
-                                            props.updateLayerType('SUSTAINABILITY_5yr');
+                                            props.updateLayerType('sustainability_5yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -685,7 +685,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_sustainability_25yr`;
 
                                             setLayer('Sustainability');
-                                            props.updateLayerType('SUSTAINABILITY_25yr');
+                                            props.updateLayerType('sustainability_25yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
@@ -698,7 +698,7 @@ const Sidebar = (props) => {
                                             const toActivate = `${city}_sustainability_100yr`;
 
                                             setLayer('Sustainability');
-                                            props.updateLayerType('SUSTAINABILITY_100yr');
+                                            props.updateLayerType('sustainability_100yr');
                                             props.updateLayer(toActivate);
 
                                             handleClose();
