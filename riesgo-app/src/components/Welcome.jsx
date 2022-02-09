@@ -1,19 +1,19 @@
 import React from 'react'
 
-import { Typography } from '@mui/material'
-//import { Paper } from '@mui/material'
-import { Button, CardActionArea } from '@mui/material';
-import { Grid } from '@mui/material'
-import { Container } from '@mui/material'
+// import { Typography } from '@mui/material'
+// //import { Paper } from '@mui/material'
+// import { Button, CardActionArea } from '@mui/material';
+// import { Grid } from '@mui/material'
+// import { Container } from '@mui/material'
 
-import { AppBar } from '@mui/material'
-import { Box } from '@mui/material'
-import { Toolbar } from '@mui/material'
+// import { AppBar } from '@mui/material'
+// import { Box } from '@mui/material'
+// import { Toolbar } from '@mui/material'
 
-//Card
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+// //Card
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
 
 //import { ThemeProvider, createTheme } from '@mui/material/styles'
 
@@ -21,9 +21,9 @@ import { Link } from 'react-router-dom'
 
 //import Background from '../assets/background.jpg'
 import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
-import ExploreImage from "../assets/explore.PNG"
-import ModelImage   from "../assets/model.PNG"
-import FaqImage     from "../assets/faq.PNG"
+// import ExploreImage from "../assets/explore.PNG"
+// import ModelImage   from "../assets/model.PNG"
+// import FaqImage     from "../assets/faq.PNG"
 
 // const styles = {
 //     paperContainer: {
@@ -52,20 +52,23 @@ function Welcome(){
                 <div className="content-body">
                     <div className="left-side">
                         <h1>
-                            Evacuation Center Suitability Tool 
-                        </h1>
+                            An Evacuation Center Suitability Tool <hr />
+                        </h1> 
                         <p>
                             An interactive Metro Manila Map for flood visualization and urban planning created as a 
                             companion web application for urban planners, local government units, architects, and engineers.
                             <br></br>
                         </p>
-                        <div>
+                        <div> 
                         <button className="btn-grad">
                             <Link to="map" style={{color:"white",textDecoration:"none"}}>
                                 Start RIESGO
                             </Link>
                         </button>
                         </div>
+                    </div>
+                    <div className="right-side">
+                        <img src='right.png' alt='' width='100%'/>
                     </div>
                 </div>
             </div>
@@ -74,7 +77,7 @@ function Welcome(){
             <div className="footer">
                 <div>
                 <h5>
-                    RIESGO v0.8 by Darvin, Galura and Gelvoleo
+                    RIESGO v0.8 by Darvin, Galura & Gelvoleo
                 </h5>
                 </div>
             </div>

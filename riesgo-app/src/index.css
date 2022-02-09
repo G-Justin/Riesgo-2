@@ -93,12 +93,10 @@ header .btn-faq button {
 
 .body-section .content-body .left-side p {
   width: 90%;
-  font-weight: bold;
   font-size: 20px;
   line-height: 35px;
   text-align: left;
-  color: #b1aaaa;
-  margin-top: 15px;
+  color: #525252;
 }
 
 .btn-grad {background-image: linear-gradient(to right, #36D1DC 0%,  #5B86E5  51%, #36D1DC  100%)}
@@ -106,7 +104,7 @@ header .btn-faq button {
 .btn-grad {
   font-family: inherit;
   font-weight: bold;
-  margin: 10px;
+  margin: auto;
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
@@ -117,6 +115,7 @@ header .btn-faq button {
   border: none !important;
   border-radius: 40px;
   display: block;
+  width: 75%;
  }
 
  .btn-grad:hover {
@@ -130,6 +129,10 @@ header .btn-faq button {
   width: 580px;
   height: 520px;
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /** End of Body CSS **/
