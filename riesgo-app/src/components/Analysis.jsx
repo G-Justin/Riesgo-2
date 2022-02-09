@@ -716,7 +716,7 @@ export default function Analysis(props) {
                     </BarChart>
                 </Box>
 
-                <Typography variant="h6">Overall Sustainability Score</Typography>
+                <Typography variant="h6">Overall Suitability Score</Typography>
                 <Box
                     display="flex"
                     alignItems="center"
