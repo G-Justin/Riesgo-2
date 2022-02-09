@@ -68,7 +68,7 @@ function Welcome(){
                         </div>
                     </div>
                     <div className="right-side">
-                        <img src='right.png' alt='' width='100%'/>
+                        <img src='right.png' alt='' width='90%'/>
                     </div>
                 </div>
             </div>
