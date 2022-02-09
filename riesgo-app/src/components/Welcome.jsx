@@ -59,11 +59,11 @@ function Welcome() {
                                 <br></br>
                             </p>
                             <div>
-                                <button className="btn-grad">
-                                    <Link to="map" style={{ color: "white", textDecoration: "none" }}>
+                                <Link to="map" style={{ color: "white", textDecoration: "none" }}>
+                                    <button className="btn-grad">
                                         Start RIESGO
-                                    </Link>
-                                </button>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="right-side">
