@@ -55,7 +55,7 @@ function Welcome(){
                             An Evacuation Center Suitability Tool <hr />
                         </h1> 
                         <p>
-                            An interactive Metro Manila Map for flood visualization and urban planning created as a 
+                            <b>RIESGO</b> is an interactive Metro Manila Map for flood visualization and urban planning created as a 
                             companion web application for urban planners, local government units, architects, and engineers.
                             <br></br>
                         </p>
