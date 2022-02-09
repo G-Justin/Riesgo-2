@@ -74,7 +74,7 @@ function Welcome() {
                 <footer>
                     <div className="footer">
                         <div>
-                            <Typography variant='h6'>
+                            <Typography variant='overline'>
                                 RIESGO v0.8 Developed by Darvin, Galura & Gelvoleo with COMET-DLSU
                             </Typography>
                         </div>
