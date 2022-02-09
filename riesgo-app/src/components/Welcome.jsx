@@ -1,6 +1,5 @@
+import { Typography } from '@mui/material';
 import React from 'react'
-
-// import { Typography } from '@mui/material'
 // //import { Paper } from '@mui/material'
 // import { Button, CardActionArea } from '@mui/material';
 // import { Grid } from '@mui/material'
@@ -20,7 +19,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //import Background from '../assets/background.jpg'
-import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
+import { ReactComponent as LogoSvg } from '../assets/riesgo-logo-small.svg';
 // import ExploreImage from "../assets/explore.PNG"
 // import ModelImage   from "../assets/model.PNG"
 // import FaqImage     from "../assets/faq.PNG"
@@ -34,54 +33,54 @@ import {ReactComponent as LogoSvg} from '../assets/riesgo-logo-small.svg';
 //     }
 // };
 
-function Welcome(){
+function Welcome() {
     return (
         <div>
-        <header>
-            <div className="logo">
-                <LogoSvg />
-            </div>
-            <div className="btn-faq">
-                <button>
-                    FAQ
-                </button>
-            </div>
-        </header>
-        <section className="body-section">
-            <div className="container-body">
-                <div className="content-body">
-                    <div className="left-side">
-                        <h1>
-                            An Evacuation Center Suitability Tool <hr />
-                        </h1> 
-                        <p>
-                            <b>RIESGO</b> is an interactive Metro Manila Map for flood visualization and urban planning created as a 
-                            companion web application for urban planners, local government units, architects, and engineers.
-                            <br></br>
-                        </p>
-                        <div> 
-                        <button className="btn-grad">
-                            <Link to="map" style={{color:"white",textDecoration:"none"}}>
-                                Start RIESGO
-                            </Link>
-                        </button>
+            <header>
+                <div className="logo">
+                    <LogoSvg />
+                </div>
+                <div className="btn-faq">
+                    <button>
+                        FAQ
+                    </button>
+                </div>
+            </header>
+            <section className="body-section">
+                <div className="container-body">
+                    <div className="content-body">
+                        <div className="left-side">
+                            <h1>
+                                An Evacuation Center Suitability Tool <hr />
+                            </h1>
+                            <p>
+                                <b>RIESGO</b> is an interactive Metro Manila Map for flood visualization and urban planning created as a
+                                companion web application for urban planners, local government units, architects, and engineers.
+                                <br></br>
+                            </p>
+                            <div>
+                                <button className="btn-grad">
+                                    <Link to="map" style={{ color: "white", textDecoration: "none" }}>
+                                        Start RIESGO
+                                    </Link>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="right-side">
+                            <img src='right.png' alt='' width='90%' />
                         </div>
                     </div>
-                    <div className="right-side">
-                        <img src='right.png' alt='' width='90%'/>
+                </div>
+                <footer>
+                    <div className="footer">
+                        <div>
+                            <Typography variant='h6'>
+                                RIESGO v0.8 Developed by Darvin, Galura & Gelvoleo with COMET-DLSU
+                            </Typography>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <footer>
-            <div className="footer">
-                <div>
-                <h5>
-                    RIESGO v0.8 by Darvin, Galura & Gelvoleo
-                </h5>
-                </div>
-            </div>
-        </footer>
+                </footer>
+            </section>
         </div>
         // <div>
         //     <Box sx={{ flexGrow: 1 }}>
@@ -138,7 +137,7 @@ function Welcome(){
         //         justifyContent="center" 
         //         display="flex" 
         //         style={{paddingTop: '16px', marginBottom: '32px'}}>
-                
+
         //         <Grid item xs={4} >
         //             <Card sx={{width: 350, height: 288}}>
         //                 <CardActionArea>
@@ -161,7 +160,7 @@ function Welcome(){
         //             </Card>
         //         </Grid>
 
-                
+
         //         <Grid item xs={4} >
         //         <Link to="/FAQ" style={{ textDecoration: 'none' }}>
         //             <Card sx={{width: 350, height: 320}}>
@@ -185,7 +184,7 @@ function Welcome(){
         //             </Card>
         //         </Link>
         //         </Grid>
-                
+
 
         //         <Grid item xs={4} >
         //             <Card sx={{width: 350, height: 288}}>
@@ -213,7 +212,7 @@ function Welcome(){
         //         <Typography variant="body2"><b>RIESGO</b> v0.8 by Darvin, Galura & Gelvoleo</Typography>
         //     </Container>
         // </div>
-      );
+    );
 }
 
 export default Welcome
