@@ -239,7 +239,7 @@ export default function Analysis(props) {
                                 </BarChart>
                             </Box>
                             <Typography variant='body1'>
-                                Average risk assessment of the area's flood safety score of 5, 25, and 100 return period.
+                                Average risk assessment of the area's flood safety score of 5, 25, and 100 years return period.
                             </Typography>
                         </div>
                     )
@@ -271,8 +271,9 @@ export default function Analysis(props) {
                                     </Bar>
                                 </BarChart>
                             </Box>
-                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s</Typography>
+                            <Typography variant='body1'>
+                                Average assessment of the area's accessibility score within the 5, 25, and 100 years return period.
+                            </Typography>
                         </div>
                     )
                 case "Hazard":
@@ -298,8 +299,9 @@ export default function Analysis(props) {
                                     </Bar>
                                 </BarChart>
                             </Box>
-                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s</Typography>
+                            <Typography variant='body1'>
+                                Average risk assessment of the area's hazard safety score of 5, 25, and 100 years return period.
+                            </Typography>
                         </div>
                     )
                 case "Coverage Score":
@@ -323,8 +325,9 @@ export default function Analysis(props) {
                             <Tooltip />
                             <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
                         </AreaChart>
-                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s</Typography>
+                        <Typography variant='body1'>
+                           The average score of the city's population.
+                        </Typography>
                     </div>)
                 case "Land Use Score":
                     return (<div>
@@ -374,8 +377,9 @@ export default function Analysis(props) {
                                     </Bar>
                                 </BarChart>
                             </Box>
-                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s</Typography>
+                            <Typography variant='body1'>
+                                Average assessment of the area's suitability score within the 5, 25, and 100 years return period.
+                            </Typography>
                         </div>
                     )
                 default:
