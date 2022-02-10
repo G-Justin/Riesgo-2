@@ -239,7 +239,8 @@ export default class Map extends Component {
             //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyzsf1tw0yy120qp3n22yn03-0kndf',
+                //url: 'mapbox://jdarvin.ckyzsf1tw0yy120qp3n22yn03-0kndf',
+                url: 'mapbox://jdarvin.ckzgbu1b92lho21oftr0rn8ty-5earz'
             });
 
             //PASIG ==================================================================================
@@ -337,7 +338,8 @@ export default class Map extends Component {
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.ckyzx8yn50prh21lllu3m25j8-2d3yn',
+                //url: 'mapbox://jdarvin.ckyzx8yn50prh21lllu3m25j8-2d3yn',
+                url: 'mapbox://jdarvin.ckzgjgut71c1o2bppmocyqmxy-9hnjj',
             });
 
             // MARIKINA INITS ==================================================================================
@@ -1346,6 +1348,9 @@ export default class Map extends Component {
                 tempMarkerArray[26] = displayFeatures[0].properties.SUSTAINABILITY_5yr;
                 tempMarkerArray[27] = displayFeatures[0].properties.SUSTAINABILITY_25yr;
                 tempMarkerArray[28] = displayFeatures[0].properties.SUSTAINABILITY_100yr;
+
+                //Barangay
+                tempMarkerArray[29] = displayFeatures[0].properties.barangay;
 
                 this.setState({ markerProp: tempMarkerArray });
                 this.props.updateMarkerProp(tempMarkerArray);

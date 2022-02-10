@@ -51,6 +51,8 @@ export default function AnalysisSide(props) {
     analysisState.data[25]
   ]
 
+  var barangay = analysisState.data[29]
+
   function LandUsability(props) {
     const ascore = props.score;
 
@@ -232,7 +234,7 @@ export default function AnalysisSide(props) {
     return (
       <div>
         <hr />
-        <Typography variant="h6">Marked Area Land Use Distribution</Typography>
+        <Typography variant="h6">{barangay} Land Use Distribution</Typography>
         <Box display="flex"
           alignItems="center"
           justifyContent="center"
