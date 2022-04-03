@@ -274,7 +274,7 @@ const Sidebar = (props) => {
 
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card className="style-1 scroll-left-container" sx={{ width: 380, maxHeight: 780, position: "absolute", margin: 2, overflow: 'auto' }}>
+            <Card className="style-1 scroll-left-container" sx={{ width: 410, maxHeight: 780, position: "absolute", margin: 2, overflow: 'auto' }}>
                 <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
                     <Box>
                         <Link to="/" >

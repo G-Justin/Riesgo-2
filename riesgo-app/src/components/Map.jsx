@@ -46,7 +46,7 @@ export default class Map extends Component {
 
         this.map = new mapboxgl.Map({
           container: this.mapContainer,
-          style: 'mapbox://styles/jdarvin/ckyxzkvyp002q14nxc663vyml',
+          style: 'mapbox://styles/jdarvin/cl1ip8zsc001o15pgesbovpmf',
           center: [lng, lat],
           zoom,
           maxBounds: bounds,
