@@ -30,11 +30,11 @@ export default class Map extends Component {
 
     componentDidMount() {
         const {
-          lng, lat, zoom
+            lng, lat, zoom
         } = this.state;
-    
+
         this.tooltipContainer = document.createElement('div'); // eslint-disable-line
-    
+
         const bounds = [
             [120.83910868840256, 14.417858756589494], // Southwest coordinates
             [121.23000694767939, 14.772673954833158] // Northeast coordinates
@@ -45,18 +45,18 @@ export default class Map extends Component {
         console.log(hover_layer); //Warning bypasser. IDK why this exists??
 
         this.map = new mapboxgl.Map({
-          container: this.mapContainer,
-          style: 'mapbox://styles/jdarvin/cl1ip8zsc001o15pgesbovpmf',
-          center: [lng, lat],
-          zoom,
-          maxBounds: bounds,
+            container: this.mapContainer,
+            style: 'mapbox://styles/jdarvin/cl1ip8zsc001o15pgesbovpmf',
+            center: [lng, lat],
+            zoom,
+            maxBounds: bounds,
 
-          maxZoom: 15,
-          
-          //pitch: 60,
-          maxPitch: 60,
-          
-          bearing: 0.13
+            maxZoom: 15,
+
+            //pitch: 60,
+            maxPitch: 60,
+
+            bearing: 0.13
         });
 
         // let hoveredStateId = null;
@@ -98,45 +98,45 @@ export default class Map extends Component {
         //Buttons
         class PitchToggle {
             constructor({ bearing = 0, pitch = 45, minpitchzoom = null }) {
-              this._bearing = bearing;
-              this._pitch = pitch;
-              this._minpitchzoom = minpitchzoom;
+                this._bearing = bearing;
+                this._pitch = pitch;
+                this._minpitchzoom = minpitchzoom;
             }
-          
+
             onAdd(map) {
-              this._map = map;
-              let _this = this;
-          
-              this._btn = document.createElement("button");
-              this._btn.className = "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
-              this._btn.type = "button";
-              this._btn["aria-label"] = "Toggle Pitch";
-              this._btn.onclick = function() {
-                if (map.getPitch() === 0) {
-                  let options = { pitch: _this._pitch, bearing: _this._bearing };
-                  if (_this._minpitchzoom && map.getZoom() > _this._minpitchzoom) {
-                    options.zoom = _this._minpitchzoom;
-                  }
-                  map.easeTo(options);
-                  _this._btn.className =
-                    "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-2d";
-                } else {
-                  map.easeTo({ pitch: 0, bearing: 0 });
-                  _this._btn.className =
-                    "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
-                }
-              };
-          
-              this._container = document.createElement("div");
-              this._container.className = "mapboxgl-ctrl-group mapboxgl-ctrl";
-              this._container.appendChild(this._btn);
-          
-              return this._container;
+                this._map = map;
+                let _this = this;
+
+                this._btn = document.createElement("button");
+                this._btn.className = "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
+                this._btn.type = "button";
+                this._btn["aria-label"] = "Toggle Pitch";
+                this._btn.onclick = function () {
+                    if (map.getPitch() === 0) {
+                        let options = { pitch: _this._pitch, bearing: _this._bearing };
+                        if (_this._minpitchzoom && map.getZoom() > _this._minpitchzoom) {
+                            options.zoom = _this._minpitchzoom;
+                        }
+                        map.easeTo(options);
+                        _this._btn.className =
+                            "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-2d";
+                    } else {
+                        map.easeTo({ pitch: 0, bearing: 0 });
+                        _this._btn.className =
+                            "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
+                    }
+                };
+
+                this._container = document.createElement("div");
+                this._container.className = "mapboxgl-ctrl-group mapboxgl-ctrl";
+                this._container.appendChild(this._btn);
+
+                return this._container;
             }
-          
+
             onRemove() {
-              this._container.parentNode.removeChild(this._container);
-              this._map = undefined;
+                this._container.parentNode.removeChild(this._container);
+                this._map = undefined;
             }
         }
 
@@ -144,6 +144,98 @@ export default class Map extends Component {
         this.map.addControl(new PitchToggle({ minpitchzoom: 11 }), "bottom-right"); // Make this bottom right
 
         this.map.on('style.load', () => {
+            //Manila ==================================================================================
+            //Manila Dataset - Land Elevation
+            this.map.addSource('manila-elevation', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt36qj078t21oegpdy0q48-08l4s',
+            });
+
+            //Manila Dataset - Flood
+            this.map.addSource('manila-flood-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lsljsf06tj20mfwu9xe339-03ltu',
+            });
+
+            this.map.addSource('manila-flood-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lsp78v0b1a27mfdeo8f1g5-2jlw1',
+            });
+
+            this.map.addSource('manila-flood-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lsqmez4br92eo9zp88q2bx-6xbs4',
+            });
+
+            //Marikina Dataset - Accessibility
+            this.map.addSource('manila-accessibility-5yr', {
+                type: 'vector',
+                url: '',
+            });
+
+            this.map.addSource('manila-accessibility-25yr', {
+                type: 'vector',
+                url: '',
+            });
+
+            this.map.addSource('manila-accessibility-100yr', {
+                type: 'vector',
+                url: '',
+            });
+
+            //Marikina Dataset - Hazard
+            this.map.addSource('manila-hazard-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt589m4bvj2eo96hndszft-5rbzg',
+            });
+
+            this.map.addSource('manila-hazard-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt6gwt09ze21mf99dwmi7d-72ydy',
+            });
+
+
+            this.map.addSource('manila-hazard-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt81kx081c21k9ahx088v8-9a76b',
+            });
+
+
+            //Manila Dataset - Coverage
+            this.map.addSource('manila-coverage-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt1p7c3fmo21og81tcu453-4dg41',
+            });
+
+            //Manila Dataset - Land Use Score
+            this.map.addSource('manila-land-use-score', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1lt98r407ai28mfodf1keqn-6z5ir',
+            });
+
+
+            //Manila Dataset - Sustainability 
+            this.map.addSource('manila-sustainability-5yr', {
+                type: 'vector',
+                url: 'mapbox://',
+            });
+
+            this.map.addSource('manila-sustainability-25yr', {
+                type: 'vector',
+                url: 'mapbox://',
+            });
+
+            this.map.addSource('manila-sustainability-100yr', {
+                type: 'vector',
+                url: 'mapbox://',
+            });
+
+            //Manila Dataset - Complete 
+            this.map.addSource('manila-complete', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl1ltazmi082b21k97j65zvc1-0d67v',
+            });
+
             //MARIKINA ==================================================================================
             //Marikina Dataset - Land Elevation
             this.map.addSource('marikina-elevation', {
@@ -194,7 +286,7 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckywugvng03a828nxlrsbhd4g-4n9m9',
             });
 
-            
+
             this.map.addSource('marikina-hazard-100yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckywuhprl0r7h29n55ghzo2uy-2ih6f',
@@ -317,8 +409,8 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckz2e1y3x004q2aric1v60frz-2pnui',
             });
 
-           //Pasig Dataset - Sustainability 
-           this.map.addSource('pasig-sustainability-5yr', {
+            //Pasig Dataset - Sustainability 
+            this.map.addSource('pasig-sustainability-5yr', {
                 type: 'vector',
                 url: 'mapbox://jdarvin.ckz1i2aof133v20s1onsvi9qc-745hx',
             });
@@ -333,7 +425,7 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.ckz1j2poi0phe29rt5a0fbm96-6kfya',
             });
 
-            
+
 
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
@@ -354,32 +446,32 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'elevation',
-                    stops: [
-                        [0, '#d4fde4'],
-                        [0.125, '#aae6bc'],
-                        [0.250, '#80ce95'],
-                        [0.375, '#69c180'],
-                        [0.5, '#50b469'],
-                        [0.625, '#35a54f'],
-                        [0.750, '#279d41'],
-                        [0.875, '#1c9637'],
-                        [1, '#0a8c26'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
-                'fill-extrusion-opacity': 0,
-                // [
-                //     'case',
-                //     ['boolean', ['feature-state', 'hover'], false],
-                //     1,
-                //     0.5
-                // ],
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'elevation',
+                        stops: [
+                            [0, '#d4fde4'],
+                            [0.125, '#aae6bc'],
+                            [0.250, '#80ce95'],
+                            [0.375, '#69c180'],
+                            [0.5, '#50b469'],
+                            [0.625, '#35a54f'],
+                            [0.750, '#279d41'],
+                            [0.875, '#1c9637'],
+                            [1, '#0a8c26'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    // [
+                    //     'case',
+                    //     ['boolean', ['feature-state', 'hover'], false],
+                    //     1,
+                    //     0.5
+                    // ],
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -392,26 +484,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_5yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_5yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -424,26 +516,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_25yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_25yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -456,26 +548,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_100yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_100yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -489,28 +581,28 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_5yr',
-                    stops: [
-                        [0, '#06106b'],
-                        [0.33, '#3741a1'],
-                        [0.66, '#727ded'],
-                        [1, '#cfd3ff'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'flood_5yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
             this.map.addLayer({
-                
-            //l_marikina_flood_25yr
+
+                //l_marikina_flood_25yr
                 id: 'l_marikina_flood_25yr',
                 type: 'fill-extrusion',
                 source: 'marikina-flood-25yr',
@@ -519,35 +611,35 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_25yr',
-                    stops: [
-                        [0, '#06106b'],
-                        [0.33, '#3741a1'],
-                        [0.66, '#727ded'],
-                        [1, '#cfd3ff'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'flood_25yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
             this.map.addLayer({
                 //l_marikina_flood_100yr
-                    id: 'l_marikina_flood_100yr',
-                    type: 'fill-extrusion',
-                    source: 'marikina-flood-100yr',
-                    'source-layer': 'marikina_flood_100yr',
-                    layout: {
-                        visibility: 'none',
-                    },
-                    paint: {
+                id: 'l_marikina_flood_100yr',
+                type: 'fill-extrusion',
+                source: 'marikina-flood-100yr',
+                'source-layer': 'marikina_flood_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
                     'fill-extrusion-color': {
                         property: 'flood_100yr',
                         stops: [
@@ -559,14 +651,14 @@ export default class Map extends Component {
                     },
                     'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
                     'fill-extrusion-opacity': 0,
-    
+
                     'fill-extrusion-opacity-transition': {
                         duration: 400,
                         delay: 0,
                     },
-                    },
-                });
-    
+                },
+            });
+
             this.map.addLayer({
                 // ID CHANGED FROM l_marikina_hazard to l_marikina_hazard_5yr
                 id: 'l_marikina_hazard_5yr',
@@ -577,27 +669,27 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'hazard_5yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'hazard_5yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
             this.map.addLayer({
-                 //l_marikina_hazard_25yr
+                //l_marikina_hazard_25yr
                 id: 'l_marikina_hazard_25yr',
                 type: 'fill-extrusion',
                 source: 'marikina-hazard-25yr',
@@ -606,53 +698,53 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'hazard_25yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'hazard_25yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
             this.map.addLayer({
                 //l_marikina_hazard_100yr
-               id: 'l_marikina_hazard_100yr',
-               type: 'fill-extrusion',
-               source: 'marikina-hazard-100yr',
-               'source-layer': 'marikina_hazard_100yr',
-               layout: {
-                   visibility: 'none',
-               },
-               paint: {
-               'fill-extrusion-color': {
-                   property: 'hazard_100yr',
-                   stops: [
-                       [0, '#300061'],
-                       [0.33, '#9d1e69'],
-                       [0.66, '#f6684c'],
-                       [1, '#fcfbab'],
-                   ],
-               },
-               'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
-               'fill-extrusion-opacity': 0,
+                id: 'l_marikina_hazard_100yr',
+                type: 'fill-extrusion',
+                source: 'marikina-hazard-100yr',
+                'source-layer': 'marikina_hazard_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'hazard_100yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-               'fill-extrusion-opacity-transition': {
-                   duration: 400,
-                   delay: 0,
-               },
-               },
-           });
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
 
             this.map.addLayer({
                 id: 'l_marikina_coverage_score',
@@ -663,22 +755,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'coverage_score',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'coverage_score',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -691,27 +783,27 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'land_use_score',
-                    stops: [
-                        [0, '#340045'],
-                        [0.125, '#371865'],
-                        [0.250, '#2e3c78'],
-                        [0.375, '#26557b'],
-                        [0.5, '#1e7f7a'],
-                        [0.625, '#249f6f'],
-                        [0.750, '#51c34e'],
-                        [0.875, '#b4dc1d'],
-                        [1, '#fce51e'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'land_use_score',
+                        stops: [
+                            [0, '#340045'],
+                            [0.125, '#371865'],
+                            [0.250, '#2e3c78'],
+                            [0.375, '#26557b'],
+                            [0.5, '#1e7f7a'],
+                            [0.625, '#249f6f'],
+                            [0.750, '#51c34e'],
+                            [0.875, '#b4dc1d'],
+                            [1, '#fce51e'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -724,23 +816,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_5yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_5yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -753,23 +845,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_25yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_25yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -782,23 +874,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_100yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_100yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -807,6 +899,479 @@ export default class Map extends Component {
                 type: 'fill',
                 source: 'marikina-complete',
                 'source-layer': 'marikina_complete',
+                layout: {
+                    visibility: 'visible',
+                },
+                paint: {
+                    'fill-color': '#627BC1',
+                    'fill-opacity': 0
+                }
+            });
+
+            // MANILA INITS ================================================================================
+            //Marikina Layer Inits
+            this.map.addLayer({
+                id: 'l_manila_elevation',
+                type: 'fill-extrusion',
+                source: 'manila-elevation',
+                'source-layer': 'manila_elevation',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'elevation',
+                        stops: [
+                            [0, '#d4fde4'],
+                            [0.125, '#aae6bc'],
+                            [0.250, '#80ce95'],
+                            [0.375, '#69c180'],
+                            [0.5, '#50b469'],
+                            [0.625, '#35a54f'],
+                            [0.750, '#279d41'],
+                            [0.875, '#1c9637'],
+                            [1, '#0a8c26'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    // [
+                    //     'case',
+                    //     ['boolean', ['feature-state', 'hover'], false],
+                    //     1,
+                    //     0.5
+                    // ],
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_accessibility_5yr',
+                type: 'fill-extrusion',
+                source: 'manila-accessibility-5yr',
+                'source-layer': 'manila_accessibility_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'accessibility_5yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_accessibility_25yr',
+                type: 'fill-extrusion',
+                source: 'manila-accessibility-25yr',
+                'source-layer': 'manila_accessibility_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'accessibility_25yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_accessibility_100yr',
+                type: 'fill-extrusion',
+                source: 'manila-accessibility-100yr',
+                'source-layer': 'manila_accessibility_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'accessibility_100yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                //ID CHANGED from l_marikina_flood to l_marikina_flood_5yr
+                id: 'l_manila_flood_5yr',
+                type: 'fill-extrusion',
+                source: 'manila-flood-5yr',
+                'source-layer': 'manila_flood_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'flood_5yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+
+                //l_marikina_flood_25yr
+                id: 'l_manila_flood_25yr',
+                type: 'fill-extrusion',
+                source: 'manila-flood-25yr',
+                'source-layer': 'manila_flood_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'flood_25yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                //l_marikina_flood_100yr
+                id: 'l_manila_flood_100yr',
+                type: 'fill-extrusion',
+                source: 'manila-flood-100yr',
+                'source-layer': 'manila_flood_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'flood_100yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                // ID CHANGED FROM l_marikina_hazard to l_marikina_hazard_5yr
+                id: 'l_manila_hazard_5yr',
+                type: 'fill-extrusion',
+                source: 'manila-hazard-5yr',
+                'source-layer': 'manila_hazard_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'hazard_5yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                //l_marikina_hazard_25yr
+                id: 'l_manila_hazard_25yr',
+                type: 'fill-extrusion',
+                source: 'manila-hazard-25yr',
+                'source-layer': 'manila_hazard_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'hazard_25yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                //l_marikina_hazard_100yr
+                id: 'l_manila_hazard_100yr',
+                type: 'fill-extrusion',
+                source: 'manila-hazard-100yr',
+                'source-layer': 'manila_hazard_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'hazard_100yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_coverage_score',
+                type: 'fill-extrusion',
+                source: 'manila-coverage-score',
+                'source-layer': 'manila_coverage_score',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'coverage_score',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_land_use_score',
+                type: 'fill-extrusion',
+                source: 'manila-land-use-score',
+                'source-layer': 'manila_land_use_score',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'land_use_score',
+                        stops: [
+                            [0, '#340045'],
+                            [0.125, '#371865'],
+                            [0.250, '#2e3c78'],
+                            [0.375, '#26557b'],
+                            [0.5, '#1e7f7a'],
+                            [0.625, '#249f6f'],
+                            [0.750, '#51c34e'],
+                            [0.875, '#b4dc1d'],
+                            [1, '#fce51e'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_sustainability_5yr',
+                type: 'fill-extrusion',
+                source: 'manila-sustainability-5yr',
+                'source-layer': 'manila_sustainability_5yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_5yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_sustainability_25yr',
+                type: 'fill-extrusion',
+                source: 'manila-sustainability-25yr',
+                'source-layer': 'manila_sustainability_25yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_25yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_sustainability_100yr',
+                type: 'fill-extrusion',
+                source: 'manila-sustainability-100yr',
+                'source-layer': 'manila_sustainability_100yr',
+                layout: {
+                    visibility: 'none',
+                },
+                paint: {
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_100yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
+                },
+            });
+
+            this.map.addLayer({
+                id: 'l_manila_complete',
+                type: 'fill',
+                source: 'manila-complete',
+                'source-layer': 'manila_complete',
                 layout: {
                     visibility: 'visible',
                 },
@@ -828,26 +1393,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'elevation',
-                    stops: [
-                        [0, '#d4fde4'],
-                        [0.125, '#aae6bc'],
-                        [0.250, '#80ce95'],
-                        [0.375, '#69c180'],
-                        [0.5, '#50b469'],
-                        [0.625, '#35a54f'],
-                        [0.750, '#279d41'],
-                        [0.875, '#1c9637'],
-                        [1, '#0a8c26'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'elevation',
+                        stops: [
+                            [0, '#d4fde4'],
+                            [0.125, '#aae6bc'],
+                            [0.250, '#80ce95'],
+                            [0.375, '#69c180'],
+                            [0.5, '#50b469'],
+                            [0.625, '#35a54f'],
+                            [0.750, '#279d41'],
+                            [0.875, '#1c9637'],
+                            [1, '#0a8c26'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -860,26 +1425,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_5yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_5yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -892,26 +1457,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_25yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_25yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -924,26 +1489,26 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'accessibility_100yr',
-                    stops: [
-                        [0, '#FFF0F3'],
-                        [0.125, '#FFCCD5'],
-                        [0.250, '#FF8FA3'],
-                        [0.375, '#FF4D6D'],
-                        [0.5, '#C9184A'],
-                        [0.625, '#A4133C'],
-                        [0.750, '#800F2F'],
-                        [0.875, '#590D22'],
-                        [1, '#800F2F'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-color': {
+                        property: 'accessibility_100yr',
+                        stops: [
+                            [0, '#FFF0F3'],
+                            [0.125, '#FFCCD5'],
+                            [0.250, '#FF8FA3'],
+                            [0.375, '#FF4D6D'],
+                            [0.5, '#C9184A'],
+                            [0.625, '#A4133C'],
+                            [0.750, '#800F2F'],
+                            [0.875, '#590D22'],
+                            [1, '#800F2F'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'accessibility_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -957,22 +1522,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_5yr',
-                    stops: [
-                        [0, '#06106b'],
-                        [0.33, '#3741a1'],
-                        [0.66, '#727ded'],
-                        [1, '#cfd3ff'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'flood_5yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -985,22 +1550,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_25yr',
-                    stops: [
-                        [0, '#06106b'],
-                        [0.33, '#3741a1'],
-                        [0.66, '#727ded'],
-                        [1, '#cfd3ff'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'flood_25yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1013,22 +1578,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'flood_100yr',
-                    stops: [
-                        [0, '#06106b'],
-                        [0.33, '#3741a1'],
-                        [0.66, '#727ded'],
-                        [1, '#cfd3ff'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'flood_100yr',
+                        stops: [
+                            [0, '#06106b'],
+                            [0.33, '#3741a1'],
+                            [0.66, '#727ded'],
+                            [1, '#cfd3ff'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'flood_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1042,22 +1607,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'hazard_5yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'hazard_5yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1070,22 +1635,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'hazard_25yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'hazard_25yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1098,22 +1663,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'hazard_100yr',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'hazard_100yr',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'hazard_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1126,22 +1691,22 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'coverage_score',
-                    stops: [
-                        [0, '#300061'],
-                        [0.33, '#9d1e69'],
-                        [0.66, '#f6684c'],
-                        [1, '#fcfbab'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'coverage_score',
+                        stops: [
+                            [0, '#300061'],
+                            [0.33, '#9d1e69'],
+                            [0.66, '#f6684c'],
+                            [1, '#fcfbab'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'coverage_score'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1154,27 +1719,27 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'land_use_score',
-                    stops: [
-                        [0, '#340045'],
-                        [0.125, '#371865'],
-                        [0.250, '#2e3c78'],
-                        [0.375, '#26557b'],
-                        [0.5, '#1e7f7a'],
-                        [0.625, '#249f6f'],
-                        [0.750, '#51c34e'],
-                        [0.875, '#b4dc1d'],
-                        [1, '#fce51e'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'land_use_score',
+                        stops: [
+                            [0, '#340045'],
+                            [0.125, '#371865'],
+                            [0.250, '#2e3c78'],
+                            [0.375, '#26557b'],
+                            [0.5, '#1e7f7a'],
+                            [0.625, '#249f6f'],
+                            [0.750, '#51c34e'],
+                            [0.875, '#b4dc1d'],
+                            [1, '#fce51e'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 250, ['number', ['get', 'land_use_score'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1187,23 +1752,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_5yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_5yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_5yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1216,23 +1781,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_25yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_25yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_25yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1245,23 +1810,23 @@ export default class Map extends Component {
                     visibility: 'none',
                 },
                 paint: {
-                'fill-extrusion-color': {
-                    property: 'SUSTAINABILITY_100yr',
-                    stops: [
-                        [0, '#ff3d3d'],
-                        [0.21, '#e0762f'],
-                        [0.41, '#d4e02f'],
-                        [0.61, '#2fe02f'],
-                        [0.81, '#88e02f'],
-                    ],
-                },
-                'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
-                'fill-extrusion-opacity': 0,
+                    'fill-extrusion-color': {
+                        property: 'SUSTAINABILITY_100yr',
+                        stops: [
+                            [0, '#ff3d3d'],
+                            [0.21, '#e0762f'],
+                            [0.41, '#d4e02f'],
+                            [0.61, '#2fe02f'],
+                            [0.81, '#88e02f'],
+                        ],
+                    },
+                    'fill-extrusion-height': ['*', 150, ['number', ['get', 'SUSTAINABILITY_100yr'], 1]],
+                    'fill-extrusion-opacity': 0,
 
-                'fill-extrusion-opacity-transition': {
-                    duration: 400,
-                    delay: 0,
-                },
+                    'fill-extrusion-opacity-transition': {
+                        duration: 400,
+                        delay: 0,
+                    },
                 },
             });
 
@@ -1297,7 +1862,7 @@ export default class Map extends Component {
                     'sourceLayer',
                     'state'
                 ];
-                     
+
                 const displayFeatures = features.map((feat) => {
                     const displayFeat = {};
                     displayProperties.forEach((prop) => {
@@ -1323,25 +1888,25 @@ export default class Map extends Component {
                 console.log("We are on " + this.state.currentCity);
 
                 //if(this.state.currentCity === "l_marikina") {
-                    //Marikina Goes First
-                    tempMarkerArray[11] = displayFeatures[0].properties.cemetery;
-                    tempMarkerArray[12] = displayFeatures[0].properties.commercial;
-                    tempMarkerArray[13] = displayFeatures[0].properties.farmland;
-                    tempMarkerArray[14] = displayFeatures[0].properties.forest;
-                    tempMarkerArray[15] = displayFeatures[0].properties.grass;
-                    tempMarkerArray[16] = displayFeatures[0].properties.heath;
-                    tempMarkerArray[17] = displayFeatures[0].properties.industrial;
-                    tempMarkerArray[18] = displayFeatures[0].properties.meadow;
-                    tempMarkerArray[19] = displayFeatures[0].properties.park;
-                    tempMarkerArray[20] = displayFeatures[0].properties.recreation_ground;
-                    tempMarkerArray[21] = displayFeatures[0].properties.residential;
-    
-                    tempMarkerArray[22] = displayFeatures[0].properties.retail;
-                    tempMarkerArray[23] = displayFeatures[0].properties.scrub;
-                    tempMarkerArray[24] = displayFeatures[0].properties.unclassified;
+                //Marikina Goes First
+                tempMarkerArray[11] = displayFeatures[0].properties.cemetery;
+                tempMarkerArray[12] = displayFeatures[0].properties.commercial;
+                tempMarkerArray[13] = displayFeatures[0].properties.farmland;
+                tempMarkerArray[14] = displayFeatures[0].properties.forest;
+                tempMarkerArray[15] = displayFeatures[0].properties.grass;
+                tempMarkerArray[16] = displayFeatures[0].properties.heath;
+                tempMarkerArray[17] = displayFeatures[0].properties.industrial;
+                tempMarkerArray[18] = displayFeatures[0].properties.meadow;
+                tempMarkerArray[19] = displayFeatures[0].properties.park;
+                tempMarkerArray[20] = displayFeatures[0].properties.recreation_ground;
+                tempMarkerArray[21] = displayFeatures[0].properties.residential;
 
-                    //Pasig Next (only military)
-                    tempMarkerArray[25] = displayFeatures[0].properties.military;
+                tempMarkerArray[22] = displayFeatures[0].properties.retail;
+                tempMarkerArray[23] = displayFeatures[0].properties.scrub;
+                tempMarkerArray[24] = displayFeatures[0].properties.unclassified;
+
+                //Pasig Next (only military)
+                tempMarkerArray[25] = displayFeatures[0].properties.military;
                 //}
 
                 //Sustainability
@@ -1371,7 +1936,7 @@ export default class Map extends Component {
                     'sourceLayer',
                     'state'
                 ];
-                     
+
                 const displayFeatures = features.map((feat) => {
                     const displayFeat = {};
                     displayProperties.forEach((prop) => {
@@ -1383,7 +1948,7 @@ export default class Map extends Component {
                 //console.log("We are doing: " + this.hover_layer);
 
                 //Supposed to be current_layer
-                if(this.hover_layer === "hazard_5yr") {
+                if (this.hover_layer === "hazard_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.hazard_5yr}`
                         : `undefined`;
@@ -1443,7 +2008,7 @@ export default class Map extends Component {
                     document.getElementById('pd').innerHTML = displayFeatures.length
                         ? `${displayFeatures[0].properties.coverage_score}`
                         : `undefined`;
-                } 
+                }
             });
 
             // this.map.on('mousemove', 'l_marikina_elevation', (e) => {
@@ -1454,7 +2019,7 @@ export default class Map extends Component {
             //             { hover: false }
             //         );
             //     }
-                
+
             //     hoveredStateId = e.features[0].id;
             //         this.map.setFeatureState(
             //             { source: 'marikina-elevation', id: hoveredStateId },
@@ -1481,7 +2046,7 @@ export default class Map extends Component {
             //             { hover: false }
             //         );
             //     }
-                
+
             //     hoveredStateId = e.features[0].id;
             //         this.map.setFeatureState(
             //             { source: 'pasig-elevation', id: hoveredStateId },
@@ -1508,7 +2073,7 @@ export default class Map extends Component {
             //             { hover: false }
             //         );
             //     }
-                
+
             //     hoveredStateId = e.features[0].id;
             //         this.map.setFeatureState(
             //             { source: 'marikina-coverage-score', id: hoveredStateId },
@@ -1517,7 +2082,7 @@ export default class Map extends Component {
             //     }
             // });
 
-            
+
             // this.map.on('mouseleave', 'l_marikina_coverage_score', () => {
             //     if (hoveredStateId !== null) {
             //         this.map.setFeatureState(
@@ -1536,7 +2101,7 @@ export default class Map extends Component {
             //             { hover: false }
             //         );
             //     }
-                
+
             //     hoveredStateId = e.features[0].id;
             //         this.map.setFeatureState(
             //             { source: 'pasig-coverage-score', id: hoveredStateId },
@@ -1563,7 +2128,7 @@ export default class Map extends Component {
             //             { hover: false }
             //         );
             //     }
-                
+
             //     hoveredStateId = e.features[0].id;
             //         this.map.setFeatureState(
             //             { source: 'marikina-land-use-score', id: hoveredStateId },
@@ -1592,7 +2157,7 @@ export default class Map extends Component {
         } = this.props;
 
         //Update current layer global variable        
-        switch(nextProps.layer_type) {
+        switch (nextProps.layer_type) {
             case "hazard_5yr":
                 this.hover_layer = "hazard_5yr";
                 break;
@@ -1630,22 +2195,22 @@ export default class Map extends Component {
                 this.hover_layer = "SUSTAINABILITY_100yr";
                 break;
             case "elevation":
-                this.hover_layer = "elevation"; 
+                this.hover_layer = "elevation";
                 break;
             case "coverage_score":
-                this.hover_layer = "coverage_score"; 
+                this.hover_layer = "coverage_score";
                 break;
             case "land_use_score":
-                this.hover_layer = "land_use_score"; 
+                this.hover_layer = "land_use_score";
                 break;
             default:
                 break;
-        } 
+        }
         //console.log("Hover layer is set to: " + this.hover_layer); 
         //console.log("The current layer_type is " + layer_type);
 
         //If layer change detected
-        if(nextProps.layer !== layer) {
+        if (nextProps.layer !== layer) {
             this.map.setLayoutProperty(
                 layer,
                 'visibility',
@@ -1659,14 +2224,14 @@ export default class Map extends Component {
                 'visible'
             );
             //console.log("Enabled " + nextProps.layer);
-            
+
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
             this.map.setPaintProperty(nextProps.layer, 'fill-extrusion-opacity', 0.75);
 
             //console.log(nextProps.layer_type)
         }
         //Refresh layer if city changed
-        if(nextProps.city !== city) {
+        if (nextProps.city !== city) {
             this.map.setLayoutProperty(
                 layer,
                 'visibility',
@@ -1680,8 +2245,8 @@ export default class Map extends Component {
                 'visible'
             );
             console.log(`Enabled ${nextProps.city}_${layer_type}`);
-            this.setState({currentCity: nextProps.city});
-            
+            this.setState({ currentCity: nextProps.city });
+
             this.props.updateLayer(`${nextProps.city}_${layer_type}`);
 
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
@@ -1695,7 +2260,7 @@ export default class Map extends Component {
             width: '100%',
             top: 0,
             bottom: 0,
-            zIndex:-1
+            zIndex: -1
         };
 
         return (

@@ -278,7 +278,7 @@ const Sidebar = (props) => {
                 <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
                     <Box>
                         <Link to="/" >
-                            <img src="/riesgo-logo-small.svg" alt="React Logo" width={"120px"} />
+                            <img src="/logolong.png" alt="React Logo" width={"120px"} />
                         </Link>
                     </Box>
 
