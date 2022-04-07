@@ -1,5 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import {
     XAxis,
     YAxis,
@@ -94,80 +99,115 @@ export default function AnalysisCity(props) {
 
         return (
             <div>
-                <Typography variant='h6'>City Suitability Distribution</Typography>
-                <Typography variant='overline'>for each dataset return period</Typography>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-2}
-                >
-                    <BarChart
-                        width={380}
-                        height={250}
-                        data={data}
-                        margin={{
-                            top: 10,
-                            bottom: 5
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="five_yr" fill="#fb5c5b" />
-                    </BarChart>
-                </Box>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-2}
-                >
-                    <BarChart
-                        width={380}
-                        height={250}
-                        data={data}
-                        margin={{
-                            top: 10,
-                            bottom: 5
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="twentyfive_yr" fill="#f1b660" />
-                    </BarChart>
-                </Box>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-2}
-                >
-                    <BarChart
-                        width={380}
-                        height={250}
-                        data={data}
-                        margin={{
-                            top: 10,
-                            bottom: 5
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="hundred_yr" fill="#49c0e8" />
-                    </BarChart>
-                </Box>
-                <hr />
                 <Typography variant='h6'>Mean Suitability Score: 0.3</Typography>
                 <Typography variant='overline'>(Applies for all return periods)</Typography>
+                <hr />
+                <Typography variant='h6'>City Suitability Distribution</Typography>
+                <Typography variant='overline'>for each dataset return period</Typography>
+                <div>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>Accordion 1</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={380}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Legend />
+                                    <Bar dataKey="five_yr" fill="#fb5c5b" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
+                            <Typography>Accordion 2</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={380}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Legend />
+                                    <Bar dataKey="twentyfive_yr" fill="#f1b660" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
+                            <Typography>Accordion 2</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={380}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Legend />
+                                    <Bar dataKey="hundred_yr" fill="#49c0e8" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
             </div>
         );
     } else if (props.cityName === 'l_pasig') {
