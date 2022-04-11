@@ -274,7 +274,7 @@ const Sidebar = (props) => {
 
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card className="style-1 scroll-left-container" sx={{ width: 410, maxHeight: 600, position: "absolute", margin: 2, overflow: 'auto' }}>
+            <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 600, position: "absolute", margin: 2, overflow: 'auto' }}>
                 <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
                     <Box>
                         <Link to="/" >
@@ -336,7 +336,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: "20%", right: "20%" }} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: "20%", right: "20%"}} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
@@ -375,7 +375,7 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction
-                        label="Area Accessibility"
+                        label="Accessibility"
                         icon={<LocalHospitalIcon />}
 
                         onClick={() => {
@@ -458,7 +458,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 780, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
+            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 600, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />

@@ -121,7 +121,7 @@ export default function AnalysisCity(props) {
                                 marginLeft={-2}
                             >
                                 <BarChart
-                                    width={380}
+                                    width={300}
                                     height={250}
                                     data={data}
                                     margin={{
@@ -155,7 +155,7 @@ export default function AnalysisCity(props) {
                                 marginLeft={-2}
                             >
                                 <BarChart
-                                    width={380}
+                                    width={300}
                                     height={250}
                                     data={data}
                                     margin={{
@@ -189,7 +189,7 @@ export default function AnalysisCity(props) {
                                 marginLeft={-2}
                             >
                                 <BarChart
-                                    width={380}
+                                    width={300}
                                     height={250}
                                     data={data}
                                     margin={{
