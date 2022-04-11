@@ -2251,6 +2251,34 @@ export default class Map extends Component {
 
             this.map.setPaintProperty(layer, 'fill-extrusion-opacity', 0);
             this.map.setPaintProperty(`${nextProps.city}_${layer_type}`, 'fill-extrusion-opacity', 0.75);
+
+            // Zoom into other city
+            if(nextProps.city === 'l_marikina') {
+                this.map.flyTo({
+                    center: [
+                        121.10238652504856, 14.646201753613344
+                    ],
+                    zoom: 13.25,
+                    essential: true 
+                });
+            } else if(nextProps.city === 'l_pasig') {
+                this.map.flyTo({
+                    center: [
+                        121.08477661251118, 14.58074966702777
+                    ],
+                    zoom: 12.75,
+                    essential: true 
+                });
+            } else {
+                this.map.flyTo({
+                    center: [
+                        120.98342857168913, 14.595154190112392
+                    ],
+                    zoom: 12.75,
+                    essential: true 
+                });
+            }
+            
         }
     }
 

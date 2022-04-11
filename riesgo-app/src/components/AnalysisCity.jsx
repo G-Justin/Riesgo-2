@@ -11,8 +11,6 @@ import {
     CartesianGrid,
     BarChart,
     Bar,
-    // Tooltip,
-    Legend
 } from "recharts";
 
 export default function AnalysisCity(props) {
@@ -133,7 +131,6 @@ export default function AnalysisCity(props) {
                                     <XAxis dataKey="name" />
                                     <YAxis />
                                     {/* <Tooltip /> */}
-                                    <Legend />
                                     <Bar dataKey="five_yr" fill="#fb5c5b" />
                                 </BarChart>
                             </Box>
@@ -167,7 +164,6 @@ export default function AnalysisCity(props) {
                                     <XAxis dataKey="name" />
                                     <YAxis />
                                     {/* <Tooltip /> */}
-                                    <Legend />
                                     <Bar dataKey="twentyfive_yr" fill="#f1b660" />
                                 </BarChart>
                             </Box>
@@ -201,7 +197,6 @@ export default function AnalysisCity(props) {
                                     <XAxis dataKey="name" />
                                     <YAxis />
                                     {/* <Tooltip /> */}
-                                    <Legend />
                                     <Bar dataKey="hundred_yr" fill="#49c0e8" />
                                 </BarChart>
                             </Box>
@@ -314,8 +309,7 @@ export default function AnalysisCity(props) {
                         <XAxis dataKey="name" />
                         <YAxis />
                         {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="five_yr" fill="#82ca9d" />
+                        <Bar dataKey="five_yr" fill="#fb5c5b" />
                     </BarChart>
                 </Box>
                 <Box
@@ -337,8 +331,7 @@ export default function AnalysisCity(props) {
                         <XAxis dataKey="name" />
                         <YAxis />
                         {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="twentyfive_yr" fill="#8884d8" />
+                        <Bar dataKey="twentyfive_yr" fill="#f1b660" />
                     </BarChart>
                 </Box>
                 <Box
@@ -360,8 +353,7 @@ export default function AnalysisCity(props) {
                         <XAxis dataKey="name" />
                         <YAxis />
                         {/* <Tooltip /> */}
-                        <Legend />
-                        <Bar dataKey="hundred_yr" fill="#ca8282" />
+                        <Bar dataKey="hundred_yr" fill="#49c0e8" />
                     </BarChart>
                 </Box>
                 <hr />

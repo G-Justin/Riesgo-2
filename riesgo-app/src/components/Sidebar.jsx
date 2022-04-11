@@ -33,7 +33,7 @@ import Select from '@mui/material/Select';
 import Slider from './Slider';
 import Fade from '@mui/material/Fade';
 import React from "react";
-import { Box, height } from "@mui/system";
+import { Box } from "@mui/system";
 
 //Table Data
 import DataTable from './DataTable';
@@ -274,7 +274,7 @@ const Sidebar = (props) => {
 
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 600, position: "absolute", margin: 2, overflow: 'auto' }}>
+            <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 750, position: "absolute", margin: 2, overflow: 'auto' }}>
                 <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
                     <Box>
                         <Link to="/" >
@@ -458,7 +458,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 600, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
+            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 750, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />
