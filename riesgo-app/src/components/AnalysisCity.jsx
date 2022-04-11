@@ -105,13 +105,13 @@ export default function AnalysisCity(props) {
                 <Typography variant='h6'>City Suitability Distribution</Typography>
                 <Typography variant='overline'>for each dataset return period</Typography>
                 <div>
-                    <Accordion>
+                    <Accordion defaultExpanded="true">
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography>Accordion 1</Typography>
+                            <Typography>5 Year Return Period</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Box
@@ -145,7 +145,7 @@ export default function AnalysisCity(props) {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography>Accordion 2</Typography>
+                            <Typography>25 Year Return Period</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Box
@@ -179,7 +179,7 @@ export default function AnalysisCity(props) {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography>Accordion 2</Typography>
+                            <Typography>100 Year Return Period</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Box
