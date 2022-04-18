@@ -48,20 +48,20 @@ export default function Analysis(props) {
         setAnalysisState(props);
     }, [props]);
 
-    var floodData = [
-        {
-            name: "5 Years",
-            score: analysisState.data[0] + 0.05,
-        },
-        {
-            name: "25 Years",
-            score: analysisState.data[1] + 0.05,
-        },
-        {
-            name: "100 Years",
-            score: analysisState.data[2] + 0.05,
-        },
-    ];
+    // var floodData = [ // Removed floodData and Flood Safety Score Vis as per request.
+    //     {
+    //         name: "5 Years",
+    //         score: analysisState.data[0] + 0.05,
+    //     },
+    //     {
+    //         name: "25 Years",
+    //         score: analysisState.data[1] + 0.05,
+    //     },
+    //     {
+    //         name: "100 Years",
+    //         score: analysisState.data[2] + 0.05,
+    //     },
+    // ];
 
     var hazardData = [
         {
@@ -666,7 +666,7 @@ export default function Analysis(props) {
             <div>
                 <i>Higher is better *</i> <br />
                 <Typography variant="overline">years are represented as <b>return periods</b></Typography>
-                <Typography variant="h6">Flood Safety Score</Typography>
+                {/* <Typography variant="h6">Flood Safety Score</Typography>
                 <Box
                     display="flex"
                     alignItems="center"
@@ -682,7 +682,7 @@ export default function Analysis(props) {
                             ))}
                         </Bar>
                     </BarChart>
-                </Box>
+                </Box> */}
 
                 <Typography variant="h6">Hazard Safety Score</Typography>
                 <Box
