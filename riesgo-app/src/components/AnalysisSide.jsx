@@ -224,7 +224,7 @@ export default function AnalysisSide(props) {
     }
   }
 
-  if (landUseScore === undefined) {
+  if (!landUseScore) {
     return (
       <div></div>
     )
