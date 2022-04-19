@@ -1950,63 +1950,63 @@ export default class Map extends Component {
                 //Supposed to be current_layer
                 if (this.hover_layer === "hazard_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.hazard_5yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_5yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "hazard_25yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.hazard_25yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_25yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "hazard_100yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.hazard_100yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_100yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "flood_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.flood_5yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_5yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "flood_25yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.flood_25yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_25yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "flood_100yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.flood_100yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_100yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "accessibility_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.accessibility_5yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_5yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "accessibility_25yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.accessibility_25yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_25yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "accessibility_100yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.accessibility_100yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_100yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "SUSTAINABILITY_5yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.SUSTAINABILITY_5yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_5yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "SUSTAINABILITY_25yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.SUSTAINABILITY_25yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_25yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "SUSTAINABILITY_100yr") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.SUSTAINABILITY_100yr}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_100yr).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "elevation") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.elevation}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.elevation).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "land_use_score") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.land_use_score}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.land_use_score).toFixed(3))}`
                         : `undefined`;
                 } else if (this.hover_layer === "coverage_score") {
                     document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${displayFeatures[0].properties.coverage_score}`
+                        ? `${Number(parseFloat(displayFeatures[0].properties.coverage_score).toFixed(3))}`
                         : `undefined`;
                 }
             });

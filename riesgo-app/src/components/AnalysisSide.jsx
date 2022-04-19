@@ -27,7 +27,7 @@ export default function AnalysisSide(props) {
   }, [props]);
 
 
-  var landUseScore = analysisState.data[10];
+  var landUseScore = Number(parseFloat(analysisState.data[10]).toFixed(3));
 
   //TODO: Pasig / Manila Validation and Loadout
 
@@ -261,7 +261,7 @@ export default function AnalysisSide(props) {
         <Typography variant="body">
           <i><WriteUp data={data} /></i> <hr />
           {/* This area is <b style={{color: "#ff5d5d"}}>33% Residential</b>, <b style={{color: "#00C49F"}}>25% Industrial</b> and <b style={{color: "#FFBB28"}}>42% Farmland</b>. <hr />  */}
-          With a score of <b style={{ color: scoreColor }}>{landUseScore}</b>, <br />This area is marked <b style={{ color: scoreColor }}><LandUsability score={landUseScore} /></b> for situating flood evacuation centers.
+          With an approximate <i>land usability</i> score of <b style={{ color: scoreColor }}>{landUseScore}</b>, This area is marked <b style={{ color: scoreColor }}><LandUsability score={landUseScore} /></b> for situating flood evacuation centers.
         </Typography>
         <hr />
       </div>
