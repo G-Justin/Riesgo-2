@@ -73,7 +73,7 @@ export default class Map extends Component {
         const marker = new mapboxgl.Marker({
             draggable: true
         })
-            .setLngLat([121.03693378520076, 14.587247918399061])
+            .setLngLat([121.1057787616575, 14.649200220934569])
             .setPopup(popup)
             .addTo(this.map);
 
@@ -933,7 +933,7 @@ export default class Map extends Component {
                             [1, '#0a8c26'],
                         ],
                     },
-                    'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
+                    'fill-extrusion-height': ['*', 10, ['number', ['get', 'elevation'], 1]],
                     'fill-extrusion-opacity': 0,
                     // [
                     //     'case',
@@ -2011,141 +2011,25 @@ export default class Map extends Component {
                 }
             });
 
-            // this.map.on('mousemove', 'l_marikina_elevation', (e) => {
-            //     if (e.features.length > 0) {
-            //         if (hoveredStateId !== null) {
-            //             this.map.setFeatureState(
-            //             { source: 'marikina-elevation', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
+            this.map.setLayoutProperty(
+                `l_marikina_land_use_score`,
+                'visibility',
+                'visible'
+            );
+            this.setState({ currentCity: `l_marikina` });
 
-            //     hoveredStateId = e.features[0].id;
-            //         this.map.setFeatureState(
-            //             { source: 'marikina-elevation', id: hoveredStateId },
-            //             { hover: true }
-            //         );
-            //     }
-            // });
+            this.props.updateLayer(`l_marikina_land_use_score`);
+            this.map.setPaintProperty(`l_marikina_land_use_score`, 'fill-extrusion-opacity', 0.75);
 
-            // this.map.on('mouseleave', 'l_marikina_elevation', () => {
-            //     if (hoveredStateId !== null) {
-            //         this.map.setFeatureState(
-            //             { source: 'marikina-elevation', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-            //     hoveredStateId = null;
-            // });
+            console.log('done!');
 
-            // this.map.on('mousemove', 'l_pasig_elevation', (e) => {
-            //     if (e.features.length > 0) {
-            //         if (hoveredStateId !== null) {
-            //             this.map.setFeatureState(
-            //             { source: 'pasig-elevation', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-
-            //     hoveredStateId = e.features[0].id;
-            //         this.map.setFeatureState(
-            //             { source: 'pasig-elevation', id: hoveredStateId },
-            //             { hover: true }
-            //         );
-            //     }
-            // });
-
-            // this.map.on('mouseleave', 'l_pasig_elevation', () => {
-            //     if (hoveredStateId !== null) {
-            //         this.map.setFeatureState(
-            //             { source: 'pasig-elevation', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-            //     hoveredStateId = null;
-            // });
-
-            // this.map.on('mousemove', 'l_marikina_coverage_score', (e) => {
-            //     if (e.features.length > 0) {
-            //         if (hoveredStateId !== null) {
-            //             this.map.setFeatureState(
-            //             { source: 'marikina-coverage-score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-
-            //     hoveredStateId = e.features[0].id;
-            //         this.map.setFeatureState(
-            //             { source: 'marikina-coverage-score', id: hoveredStateId },
-            //             { hover: true }
-            //         );
-            //     }
-            // });
-
-
-            // this.map.on('mouseleave', 'l_marikina_coverage_score', () => {
-            //     if (hoveredStateId !== null) {
-            //         this.map.setFeatureState(
-            //             { source: 'marikina_coverage_score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-            //     hoveredStateId = null;
-            // });
-
-            // this.map.on('mousemove', 'l_pasig_coverage_score', (e) => {
-            //     if (e.features.length > 0) {
-            //         if (hoveredStateId !== null) {
-            //             this.map.setFeatureState(
-            //             { source: 'pasig-coverage-score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-
-            //     hoveredStateId = e.features[0].id;
-            //         this.map.setFeatureState(
-            //             { source: 'pasig-coverage-score', id: hoveredStateId },
-            //             { hover: true }
-            //         );
-            //     }
-            // });
-
-            // this.map.on('mouseleave', 'l_pasig_coverage_score', () => {
-            //     if (hoveredStateId !== null) {
-            //         this.map.setFeatureState(
-            //             { source: 'marikina_pasig_score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-            //     hoveredStateId = null;
-            // });
-
-            // this.map.on('mousemove', 'l_marikina_land_use_score', (e) => {
-            //     if (e.features.length > 0) {
-            //         if (hoveredStateId !== null) {
-            //             this.map.setFeatureState(
-            //             { source: 'marikina-land-use-score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-
-            //     hoveredStateId = e.features[0].id;
-            //         this.map.setFeatureState(
-            //             { source: 'marikina-land-use-score', id: hoveredStateId },
-            //             { hover: true }
-            //         );
-            //     }
-            // });
-
-            // this.map.on('mouseleave', 'l_marikina_land_use_score', () => {
-            //     if (hoveredStateId !== null) {
-            //         this.map.setFeatureState(
-            //             { source: 'marikina-land-use-score', id: hoveredStateId },
-            //             { hover: false }
-            //         );
-            //     }
-            //     hoveredStateId = null;
-            // });
+            this.map.flyTo({
+                center: [
+                    121.10238652504856, 14.646201753613344
+                ],
+                zoom: 13.25,
+                essential: true
+            });
         });
     }
 
@@ -2253,21 +2137,21 @@ export default class Map extends Component {
             this.map.setPaintProperty(`${nextProps.city}_${layer_type}`, 'fill-extrusion-opacity', 0.75);
 
             // Zoom into other city
-            if(nextProps.city === 'l_marikina') {
+            if (nextProps.city === 'l_marikina') {
                 this.map.flyTo({
                     center: [
                         121.10238652504856, 14.646201753613344
                     ],
                     zoom: 13.25,
-                    essential: true 
+                    essential: true
                 });
-            } else if(nextProps.city === 'l_pasig') {
+            } else if (nextProps.city === 'l_pasig') {
                 this.map.flyTo({
                     center: [
                         121.08477661251118, 14.58074966702777
                     ],
                     zoom: 12.75,
-                    essential: true 
+                    essential: true
                 });
             } else {
                 this.map.flyTo({
@@ -2275,10 +2159,10 @@ export default class Map extends Component {
                         120.98342857168913, 14.595154190112392
                     ],
                     zoom: 12.75,
-                    essential: true 
+                    essential: true
                 });
             }
-            
+
         }
     }
 

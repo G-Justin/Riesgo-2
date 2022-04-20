@@ -75,7 +75,7 @@ function Welcome() {
                     <div className="footer">
                         <div>
                             <Typography variant='overline'>
-                                RIESGO v0.8 Developed by Darvin, Galura & Gelvoleo with Dr. Briane Paul Samson
+                                RIESGO Developed by Darvin, Galura & Gelvoleo with Dr. Briane Paul Samson in Collaboration with COMET DLSU
                             </Typography>
                         </div>
                     </div>

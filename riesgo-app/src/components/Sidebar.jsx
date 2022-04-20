@@ -50,13 +50,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
     const [layer, setLayer] = React.useState(0);
-    const [value, setValue] = React.useState(null);
+    const [value, setValue] = React.useState(4);
     const [selected, setSelected] = React.useState(true);
 
-    if (value != null) {
-        document.getElementById('sidebar-analysis').style.visibility = "visible";
-        document.getElementById('labels').style.visibility = "visible";
-    }
+    // if (value != null) {
+    //     document.getElementById('sidebar-analysis').style.visibility = "visible";
+    //     document.getElementById('labels').style.visibility = "visible";
+    // }
 
     //Update Analysis Props
     const [analysisState, setAnalysisState] = React.useState(props);
@@ -269,9 +269,14 @@ const Sidebar = (props) => {
         }
     }
 
+    React.useEffect(() => {
+        setLayer('Land Use Score');
+        //props.updateLayerType('land_use_score');
+        //props.updateLayer(toActivate);    
+    }, []);
+
     return (
         <div>
-
             {/* Left */}
             {/* MAIN CITY SELECT */}
             <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 750, position: "absolute", margin: 2, overflow: 'auto' }}>
@@ -324,7 +329,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ width: 200, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'hidden' }}>
+            <Card id="labels" sx={{ width: 200, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'visible' }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
@@ -458,7 +463,7 @@ const Sidebar = (props) => {
             </Paper>
 
             {/* Right */}
-            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 750, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'hidden' }}>
+            <Card id="sidebar-analysis" className="style-1" sx={{ overflowX: "hidden", width: 360, maxHeight: 750, overflow: 'auto', position: "absolute", margin: 2, right: 0, visibility: 'visible' }}>
                 <CardContent sx={{ overflowX: "hidden" }}>
                     <Typography variant="h6" component="div">
                         <LayerName layerName={layer} />

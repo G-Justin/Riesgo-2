@@ -14,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       city: '',
       layer: '',
-      layer_type: 'flood',
+      layer_type: '',
       marker_prop: []
     };
 
@@ -76,7 +76,7 @@ export default class App extends React.Component {
                 <Sidebar 
                   updateLayer = {this.updateLayer}
                   updateCity = {this.updateCity}
-                  updateLayerType = {this.updateLayerType}
+                  updateLayerType = {this.updateLayerType} // Updates layer_type
                   
                   marker_prop = {marker_prop}
                   />
