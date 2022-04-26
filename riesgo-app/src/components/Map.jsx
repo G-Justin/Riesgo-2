@@ -167,6 +167,22 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.cl1lsqmez4br92eo9zp88q2bx-6xbs4',
             });
 
+            //Manila Dataset - Accessibility
+            this.map.addSource('manila-accessibility-5yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl2fzpjmw0d5d20o6nm915pum-6wmuq',
+            });
+
+            this.map.addSource('manila-accessibility-25yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl2g0gfbm017g2esavk48lvfh-372wu',
+            });
+
+            this.map.addSource('manila-accessibility-100yr', {
+                type: 'vector',
+                url: 'mapbox://jdarvin.cl2fzsx8w00ji20p6u4fjmlqw-182uz',
+            });
+
             //Marikina Dataset - Accessibility
             this.map.addSource('manila-accessibility-5yr', {
                 type: 'vector',
@@ -909,7 +925,7 @@ export default class Map extends Component {
             });
 
             // MANILA INITS ================================================================================
-            //Marikina Layer Inits
+            //Manila Layer Inits
             this.map.addLayer({
                 id: 'l_manila_elevation',
                 type: 'fill-extrusion',

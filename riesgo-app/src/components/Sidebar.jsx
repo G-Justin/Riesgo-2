@@ -18,6 +18,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import RoomIcon from '@mui/icons-material/Room';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -52,6 +54,7 @@ const Sidebar = (props) => {
     const [layer, setLayer] = React.useState(0);
     const [value, setValue] = React.useState(4);
     const [selected, setSelected] = React.useState(true);
+    const [visible, setVisible] = React.useState(true);
 
     // if (value != null) {
     //     document.getElementById('sidebar-analysis').style.visibility = "visible";
@@ -108,6 +111,9 @@ const Sidebar = (props) => {
         }
     }
 
+    const handleHide = () => {
+        setVisible(!visible);
+    };
 
     //Adjust Weights Ui
     const [open, setOpen] = React.useState(false);
@@ -279,54 +285,67 @@ const Sidebar = (props) => {
         <div>
             {/* Left */}
             {/* MAIN CITY SELECT */}
-            <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 750, position: "absolute", margin: 2, overflow: 'auto' }}>
-                <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
-                    <Box>
-                        <Link to="/" >
-                            <img src="/logolong.png" alt="React Logo" width={"120px"} />
-                        </Link>
-                    </Box>
+            {visible &&
+                <Card className="style-1 scroll-left-container" sx={{ width: 360, maxHeight: 750, position: "absolute", margin: 2, overflow: 'auto' }}>
+                    <CardContent className="scroll-left" sx={{ overflowX: "hidden" }}>
+                        <Box sx={{ flexDirection: "row" }}>
+                            <Link to="/" >
+                                <img src="/logolong.png" alt="React Logo" width={"120px"} />
+                            </Link>
 
-                    <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
-                        <Select
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            value={city}
-                            onChange={handleChange}
-                            type="text"
-                            sx={{ fontSize: '2.25em' }}
-                        >
-                            <MenuItem value={'l_manila'}><b>Manila</b></MenuItem>
-                            <MenuItem value={'l_marikina'}><b>Marikina</b></MenuItem>
-                            <MenuItem value={'l_pasig'}><b>Pasig</b></MenuItem>
-                        </Select>
-                    </FormControl>
+                            <Button onClick={handleHide} variant="outlined" size="small" sx={{ marginLeft: 16 }}>
+                                HIDE
+                            </Button>
+                        </Box>
 
-                    {/* <Typography variant="h5" component="div">
+
+                        <FormControl variant="standard" sx={{ minWidth: '100%', mb: 1 }}>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={city}
+                                onChange={handleChange}
+                                type="text"
+                                sx={{ fontSize: '2.25em' }}
+                            >
+                                <MenuItem value={'l_manila'}><b>Manila</b></MenuItem>
+                                <MenuItem value={'l_marikina'}><b>Marikina</b></MenuItem>
+                                <MenuItem value={'l_pasig'}><b>Pasig</b></MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        {/* <Typography variant="h5" component="div">
                         <b>
                             <CityName cityName={city} />
                         </b>
                     </Typography> */}
 
-                    {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         City
                     </Typography> */}
 
-                    <Typography variant="body">
-                        <CityDetails cityName={city} />
-                    </Typography>
+                        <Typography variant="body">
+                            <CityDetails cityName={city} />
+                        </Typography>
 
-                    <DataTable
-                        cityName={city}
-                    />
-                    <hr />
-                    <AnalysisCity
-                        cityName={city}
-                    />
-                    <hr />
-                    <Button size="small" onClick={handleDownload}>Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
-                </CardContent>
-            </Card>
+                        <DataTable
+                            cityName={city}
+                        />
+                        <hr />
+                        <AnalysisCity
+                            cityName={city}
+                        />
+                        <hr />
+                        <Button size="small" onClick={handleDownload}>Download <CityName cityName={city} /> Dataset <DownloadIcon fontSize="small" /></Button>
+                    </CardContent>
+                </Card>
+            }
+
+            {!visible &&
+                <Button onClick={handleHide} variant="outlined" size="small">
+                    SHOW
+                </Button>
+            }
 
             {/* LEGEND DISPLAY */}
             <Card id="labels" sx={{ width: 200, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'visible' }}>
@@ -341,7 +360,7 @@ const Sidebar = (props) => {
             </Card>
 
             {/* Bottom */}
-            <Paper sx={{ position: 'fixed', bottom: 0, left: "20%", right: "20%"}} elevation={3}>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: "20%", right: "20%" }} elevation={3}>
                 <BottomNavigation
                     showLabels
                     value={value}
