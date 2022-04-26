@@ -14,7 +14,7 @@ code {
 
 /** Header CSS **/
 header {
-  width: 1290px;
+  width: 75%;
   margin: auto;
   max-width: 95%;
   margin-top: 20px;
@@ -64,7 +64,7 @@ header .btn-faq button {
 }
 
   .body-section .container-body {
-    width: 1290px;
+    width: 75%;
     margin: auto;
     max-width: 95%;
 }
@@ -99,15 +99,17 @@ header .btn-faq button {
   color: #525252;
 }
 
-.btn-grad {background-image: linear-gradient(to right, #36D1DC 0%,  #5B86E5  51%, #36D1DC  100%)}
+.btn-grad {
+  background-color: #435dce;
+}
 
 .btn-grad {
-  font-family: inherit;
   font-weight: bold;
   margin: auto;
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
+  font-size: 1.5em;
   transition: 0.5s;
   background-size: 200% auto;
   color: white;            
@@ -115,7 +117,7 @@ header .btn-faq button {
   border: none !important;
   border-radius: 40px;
   display: block;
-  width: 75%;
+  width: 100%;
  }
 
  .btn-grad:hover {
