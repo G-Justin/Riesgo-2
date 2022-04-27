@@ -183,22 +183,6 @@ export default class Map extends Component {
                 url: 'mapbox://jdarvin.cl2fzsx8w00ji20p6u4fjmlqw-182uz',
             });
 
-            //Marikina Dataset - Accessibility
-            this.map.addSource('manila-accessibility-5yr', {
-                type: 'vector',
-                url: '',
-            });
-
-            this.map.addSource('manila-accessibility-25yr', {
-                type: 'vector',
-                url: '',
-            });
-
-            this.map.addSource('manila-accessibility-100yr', {
-                type: 'vector',
-                url: '',
-            });
-
             //Marikina Dataset - Hazard
             this.map.addSource('manila-hazard-5yr', {
                 type: 'vector',
