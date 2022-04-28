@@ -263,7 +263,6 @@ export default function AnalysisSide(props) {
           {/* This area is <b style={{color: "#ff5d5d"}}>33% Residential</b>, <b style={{color: "#00C49F"}}>25% Industrial</b> and <b style={{color: "#FFBB28"}}>42% Farmland</b>. <hr />  */}
           With an approximate <i>land usability</i> score of <b style={{ color: scoreColor }}>{landUseScore}</b>, This area is marked <b style={{ color: scoreColor }}><LandUsability score={landUseScore} /></b> for situating flood evacuation centers.
         </Typography>
-        <hr />
       </div>
     );
   } else return (<div></div>)

@@ -2011,15 +2011,17 @@ export default class Map extends Component {
                 }
             });
 
+            // DEFAULT STARTING LAYER
+
             this.map.setLayoutProperty(
-                `l_marikina_land_use_score`,
+                `l_marikina_sustainability_5yr`,
                 'visibility',
                 'visible'
             );
             this.setState({ currentCity: `l_marikina` });
 
-            this.props.updateLayer(`l_marikina_land_use_score`);
-            this.map.setPaintProperty(`l_marikina_land_use_score`, 'fill-extrusion-opacity', 0.75);
+            this.props.updateLayer(`l_marikina_sustainability_5yr`);
+            this.map.setPaintProperty(`l_marikina_sustainability_5yr`, 'fill-extrusion-opacity', 0.75);
 
             console.log('done!');
 

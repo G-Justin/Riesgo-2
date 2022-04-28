@@ -18,8 +18,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import RoomIcon from '@mui/icons-material/Room';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import IconButton from '@mui/material/IconButton';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -52,7 +52,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const Sidebar = (props) => {
     const [city, setCity] = React.useState('l_marikina');
     const [layer, setLayer] = React.useState(0);
-    const [value, setValue] = React.useState(4);
+    const [value, setValue] = React.useState(3);
     const [selected, setSelected] = React.useState(true);
     const [visible, setVisible] = React.useState(true);
 
@@ -214,7 +214,7 @@ const Sidebar = (props) => {
                         <div><span style={{ backgroundColor: '#cfd3ff' }}></span>No Flood (0 m)</div>
                         <div><span style={{ backgroundColor: '#727ded' }}></span>Low Flood (0.1 - 0.5 m) </div>
                         <div><span style={{ backgroundColor: '#3741a1' }}></span>Medium Flood (0.5 - 1.5 m)</div>
-                        <div><span style={{ backgroundColor: '#06106b' }}></span>High Flood ( > 1.5 m)</div>
+                        <div><span style={{ backgroundColor: '#06106b' }}></span>High Flood ( {`>`} 1.5 m)</div>
                     </Box>
                 );
             case "Elevation":
@@ -413,6 +413,19 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction
+                        label="Suitability"
+                        icon={<LightbulbIcon />}
+                        onClick={() => {
+                            const toActivate = `${city}_sustainability_5yr`;
+
+                            setLayer('Sustainability');
+                            props.updateLayerType('sustainability_5yr');
+                            props.updateLayer(toActivate);
+
+                            handleClose();
+                        }}
+                    />
+                    <BottomNavigationAction
                         label="Land Elevation"
                         icon={<FilterHdrIcon />}
 
@@ -447,19 +460,6 @@ const Sidebar = (props) => {
 
                             setLayer('Coverage Score');
                             props.updateLayerType('coverage_score');
-                            props.updateLayer(toActivate);
-
-                            handleClose();
-                        }}
-                    />
-                    <BottomNavigationAction
-                        label="Suitability"
-                        icon={<LightbulbIcon />}
-                        onClick={() => {
-                            const toActivate = `${city}_sustainability_5yr`;
-
-                            setLayer('Sustainability');
-                            props.updateLayerType('sustainability_5yr');
                             props.updateLayer(toActivate);
 
                             handleClose();
@@ -503,7 +503,7 @@ const Sidebar = (props) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
-                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
+                                <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -565,7 +565,7 @@ const Sidebar = (props) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
-                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
+                                <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -624,7 +624,7 @@ const Sidebar = (props) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
-                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
+                                <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -684,7 +684,7 @@ const Sidebar = (props) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
-                                <Typography variant="overline"><b>Select a Return Period</b></Typography>
+                                <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
                                     color="primary"
                                     value={alignment}
@@ -737,8 +737,27 @@ const Sidebar = (props) => {
                     <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
                     <Typography id="pd">undefined</Typography>
 
-                    <AnalysisSide data={analysisState.marker_prop} selected={selected} />
+                    {/* Only show land use when land use / sustainaibility is selected */}
+
+                    {layer === "Land Use Score" &&
+                        <div onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}>
+
+                            <AnalysisSide data={analysisState.marker_prop} selected={selected} />
+                        </div>
+                    }
+                    {layer === "Sustainability" &&
+                        <div onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}>
+
+                            <AnalysisSide data={analysisState.marker_prop} selected={selected} />
+                        </div>
+                    }
+
                     <Analysis data={analysisState.marker_prop} cityName={city} layerName={layer} selected={selected} />
+
                 </CardContent>
             </Card>
 

@@ -48,20 +48,20 @@ export default function Analysis(props) {
         setAnalysisState(props);
     }, [props]);
 
-    // var floodData = [ // Removed floodData and Flood Safety Score Vis as per request.
-    //     {
-    //         name: "5 Years",
-    //         score: analysisState.data[0] + 0.05,
-    //     },
-    //     {
-    //         name: "25 Years",
-    //         score: analysisState.data[1] + 0.05,
-    //     },
-    //     {
-    //         name: "100 Years",
-    //         score: analysisState.data[2] + 0.05,
-    //     },
-    // ];
+    var floodData = [ // Removed floodData and Flood Safety Score Vis as per request.
+        {
+            name: "5 Years",
+            score: analysisState.data[0] + 0.05,
+        },
+        {
+            name: "25 Years",
+            score: analysisState.data[1] + 0.05,
+        },
+        {
+            name: "100 Years",
+            score: analysisState.data[2] + 0.05,
+        },
+    ];
 
     var hazardData = [
         {
@@ -326,7 +326,7 @@ export default function Analysis(props) {
                             <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
                         </AreaChart>
                         <Typography variant='body1'>
-                           The average score of the city's population.
+                            The average score of the city's population.
                         </Typography>
                     </div>)
                 case "Land Use Score":
@@ -662,89 +662,159 @@ export default function Analysis(props) {
     }
 
     else if (props.selected === true) {
-        return (
-            <div>
-                <i>Higher is better *</i> <br />
-                <Typography variant="overline">years are represented as <b>return periods</b></Typography>
-                {/* <Typography variant="h6">Flood Safety Score</Typography>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-5}
-                >
-                    <BarChart width={350} height={150} data={floodData}>
-                        <XAxis dataKey="name" />
-                        <YAxis domain={[0, 1]} allowDataOverflow={true} />
-                        <Bar dataKey="score">
-                            {floodData.map((entry, index) => (
-                                <Cell fill={getFloodColor(entry.score)} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                </Box> */}
+        switch (props.layerName) {
+            case "Flood":
+                return (
+                    <div>
+                        <hr />
+                        {/* <i>Higher is better *</i> <br /> */}
+                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="h6">Flood Safety Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}
+                        >
+                            <BarChart width={350} height={150} data={floodData}>
+                                <XAxis dataKey="name" />
+                                <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                <Bar dataKey="score">
+                                    {floodData.map((entry, index) => (
+                                        <Cell fill={getFloodColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
+                        <hr />
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                    </div>
+                )
+            case "Hazard":
+                return (
+                    <div>
+                        <hr />
+                        {/* <i>Higher is better *</i> <br /> */}
+                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="h6">Hazard Safety Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}>
+                            <BarChart width={350} height={150} data={hazardData}>
+                                <XAxis dataKey="name" />
+                                <YAxis type="number" domain={[0, 1]} />
+                                <Tooltip />
+                                <Bar dataKey="score">
+                                    {hazardData.map((entry, index) => (
+                                        <Cell fill={getHazardColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
+                        <hr />
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                    </div>
+                )
+            case "Accessibility":
+                return (
+                    <div>
+                        <hr />
+                        {/* <i>Higher is better *</i> <br /> */}
+                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="h6">Area Accessibility Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}>
+                            <BarChart width={350} height={150} data={accessibilityData}>
+                                <XAxis dataKey="name" />
+                                <YAxis type="number" domain={[0, 1]} />
+                                <Tooltip />
+                                <Bar dataKey="score">
+                                    {accessibilityData.map((entry, index) => (
+                                        <Cell fill={getAccessibilityColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
+                        <hr />
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                    </div>
+                )
+            case "Sustainability":
+                return (
+                    <div>
+                        <hr />
+                        {/* <i>Higher is better *</i> <br /> */}
+                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="h6">Hazard Safety Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}>
+                            <BarChart width={350} height={150} data={hazardData}>
+                                <XAxis dataKey="name" />
+                                <YAxis type="number" domain={[0, 1]} />
+                                <Tooltip />
+                                <Bar dataKey="score">
+                                    {hazardData.map((entry, index) => (
+                                        <Cell fill={getHazardColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
 
-                <Typography variant="h6">Hazard Safety Score</Typography>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-5}>
-                    <BarChart width={350} height={150} data={hazardData}>
-                        <XAxis dataKey="name" />
-                        <YAxis type="number" domain={[0, 1]} />
-                        <Tooltip />
-                        <Bar dataKey="score">
-                            {hazardData.map((entry, index) => (
-                                <Cell fill={getHazardColor(entry.score)} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                </Box>
+                        <Typography variant="h6">Area Accessibility Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}>
+                            <BarChart width={350} height={150} data={accessibilityData}>
+                                <XAxis dataKey="name" />
+                                <YAxis type="number" domain={[0, 1]} />
+                                <Tooltip />
+                                <Bar dataKey="score">
+                                    {accessibilityData.map((entry, index) => (
+                                        <Cell fill={getAccessibilityColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
 
-                <Typography variant="h6">Area Accessibility Score</Typography>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-5}>
-                    <BarChart width={350} height={150} data={accessibilityData}>
-                        <XAxis dataKey="name" />
-                        <YAxis type="number" domain={[0, 1]} />
-                        <Tooltip />
-                        <Bar dataKey="score">
-                            {accessibilityData.map((entry, index) => (
-                                <Cell fill={getAccessibilityColor(entry.score)} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                </Box>
+                        <Typography variant="h6">Overall Suitability Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={-5}
+                        >
+                            <BarChart width={350} height={150} data={sustainabilityData}>
+                                <XAxis dataKey="name" />
+                                <YAxis domain={[0, 0.65]} allowDataOverflow={true} />
+                                <Tooltip />
+                                <Bar dataKey="score">
+                                    {sustainabilityData.map((entry, index) => (
+                                        <Cell fill={getSustainabilityColor(entry.score)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </Box>
 
-                <Typography variant="h6">Overall Suitability Score</Typography>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginLeft={-5}
-                >
-                    <BarChart width={350} height={150} data={sustainabilityData}>
-                        <XAxis dataKey="name" />
-                        <YAxis domain={[0, 0.65]} allowDataOverflow={true} />
-                        <Tooltip />
-                        <Bar dataKey="score">
-                            {sustainabilityData.map((entry, index) => (
-                                <Cell fill={getSustainabilityColor(entry.score)} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                </Box>
-
-                <Typography variant="h6">Elevation (Above Sea Level)</Typography>
-                <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
-            </div>
-        );
+                        <Typography variant="h6">Elevation (Above Sea Level)</Typography>
+                        <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
+                        <hr />
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                    </div>
+                );
+            default:
+                return (<div></div>); // No case
+        }
     } else {
-        return (<div></div>)
+        return (<div></div>) // No case
     }
-
 }
