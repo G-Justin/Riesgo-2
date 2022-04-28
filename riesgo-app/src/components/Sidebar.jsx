@@ -211,10 +211,10 @@ const Sidebar = (props) => {
             case "Flood":
                 return (
                     <Box>
-                        <div><span style={{ backgroundColor: '#cfd3ff' }}></span>No Flood</div>
-                        <div><span style={{ backgroundColor: '#727ded' }}></span>Low Flood</div>
-                        <div><span style={{ backgroundColor: '#3741a1' }}></span>Medium Flood</div>
-                        <div><span style={{ backgroundColor: '#06106b' }}></span>High Flood</div>
+                        <div><span style={{ backgroundColor: '#cfd3ff' }}></span>No Flood (0 m)</div>
+                        <div><span style={{ backgroundColor: '#727ded' }}></span>Low Flood (0.1 - 0.5 m) </div>
+                        <div><span style={{ backgroundColor: '#3741a1' }}></span>Medium Flood (0.5 - 1.5 m)</div>
+                        <div><span style={{ backgroundColor: '#06106b' }}></span>High Flood ( > 1.5 m)</div>
                     </Box>
                 );
             case "Elevation":
@@ -348,7 +348,7 @@ const Sidebar = (props) => {
             }
 
             {/* LEGEND DISPLAY */}
-            <Card id="labels" sx={{ width: 200, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'visible' }}>
+            <Card id="labels" sx={{ width: 240, maxHeight: 160, position: "absolute", margin: 2, right: 370, visibility: 'visible' }}>
                 <CardContent>
                     <Typography>
                         <b><LayerName layerName={layer} /> Legend</b>
