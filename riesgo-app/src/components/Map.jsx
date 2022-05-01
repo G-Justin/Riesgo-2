@@ -148,7 +148,7 @@ export default class Map extends Component {
             //Manila Dataset - Land Elevation
             this.map.addSource('manila-elevation', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cl1lt36qj078t21oegpdy0q48-08l4s',
+                url: 'mapbox://jdarvin.cl2mr4wwc0wsm23p5bgpmitdz-21jhv',
             });
 
             //Manila Dataset - Flood
@@ -217,17 +217,17 @@ export default class Map extends Component {
             //Manila Dataset - Sustainability 
             this.map.addSource('manila-sustainability-5yr', {
                 type: 'vector',
-                url: 'mapbox://',
+                url: 'mapbox://jdarvin.cl2mrgvto0ps420rx59dvb4ul-3xoh7',
             });
 
             this.map.addSource('manila-sustainability-25yr', {
                 type: 'vector',
-                url: 'mapbox://',
+                url: 'mapbox://jdarvin.cl2mrlidk1y4921o6fw0fgqfv-2fwew',
             });
 
             this.map.addSource('manila-sustainability-100yr', {
                 type: 'vector',
-                url: 'mapbox://',
+                url: 'mapbox://jdarvin.cl2mriqs31ieo22mtescivi7k-3oqtt',
             });
 
             //Manila Dataset - Complete 
@@ -933,7 +933,7 @@ export default class Map extends Component {
                             [1, '#0a8c26'],
                         ],
                     },
-                    'fill-extrusion-height': ['*', 10, ['number', ['get', 'elevation'], 1]],
+                    'fill-extrusion-height': ['*', 750, ['number', ['get', 'elevation'], 1]],
                     'fill-extrusion-opacity': 0,
                     // [
                     //     'case',
