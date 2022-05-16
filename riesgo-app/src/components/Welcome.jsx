@@ -22,25 +22,25 @@ function Welcome() {
                 <div className="container-body">
                     <div className="content-body">
                         <div className="left-side">
-                            <h2>RIESGO is...</h2>
-                            <h1>
-                                An Evacuation Center Suitability Tool 🌧️<hr />
-                            </h1>
-                            <p>
-                                It's an interactive Metro Manila Map for flood visualization and urban planning created as a
-                                companion web application for urban planners, local government units, architects, and engineers.
-                                <br></br>
-                            </p>
+                            <Typography variant='body1'>RIESGO is...</Typography>
+                            <Typography variant='h1'>
+                                An Evacuation Center Suitability Tool 🌧️
+                            </Typography>
+                            <Typography variant='body2'>
+                                We're working on building an <b>interactive Metro Manila Map for flood visualization and urban planning</b>.                                 
+                                See our paper about it <a href="#">here</a>.
+                            </Typography>
+                            <br/>
                             <div>
                                 <Link to="map" style={{ color: "white", textDecoration: "none" }}>
                                     <button className="btn-grad">
-                                        Start RIESGO
+                                        BEGIN RIESGO
                                     </button>
                                 </Link>
                             </div>
                         </div>
                         <div className="right-side">
-                            <img src='right.png' alt='' width='90%' />
+                            <img src='right.png' alt='' width='100%' />
                         </div>
                     </div>
                 </div>

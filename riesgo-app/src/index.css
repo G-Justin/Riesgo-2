@@ -100,28 +100,26 @@ header .btn-faq button {
 }
 
 .btn-grad {
-  background-color: #435dce;
-}
-
-.btn-grad {
   font-weight: bold;
   margin: auto;
-  padding: 15px 45px;
+  padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.5em;
+  font-size: 1.75em;
   transition: 0.5s;
   background-size: 200% auto;
+  background-color: #435dce;
   color: white;            
   box-shadow: 0 0 20px #eee;
   border: none !important;
-  border-radius: 40px;
+  border-radius: 15px;
   display: block;
   width: 100%;
  }
 
  .btn-grad:hover {
    background-position: right center; /* change the direction of the change here */
+   background-color: #6178e0;
    color: #fff;
    text-decoration: none;
  }
