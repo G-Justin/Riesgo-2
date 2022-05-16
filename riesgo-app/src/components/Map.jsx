@@ -1915,6 +1915,9 @@ export default class Map extends Component {
                 //Barangay
                 tempMarkerArray[29] = displayFeatures[0].properties.barangay;
 
+                //Coverage score
+                tempMarkerArray[30] = displayFeatures[0].properties.coverage_score;
+
                 this.setState({ markerProp: tempMarkerArray });
                 this.props.updateMarkerProp(tempMarkerArray);
 

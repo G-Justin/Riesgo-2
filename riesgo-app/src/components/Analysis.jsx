@@ -41,6 +41,8 @@ const getSustainabilityColor = (p) => {
     if (p < .2) { return "#ff3d3d"; }
 }
 
+const getCoverageColor = ["#00C49F", "#ebebeb"];
+
 export default function Analysis(props) {
     const [analysisState, setAnalysisState] = React.useState(props);
 
@@ -66,47 +68,58 @@ export default function Analysis(props) {
     var hazardData = [
         {
             name: "5 Years",
-            score: analysisState.data[3],
+            score: Number(parseFloat(analysisState.data[3]).toFixed(2))
         },
         {
             name: "25 Years",
-            score: analysisState.data[4],
+            score: Number(parseFloat(analysisState.data[4]).toFixed(2))
         },
         {
             name: "100 Years",
-            score: analysisState.data[5],
+            score: Number(parseFloat(analysisState.data[5]).toFixed(2))
         },
     ];
 
     var accessibilityData = [
         {
             name: "5 Years",
-            score: analysisState.data[6],
+            score: Number(parseFloat(analysisState.data[6]).toFixed(2))
         },
         {
             name: "25 Years",
-            score: analysisState.data[7],
+            score: Number(parseFloat(analysisState.data[7]).toFixed(2))
         },
         {
             name: "100 Years",
-            score: analysisState.data[8],
+            score: Number(parseFloat(analysisState.data[8]).toFixed(2))
         },
     ];
 
     var sustainabilityData = [
         {
             name: "5 Years",
-            score: analysisState.data[26],
+            score: Number(parseFloat(analysisState.data[26]).toFixed(2))
         },
         {
             name: "25 Years",
-            score: analysisState.data[27],
+            score: Number(parseFloat(analysisState.data[27]).toFixed(2))
         },
         {
             name: "100 Years",
-            score: analysisState.data[28],
+            score: Number(parseFloat(analysisState.data[28]).toFixed(2))
         },
     ];
+
+    var coverageData = [
+        {
+            name: "Coverage Score",
+            score: Number(parseFloat(analysisState.data[30]).toFixed(3))
+        },
+        {
+            name: "Remaining Score",
+            score: 1 - Number(parseFloat(analysisState.data[30]).toFixed(3))
+        }
+    ]
 
     if (props.selected === false || analysisState.data[9] === undefined) { // If pin is not dropped
 
@@ -660,7 +673,7 @@ export default function Analysis(props) {
             return (<div></div>)
         }
     }
-
+    // Analyze specific grid
     else if (props.selected === true) {
         switch (props.layerName) {
             case "Flood":
@@ -744,7 +757,7 @@ export default function Analysis(props) {
                         <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
                     </div>
                 )
-            case "Sustainability":
+            case "Sustainability": // Show all
                 return (
                     <div>
                         <hr />
@@ -805,12 +818,63 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
 
+                        <Typography variant="h6">Coverage Score</Typography>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            marginLeft={0}
+                        >
+                            <PieChart width={350} height={220}>
+                                <Pie
+                                    data={coverageData}
+                                    labelLine={false}
+                                    outerRadius={100}
+                                    fill="#8884d8"
+                                    dataKey="score"
+                                >
+                                    {coverageData.map((entry, index) => (
+                                        <Cell fill={getCoverageColor[index % getCoverageColor.length]} />
+                                    ))}
+                                </Pie>
+                                <Tooltip />
+                            </PieChart>
+                        </Box>
+
                         <Typography variant="h6">Elevation (Above Sea Level)</Typography>
                         <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
                         <hr />
                         <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
                     </div>
                 );
+            case "Coverage Score":
+                return (<div>
+                    <Typography variant="h6">Coverage Score</Typography>
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        marginLeft={0}
+                    >
+                        <PieChart width={350} height={220}>
+                            <Pie
+                                data={coverageData}
+                                labelLine={false}
+                                outerRadius={100}
+                                fill="#8884d8"
+                                dataKey="score"
+                            >
+                                {coverageData.map((entry, index) => (
+                                    <Cell fill={getCoverageColor[index % getCoverageColor.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip />
+                        </PieChart>
+                    </Box>
+                    <hr />
+                    <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                </div>
+                )
             default:
                 return (<div></div>); // No case
         }
