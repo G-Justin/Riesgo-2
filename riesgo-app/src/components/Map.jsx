@@ -233,7 +233,7 @@ export default class Map extends Component {
             //Manila Dataset - Complete 
             this.map.addSource('manila-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cl1ltazmi082b21k97j65zvc1-0d67v',
+                url: 'mapbox://jdarvin.cl1ltazmi082b21k97j65zvc1-5tdh1'
             });
 
             //MARIKINA ==================================================================================
@@ -331,7 +331,6 @@ export default class Map extends Component {
             //Marikina Dataset - Complete 
             this.map.addSource('marikina-complete', {
                 type: 'vector',
-                //url: 'mapbox://jdarvin.ckyzsf1tw0yy120qp3n22yn03-0kndf',
                 url: 'mapbox://jdarvin.ckzgbu1b92lho21oftr0rn8ty-5earz'
             });
 
@@ -430,7 +429,6 @@ export default class Map extends Component {
             //Pasig Dataset - Complete
             this.map.addSource('pasig-complete', {
                 type: 'vector',
-                //url: 'mapbox://jdarvin.ckyzx8yn50prh21lllu3m25j8-2d3yn',
                 url: 'mapbox://jdarvin.ckzgjgut71c1o2bppmocyqmxy-9hnjj',
             });
 

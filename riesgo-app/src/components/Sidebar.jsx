@@ -293,9 +293,9 @@ const Sidebar = (props) => {
                                 <img src="/logolong.png" alt="React Logo" width={"120px"} />
                             </Link>
 
-                            <Button onClick={handleHide} variant="outlined" size="small" sx={{ marginLeft: 16 }}>
-                                HIDE
-                            </Button>
+                            {/* <Button onClick={handleHide} variant="outlined" size="small" sx={{ marginLeft: 16 }}>
+                                HIDE @ Mich i'm commenting this out for now.
+                            </Button> */}
                         </Box>
 
 
@@ -735,7 +735,10 @@ const Sidebar = (props) => {
                         </Box>}
                     <hr />
                     <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
-                    <Typography id="pd">undefined</Typography>
+                    <Typography id="pd" style={{fontSize: "1.75em", fontWeight: "bold"}}>
+                        undefined
+                    </Typography>
+                    <Typography variant="overline">score of grid area under mouse</Typography>
 
                     {/* Only show land use when land use / sustainaibility is selected */}
 
