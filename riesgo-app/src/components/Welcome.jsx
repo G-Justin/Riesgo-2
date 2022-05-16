@@ -48,7 +48,7 @@ function Welcome() {
                     <div className="footer">
                         <div>
                             <Typography variant='overline'>
-                                RIESGO was Developed by Darvin, Galura & Gelvoleo under Dr. Briane Paul Samson
+                                RIESGO, Developed by Darvin, Galura & Gelvoleo under Dr. Briane Paul Samson | Comet DLSU
                             </Typography>
                         </div>
                     </div>
