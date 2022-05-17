@@ -233,7 +233,7 @@ export default class Map extends Component {
             //Manila Dataset - Complete 
             this.map.addSource('manila-complete', {
                 type: 'vector',
-                url: 'mapbox://jdarvin.cl1ltazmi082b21k97j65zvc1-5tdh1'
+                url: 'mapbox://jdarvin.d2qvdpml'
             });
 
             //MARIKINA ==================================================================================
@@ -1369,7 +1369,7 @@ export default class Map extends Component {
                 id: 'l_manila_complete',
                 type: 'fill',
                 source: 'manila-complete',
-                'source-layer': 'manila_complete',
+                'source-layer': 'manila_complete-b1e6o2', // Because it exceeds 5MB
                 layout: {
                     visibility: 'visible',
                 },
