@@ -85,6 +85,8 @@ const Sidebar = (props) => {
             download("/datasets/mrkna_test.json", "marikina.json")
         } else if (city === 'l_pasig') {
             download("/datasets/pasig_test.json", "pasig.json")
+        } else if (city === 'l_manila') {
+            download("/datasets/mnl_test.json", "manila.json")
         }
     };
 
