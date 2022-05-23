@@ -8,29 +8,19 @@ import { ReactComponent as LogoSvg } from '../assets/riesgo-logo-small.svg';
 function Welcome() {
     return (
         <div>
-            <header>
-                <div className="logo">
-                    <LogoSvg />
-                </div>
-                {/* <div className="btn-faq">
-                    <button>
-                        FAQ
-                    </button>
-                </div> */}
-            </header>
-            <section className="body-section">
+            <section className="body-section" >
                 <div className="container-body">
                     <div className="content-body">
                         <div className="left-side">
-                            <Typography variant='body1'>RIESGO is...</Typography>
+                            <LogoSvg />
                             <Typography variant='h1'>
-                                An Evacuation Center Suitability Tool 🌧️
+                                An Evacuation Center Suitability Tool.
                             </Typography>
                             <Typography variant='body2'>
-                                We're working on building an <b>interactive Metro Manila Map for flood visualization and urban planning</b>.                                 
+                                We're working on building an <b>interactive Metro Manila Map for flood visualization and urban planning</b>.
                                 See our paper about it <a href="#">here</a>.
                             </Typography>
-                            <br/>
+                            <br />
                             <div>
                                 <Link to="map" style={{ color: "white", textDecoration: "none" }}>
                                     <button className="btn-grad">
@@ -40,7 +30,7 @@ function Welcome() {
                             </div>
                         </div>
                         <div className="right-side">
-                            <img src='right.png' alt='' width='100%' />
+                            <img src='right2.png' alt='' style={{width:'40em'}} />
                         </div>
                     </div>
                 </div>

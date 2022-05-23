@@ -278,7 +278,7 @@ const Sidebar = (props) => {
     }
 
     React.useEffect(() => {
-        setLayer('Land Use Score');
+        setLayer('Sustainability');
         //props.updateLayerType('land_use_score');
         //props.updateLayer(toActivate);    
     }, []);
@@ -467,19 +467,6 @@ const Sidebar = (props) => {
                             handleClose();
                         }}
                     />
-                    {/* <BottomNavigationAction
-                        label="None"
-                        icon={<BlockIcon />}
-
-                        onClick={() => {
-
-                            const toActivate = `none`;
-
-                            setLayer('None');
-                            props.updateLayerType('none');
-                            props.updateLayer(toActivate);
-                        }}
-                    /> */}
                 </BottomNavigation>
             </Paper>
 
