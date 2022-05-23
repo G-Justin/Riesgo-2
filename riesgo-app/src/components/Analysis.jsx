@@ -425,7 +425,7 @@ export default function Analysis(props) {
                 case "Land Use Score":
                     return (<div>
                         <hr />
-                        <Typography variant="h6">Marikina Land Usage Distribution</Typography>
+                        <Typography variant="h6">Marikina Land Availability Distribution</Typography>
                         <PieChart width={320} height={300}>
                             <Legend />
                             <Tooltip />
@@ -696,7 +696,7 @@ export default function Analysis(props) {
                 case "Land Use Score":
                     return (<div>
                         <hr />
-                        <Typography variant="h6">Pasig Land Usage Distribution</Typography>
+                        <Typography variant="h6">Pasig Land Availability Distribution</Typography>
                         <PieChart width={320} height={300}>
                             <Legend />
                             <Tooltip />

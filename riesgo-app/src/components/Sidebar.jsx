@@ -175,7 +175,7 @@ const Sidebar = (props) => {
             case "Coverage Score":
                 return "Coverage";
             case "Land Use Score":
-                return "Land Usability";
+                return "Land Availability"; // Previously Usability
             case "Sustainability":
                 return "Suitability";
             default:
@@ -198,7 +198,7 @@ const Sidebar = (props) => {
             case "Coverage Score":
                 return "Coverage score takes into account the population of a cell and its neighbors within a 2 km radius."
             case "Land Use Score":
-                return "The land usability score represents which areas in this grid are most suitable for situating new evacuation centers.";
+                return "The land availability score represents which areas in this grid are most suitable for situating new evacuation centers.";
             case "Sustainability":
                 return "The suitability score is based on all layers and measures the suitability of a cell for building an evacuation center.";
             default:
@@ -256,10 +256,10 @@ const Sidebar = (props) => {
             case "Land Use Score":
                 return (
                     <Box>
-                        <div><span style={{ backgroundColor: '#340042' }}></span>Unusable Area</div>
-                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Slightly Usable Area</div>
-                        <div><span style={{ backgroundColor: '#4ec050' }}></span>Usable Area</div>
-                        <div><span style={{ backgroundColor: '#fcba03' }}></span>Highly Usable Area</div>
+                        <div><span style={{ backgroundColor: '#340042' }}></span>Unavailable Area</div>
+                        <div><span style={{ backgroundColor: '#216d7b' }}></span>Slightly Available Area</div>
+                        <div><span style={{ backgroundColor: '#4ec050' }}></span>Available Area</div>
+                        <div><span style={{ backgroundColor: '#fcba03' }}></span>Highly Available Area</div>
                     </Box>
                 );
             case "Sustainability":
@@ -442,7 +442,7 @@ const Sidebar = (props) => {
                         }}
                     />
                     <BottomNavigationAction
-                        label="Land Usage"
+                        label="Land Availability" // Previously Land Usage
                         icon={<HouseIcon />}
                         onClick={() => {
                             const toActivate = `${city}_land_use_score`;
