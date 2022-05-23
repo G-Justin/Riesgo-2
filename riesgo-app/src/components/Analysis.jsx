@@ -46,6 +46,8 @@ const getCoverageColor = ["#00C49F", "#ebebeb"];
 export default function Analysis(props) {
     const [analysisState, setAnalysisState] = React.useState(props);
 
+    var barangay = analysisState.data[29];
+
     React.useEffect(() => {
         setAnalysisState(props);
     }, [props]);
@@ -680,8 +682,7 @@ export default function Analysis(props) {
                 return (
                     <div>
                         <hr />
-                        {/* <i>Higher is better *</i> <br /> */}
-                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
                         <Typography variant="h6">Flood Safety Score</Typography>
                         <Box
                             display="flex"
@@ -707,8 +708,7 @@ export default function Analysis(props) {
                 return (
                     <div>
                         <hr />
-                        {/* <i>Higher is better *</i> <br /> */}
-                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
                         <Typography variant="h6">Hazard Safety Score</Typography>
                         <Box
                             display="flex"
@@ -734,8 +734,7 @@ export default function Analysis(props) {
                 return (
                     <div>
                         <hr />
-                        {/* <i>Higher is better *</i> <br /> */}
-                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                        <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
                         <Typography variant="h6">Area Accessibility Score</Typography>
                         <Box
                             display="flex"
@@ -761,8 +760,6 @@ export default function Analysis(props) {
                 return (
                     <div>
                         <hr />
-                        {/* <i>Higher is better *</i> <br /> */}
-                        <Typography variant="overline">years are represented as <b>return periods</b></Typography>
                         <Typography variant="h6">Hazard Safety Score</Typography>
                         <Box
                             display="flex"
@@ -849,6 +846,8 @@ export default function Analysis(props) {
                 );
             case "Coverage Score":
                 return (<div>
+                    <hr/>
+                    <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
                     <Typography variant="h6">Coverage Score</Typography>
                     <Box
                         display="flex"

@@ -234,7 +234,8 @@ export default function AnalysisSide(props) {
     return (
       <div>
         <hr />
-        <Typography variant="h6">{barangay} Land Use Distribution</Typography>
+        <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
+        <Typography variant="h6">Land Use Distribution</Typography>
         <Box display="flex"
           alignItems="center"
           justifyContent="center"

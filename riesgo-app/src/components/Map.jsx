@@ -1924,96 +1924,96 @@ export default class Map extends Component {
                 console.log("Sending... " + tempMarkerArray);
             });
 
-            //Hover Feature Getting
-            this.map.on('mousemove', (e) => {
-                const features = this.map.queryRenderedFeatures(e.point);
-                //console.log(e.point);
-                const displayProperties = [
-                    'type',
-                    'properties',
-                    'id',
-                    'layer',
-                    'source',
-                    'sourceLayer',
-                    'state'
-                ];
+            //Hover Featured (DISABLED)
 
-                const displayFeatures = features.map((feat) => {
-                    const displayFeat = {};
-                    displayProperties.forEach((prop) => {
-                        displayFeat[prop] = feat[prop];
-                    });
-                    return displayFeat;
-                });
+            // this.map.on('mousemove', (e) => {
+            //     const features = this.map.queryRenderedFeatures(e.point);
+            //     //console.log(e.point);
+            //     const displayProperties = [
+            //         'type',
+            //         'properties',
+            //         'id',
+            //         'layer',
+            //         'source',
+            //         'sourceLayer',
+            //         'state'
+            //     ];
 
-                //console.log("We are doing: " + this.hover_layer);
+            //     const displayFeatures = features.map((feat) => {
+            //         const displayFeat = {};
+            //         displayProperties.forEach((prop) => {
+            //             displayFeat[prop] = feat[prop];
+            //         });
+            //         return displayFeat;
+            //     });
 
-                //Supposed to be current_layer
-                if (this.hover_layer === "hazard_5yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_5yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "hazard_25yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_25yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "hazard_100yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.hazard_100yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "flood_5yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_5yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "flood_25yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_25yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "flood_100yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.flood_100yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "accessibility_5yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_5yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "accessibility_25yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_25yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "accessibility_100yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_100yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "SUSTAINABILITY_5yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_5yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "SUSTAINABILITY_25yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_25yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "SUSTAINABILITY_100yr") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_100yr).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "elevation") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.elevation).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "land_use_score") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.land_use_score).toFixed(3))}`
-                        : `undefined`;
-                } else if (this.hover_layer === "coverage_score") {
-                    document.getElementById('pd').innerHTML = displayFeatures.length
-                        ? `${Number(parseFloat(displayFeatures[0].properties.coverage_score).toFixed(3))}`
-                        : `undefined`;
-                }
-            });
+            //     //console.log("We are doing: " + this.hover_layer);
+
+            //     //Supposed to be current_layer
+            //     if (this.hover_layer === "hazard_5yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.hazard_5yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "hazard_25yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.hazard_25yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "hazard_100yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.hazard_100yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "flood_5yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.flood_5yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "flood_25yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.flood_25yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "flood_100yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.flood_100yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "accessibility_5yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_5yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "accessibility_25yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_25yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "accessibility_100yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.accessibility_100yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "SUSTAINABILITY_5yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_5yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "SUSTAINABILITY_25yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_25yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "SUSTAINABILITY_100yr") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.SUSTAINABILITY_100yr).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "elevation") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.elevation).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "land_use_score") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.land_use_score).toFixed(3))}`
+            //             : `undefined`;
+            //     } else if (this.hover_layer === "coverage_score") {
+            //         document.getElementById('pd').innerHTML = displayFeatures.length
+            //             ? `${Number(parseFloat(displayFeatures[0].properties.coverage_score).toFixed(3))}`
+            //             : `undefined`;
+            //     }
+            // });
 
             // DEFAULT STARTING LAYER
-
             this.map.setLayoutProperty(
                 `l_marikina_sustainability_5yr`,
                 'visibility',

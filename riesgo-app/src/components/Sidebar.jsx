@@ -497,22 +497,22 @@ const Sidebar = (props) => {
                     </Typography>
                     {/* Flood Buttons */}
                     {layer === "Flood" &&
-                        <Box display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            paddingTop="0.5em">
+                        <Box>
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
                                 <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
-                                    color="primary"
                                     value={alignment}
                                     exclusive
                                     onChange={handleYearButtonChange}
+                                    fullWidth
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
                                 >
-
                                     <ToggleButton
                                         value="5yr_flood"
                                         onClick={() => {
@@ -559,20 +559,21 @@ const Sidebar = (props) => {
 
                     {/* Hazard Buttons */}
                     {layer === "Hazard" &&
-                        <Box display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            paddingTop="0.5em">
+                        <Box>
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
                                 <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
-                                    color="primary"
                                     value={alignment}
                                     exclusive
                                     onChange={handleYearButtonChange}
+                                    fullWidth
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
                                 >
                                     <ToggleButton
                                         value="5yr_flood"
@@ -618,20 +619,21 @@ const Sidebar = (props) => {
                         </Box>}
                     {/* Accessibility Buttons */}
                     {layer === "Accessibility" &&
-                        <Box display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            paddingTop="0.5em">
+                        <Box>
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
                                 <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
-                                    color="primary"
                                     value={alignment}
                                     exclusive
                                     onChange={handleYearButtonChange}
+                                    fullWidth
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
                                 >
                                     <ToggleButton
                                         value="5yr_flood"
@@ -678,23 +680,24 @@ const Sidebar = (props) => {
 
                     {/* Sustainability Buttons */}
                     {layer === "Sustainability" &&
-                        <Box display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            paddingTop="0.5em">
+                        <Box>
                             <div onChange={(event, newValue) => {
                                 setValue(newValue);
                             }}>
                                 <hr />
                                 <Typography variant="overline"><b>Select a Flood Return Period</b></Typography>
                                 <ToggleButtonGroup
-                                    color="primary"
                                     value={alignment}
                                     exclusive
                                     onChange={handleYearButtonChange}
+                                    fullWidth
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
                                 >
                                     <ToggleButton
-                                        value="5yr_sustainability"
+                                        value="5yr_flood"
                                         onClick={() => {
                                             const toActivate = `${city}_sustainability_5yr`;
 
@@ -735,12 +738,13 @@ const Sidebar = (props) => {
                                 </ToggleButtonGroup>
                             </div>
                         </Box>}
-                    <hr />
+
+                    {/* <hr />
                     <Typography variant="h6"><LayerName layerName={layer} /> Hover Score</Typography>
                     <Typography id="pd" style={{fontSize: "1.75em", fontWeight: "bold"}}>
                         undefined
                     </Typography>
-                    <Typography variant="overline">score of grid area under mouse</Typography>
+                    <Typography variant="overline">score of grid area under mouse</Typography> */}
 
                     {/* Only show land use when land use / sustainaibility is selected */}
 
