@@ -45,6 +45,7 @@ const getCoverageColor = ["#00C49F", "#ebebeb"];
 
 export default function Analysis(props) {
     const [analysisState, setAnalysisState] = React.useState(props);
+    const [scoreColorSelected, setScoreColorSelected] = React.useState(0);
 
     var barangay = analysisState.data[29];
 
@@ -67,6 +68,32 @@ export default function Analysis(props) {
         },
     ];
 
+    var floodDataAverage = ((floodData[0].score + floodData[1].score + floodData[2].score) - 0.15) / 3;
+    floodDataAverage = Number(parseFloat(floodDataAverage).toFixed(2));
+
+    function FloodClassification(props) {
+        const ascore = props.score;
+
+        if (ascore >= 0.8) {
+            setScoreColorSelected("#cfd3ff");
+            return "No Flood";
+        }
+        if (ascore < .80 && ascore >= .50) {
+            setScoreColorSelected("#727ded");
+            return "Low Flood";
+        }
+        if (ascore < .50 && ascore >= .20) {
+            setScoreColorSelected("#3741a1");
+            return "Medium Flood";
+        }
+        if (ascore < .20 && ascore >= 0) {
+            setScoreColorSelected("#06106b");
+            return "High Flood";
+        }
+
+        return undefined;
+    }
+
     var hazardData = [
         {
             name: "5 Years",
@@ -82,6 +109,32 @@ export default function Analysis(props) {
         },
     ];
 
+    var hazardDataAverage = ((hazardData[0].score + hazardData[1].score + hazardData[2].score)) / 3;
+    hazardDataAverage = Number(parseFloat(hazardDataAverage).toFixed(2));
+
+    function HazardClassification(props) {
+        const ascore = props.score;
+
+        if (ascore >= 0.8) {
+            setScoreColorSelected("#ffd86e");
+            return "No Hazard";
+        }
+        if (ascore < .80 && ascore >= .50) {
+            setScoreColorSelected("#f6684c");
+            return "Low Hazard";
+        }
+        if (ascore < .50 && ascore >= .20) {
+            setScoreColorSelected("#9d1e69");
+            return "Medium Hazard";
+        }
+        if (ascore < .20 && ascore >= 0) {
+            setScoreColorSelected("#300061");
+            return "High Hazard";
+        }
+
+        return undefined;
+    }
+
     var accessibilityData = [
         {
             name: "5 Years",
@@ -96,6 +149,28 @@ export default function Analysis(props) {
             score: Number(parseFloat(analysisState.data[8]).toFixed(2))
         },
     ];
+
+    var accessibilityDataAverage = ((accessibilityData[0].score + accessibilityData[1].score + accessibilityData[2].score)) / 3;
+    accessibilityDataAverage = Number(parseFloat(accessibilityDataAverage).toFixed(2));
+
+    function AccessibilityClassification(props) {
+        const ascore = props.score;
+
+        if (ascore >= 0.5) {
+            setScoreColorSelected("#800f2f");
+            return "High Accessibility";
+        }
+        if (ascore < .50 && ascore >= .20) {
+            setScoreColorSelected("#c9184a");
+            return "Medium Accessibility";
+        }
+        if (ascore < .20 && ascore >= 0) {
+            setScoreColorSelected("#ff8099");
+            return "Low Accessibility";
+        }
+
+        return undefined;
+    }
 
     var sustainabilityData = [
         {
@@ -122,6 +197,9 @@ export default function Analysis(props) {
             score: 1 - Number(parseFloat(analysisState.data[30]).toFixed(3))
         }
     ]
+
+    var coverageDataPercentage = coverageData[0].score * 100;
+    coverageDataPercentage = Number(parseFloat(coverageDataPercentage).toFixed(3))
 
     if (props.selected === false || analysisState.data[9] === undefined) { // If pin is not dropped
 
@@ -688,8 +766,7 @@ export default function Analysis(props) {
                             display="flex"
                             alignItems="center"
                             justifyContent="center"
-                            marginLeft={-5}
-                        >
+                            marginLeft={-5}>
                             <BarChart width={350} height={150} data={floodData}>
                                 <XAxis dataKey="name" />
                                 <YAxis domain={[0, 1]} allowDataOverflow={true} />
@@ -701,7 +778,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Flood Safety Score </i> 
+                         of <b style={{ color: scoreColorSelected }}>{floodDataAverage}</b>. This is considered 
+                        a <b style={{ color: scoreColorSelected }}><FloodClassification score={floodDataAverage}/></b> area.</Typography>
                     </div>
                 )
             case "Hazard":
@@ -727,7 +806,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Hazard Safety Score </i> 
+                         of <b style={{ color: scoreColorSelected }}>{hazardDataAverage}</b>. This is considered 
+                        a <b style={{ color: scoreColorSelected }}><HazardClassification score={hazardDataAverage}/></b> area.</Typography>
                     </div>
                 )
             case "Accessibility":
@@ -753,7 +834,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Accessibility Score </i> 
+                         of <b style={{ color: scoreColorSelected }}>{accessibilityDataAverage}</b>. This is considered 
+                        a <b style={{ color: scoreColorSelected }}><AccessibilityClassification score={accessibilityDataAverage}/></b> area.</Typography>
                     </div>
                 )
             case "Sustainability": // Show all
@@ -840,13 +923,12 @@ export default function Analysis(props) {
 
                         <Typography variant="h6">Elevation (Above Sea Level)</Typography>
                         <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
-                        <hr />
-                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                        <hr/>
                     </div>
                 );
             case "Coverage Score":
                 return (<div>
-                    <hr/>
+                    <hr />
                     <Typography variant="overline">BARANGAY <b>{barangay}</b></Typography>
                     <Typography variant="h6">Coverage Score</Typography>
                     <Box
@@ -871,7 +953,7 @@ export default function Analysis(props) {
                         </PieChart>
                     </Box>
                     <hr />
-                    <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+                    <Typography variant='body1'>The human population of this area within barangay <b>{barangay}</b> takes up <b>{coverageDataPercentage}%</b> of the area.</Typography>
                 </div>
                 )
             default:
