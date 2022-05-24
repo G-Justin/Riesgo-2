@@ -772,7 +772,7 @@ const Sidebar = (props) => {
                 </Card>
             </Fade>
 
-            <Card sx={{ position: "absolute", margin: 2, right: 30, bottom: 95 }}>
+            <Card sx={{ position: "absolute",  bottom: 65, right: '48.75%'}}>
                 <ToggleButton
                     color="primary"
                     value="check"
@@ -787,7 +787,7 @@ const Sidebar = (props) => {
                         }
                     }}
                 >
-                    <RoomIcon />
+                <RoomIcon />
                 </ToggleButton>
             </Card>
 
