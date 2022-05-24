@@ -194,3 +194,27 @@ footer {
 .mapboxgl-ctrl-pitchtoggle-2d {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+ICAgIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjM1ZW0iIHN0eWxlPSJmb250LXNpemU6IDE0cHg7IGZvbnQtZmFtaWx5OiAnSGVsdmV0aWNhIE5ldWUnLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXdlaWdodDogYm9sZDsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPjJEPC90ZXh0Pjwvc3ZnPg==);
 }
+
+/* REAL CSS */
+.new-content-body {
+  margin: 5em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.left-content {
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+.right-graphic {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.right-image {
+  width: 80%;
+}
