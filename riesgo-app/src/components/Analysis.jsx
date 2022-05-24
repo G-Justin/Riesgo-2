@@ -187,6 +187,32 @@ export default function Analysis(props) {
         },
     ];
 
+    var sustainabilityDataAverage = ((sustainabilityData[0].score + sustainabilityData[1].score + sustainabilityData[2].score)) / 3;
+    sustainabilityDataAverage = Number(parseFloat(sustainabilityDataAverage).toFixed(2));
+
+    function SustainabilityClassification(props) {
+        const ascore = props.score;
+
+        if (ascore >= 0.50) {
+            setScoreColorSelected("#2fe02f");
+            return "Highly Suitable Area";
+        }
+        if (ascore < .50 && ascore >= .30) {
+            setScoreColorSelected("#f5c645");
+            return "Suitable Area";
+        }
+        if (ascore < .30 && ascore >= .15) {
+            setScoreColorSelected("#e0762f");
+            return "Very Low Suitability";
+        }
+        if (ascore < .15 && ascore >= 0) {
+            setScoreColorSelected("#ff3d3d");
+            return "Unsuitable";
+        }
+
+        return undefined;
+    }
+
     var coverageData = [
         {
             name: "Coverage Score",
@@ -921,9 +947,12 @@ export default function Analysis(props) {
                             </PieChart>
                         </Box>
 
-                        <Typography variant="h6">Elevation (Above Sea Level)</Typography>
-                        <Typography variant="h4"><b>{analysisState.data[9]} Meters</b></Typography>
+                        <Typography variant="h6">Elevation</Typography>
+                        <Typography><b>{analysisState.data[9]} Meters</b> Above Sea Level</Typography>
                         <hr/>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Suitability Score </i> 
+                         of <b style={{ color: scoreColorSelected }}>{sustainabilityDataAverage}</b>. This is considered 
+                        a <b style={{ color: scoreColorSelected }}><SustainabilityClassification score={sustainabilityDataAverage}/></b> area.</Typography>
                     </div>
                 );
             case "Coverage Score":
