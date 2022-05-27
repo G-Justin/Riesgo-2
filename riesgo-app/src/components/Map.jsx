@@ -2156,6 +2156,14 @@ export default class Map extends Component {
                     zoom: 12.75,
                     essential: true
                 });
+            } else if (nextProps.city === 'l_manila') {
+                this.map.flyTo({
+                    center: [
+                        120.98342857168913, 14.595154190112392
+                    ],
+                    zoom: 12.75,
+                    essential: true
+                });
             } else {
                 this.map.flyTo({
                     center: [

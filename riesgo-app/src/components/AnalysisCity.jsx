@@ -396,6 +396,197 @@ export default function AnalysisCity(props) {
                 </div>
             </div>
         );
+    } else if (props.cityName === 'l_manila') {
+        const data = [
+            {
+                name: "0.0",
+                five_yr: 50,
+                twentyfive_yr: 100,
+                hundred_yr: 300,
+                amt: 2400
+            },
+            {
+                name: "0.1",
+                five_yr: 150,
+                twentyfive_yr: 800,
+                hundred_yr: 810,
+                amt: 2210
+            },
+            {
+                name: "0.2",
+                five_yr: 610,
+                twentyfive_yr: 1210,
+                hundred_yr: 1205,
+                amt: 2290
+            },
+            {
+                name: "0.3",
+                five_yr: 1100,
+                twentyfive_yr: 810,
+                hundred_yr: 780,
+                amt: 2000
+            },
+            {
+                name: "0.4",
+                five_yr: 930,
+                twentyfive_yr: 420,
+                hundred_yr: 410,
+                amt: 2181
+            },
+            {
+                name: "0.5",
+                five_yr: 600,
+                twentyfive_yr: 150,
+                hundred_yr: 190,
+                amt: 2500
+            },
+            {
+                name: "0.6",
+                five_yr: 10,
+                twentyfive_yr: 50,
+                hundred_yr: 50,
+                amt: 2100
+            },
+            {
+                name: "0.7",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.8",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "0.9",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+            {
+                name: "1",
+                five_yr: 0,
+                twentyfive_yr: 0,
+                hundred_yr: 0,
+                amt: 2100
+            },
+        ];
+
+        return (
+            <div>
+                <Typography variant='h6'>Mean Suitability Score: 0.20</Typography>
+                <Typography variant='overline'>(Applies for all return periods)</Typography>
+                <hr />
+                <Typography variant='h6'>City Suitability Distribution</Typography>
+                <Typography variant='overline'>for each dataset return period</Typography>
+                <div>
+                    <Accordion defaultExpanded="true">
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>5 Year Return Period</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={300}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Bar dataKey="five_yr" fill="#fb5c5b" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
+                            <Typography>25 Year Return Period</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={300}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Bar dataKey="twentyfive_yr" fill="#f1b660" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
+                            <Typography>100 Year Return Period</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-2}
+                            >
+                                <BarChart
+                                    width={300}
+                                    height={250}
+                                    data={data}
+                                    margin={{
+                                        top: 10,
+                                        bottom: 5
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    {/* <Tooltip /> */}
+                                    <Bar dataKey="hundred_yr" fill="#49c0e8" />
+                                </BarChart>
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+            </div>
+        );
     } else {
         return (<div></div>)
     }

@@ -775,6 +775,279 @@ export default function Analysis(props) {
                     return (<div></div>)
 
             }
+        } else if (props.cityName === "l_manila") {
+            var manilaAveFlood = [
+                {
+                    name: "5 Years",
+                    score: 0.458,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.372,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.317,
+                },
+            ];
+
+            var manilaAveAccessibility = [
+                {
+                    name: "5 Years",
+                    score: 0.2861622915,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.2567129871,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.2527476868,
+                },
+            ];
+
+
+            var manilaAveHazard = [
+                {
+                    name: "5 Years",
+                    score: 0.3514126773,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.3085673506,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.2812307087,
+                },
+            ];
+
+            const manilaAveCoverage = [
+                {
+                    name: "0%",
+                    uv: 0,
+                },
+                {
+                    name: "25%",
+                    uv: 0.0509957039,
+                },
+                {
+                    name: "50%",
+                    uv: 0.1032731243,
+                },
+                {
+                    name: "75%",
+                    uv: 0.1682787021,
+                },
+            ];
+
+            const manilaAveSustainability = [
+                {
+                    name: "5 Years",
+                    score: 0.2193118691,
+                },
+                {
+                    name: "25 Years",
+                    score: 0.2012382113,
+                },
+                {
+                    name: "100 Years",
+                    score: 0.1934127258,
+                },
+            ];
+
+            // Very Difficult 
+            const COLORS = ['#ff5d5d', '#0088FE', '#FFBB28', '#00C49F'];
+
+            const RADIAN = Math.PI / 180;
+            const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                return (
+                    <text x={x} y={y} fill="white" fontWeight="bold" fontFamily="Roboto" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                        {`${(percent * 100).toFixed(0)}%`}
+                    </text>
+                );
+            };
+
+            //Will change
+            //No idea where unclassified should be. Did not include it in the computation.
+            const data = [
+                { name: "Nature", value: 27.99736785 },
+                { name: "Residential/Recreation", value: 139.9727453 },
+                { name: "Commercial/Industrial", value: 124.5065187},
+                { name: "Farmland", value: 83.03560976 }
+            ];
+
+            switch (props.layerName) {
+                case "Flood":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Manila Average Flood Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={manilaAveFlood}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {manilaAveFlood.map((entry, index) => (
+                                            <Cell fill={getFloodColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Elevation":
+                    return (<div>
+                        {/* <Typography variant="h6">Average Elevation</Typography>
+                        <Typography variant="h4"><b>20.47 Meters</b></Typography> */}
+                    </div>)
+                case "Accessibility":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Manila Average Accessibility Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={manilaAveAccessibility}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {manilaAveAccessibility.map((entry, index) => (
+                                            <Cell fill={getAccessibilityColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Hazard":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Manila Average Hazard Safety Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={manilaAveHazard}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {manilaAveHazard.map((entry, index) => (
+                                            <Cell fill={getHazardColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                case "Coverage Score":
+                    return (<div>
+                        <hr />
+                        <Typography variant="h6">Coverage Score Distribution</Typography>
+                        <AreaChart
+                            width={320}
+                            height={200}
+                            data={manilaAveCoverage}
+                            margin={{
+                                top: 10,
+                                right: 30,
+                                left: -5,
+                                bottom: 0
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+                        </AreaChart>
+                        <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                            standard dummy text ever since the 1500s</Typography>
+                    </div>)
+                case "Land Use Score":
+                    return (<div>
+                        <hr />
+                        <Typography variant="h6">Pasig Land Availability Distribution</Typography>
+                        <PieChart width={320} height={300}>
+                            <Legend />
+                            <Tooltip />
+                            <Pie
+                                data={data}
+                                cx="50%"
+                                cy="40%"
+                                labelLine={false}
+                                label={renderCustomizedLabel}
+                                outerRadius={100}
+                                fill="#8884d8"
+                                dataKey="value"
+                            >
+                                {data.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                        </PieChart>
+                        <hr />
+                        <Typography variant='body1'><b>The City of Manila</b> is rougly <b style={{ color: "#ff5d5d" }}>27% Nature,</b> <b style={{ color: "#0088fe" }}>35% Residential,</b> <b style={{ color: "#ffbb28" }}>28% Commercial</b> and <b style={{ color: "#00c49f" }}>8.5% Farmland</b></Typography>
+                    </div>)
+                case "Sustainability":
+                    return (
+                        <div>
+                            <hr />
+                            <Typography variant="overline">years are represented as <b>return periods</b></Typography>
+                            <Typography variant="h6">Manila Average Suitability Score</Typography>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                marginLeft={-5}
+                            >
+                                <BarChart width={350} height={150} data={manilaAveSustainability}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis domain={[0, 1]} allowDataOverflow={true} />
+                                    <Tooltip />
+                                    <Bar dataKey="score">
+                                        {manilaAveSustainability.map((entry, index) => (
+                                            <Cell fill={getSustainabilityColor(entry.score)} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </Box>
+                            <Typography variant='body1'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s</Typography>
+                        </div>
+                    )
+                default:
+                    return (<div></div>)
+
+            }
         } else {
             return (<div></div>)
         }
@@ -804,9 +1077,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Flood Safety Score </i> 
-                         of <b style={{ color: scoreColorSelected }}>{floodDataAverage}</b>. This is considered 
-                        a <b style={{ color: scoreColorSelected }}><FloodClassification score={floodDataAverage}/></b> area.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Flood Safety Score </i>
+                            of <b style={{ color: scoreColorSelected }}>{floodDataAverage}</b>. This is considered
+                            a <b style={{ color: scoreColorSelected }}><FloodClassification score={floodDataAverage} /></b> area.</Typography>
                     </div>
                 )
             case "Hazard":
@@ -832,9 +1105,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Hazard Safety Score </i> 
-                         of <b style={{ color: scoreColorSelected }}>{hazardDataAverage}</b>. This is considered 
-                        a <b style={{ color: scoreColorSelected }}><HazardClassification score={hazardDataAverage}/></b> area.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Hazard Safety Score </i>
+                            of <b style={{ color: scoreColorSelected }}>{hazardDataAverage}</b>. This is considered
+                            a <b style={{ color: scoreColorSelected }}><HazardClassification score={hazardDataAverage} /></b> area.</Typography>
                     </div>
                 )
             case "Accessibility":
@@ -860,9 +1133,9 @@ export default function Analysis(props) {
                             </BarChart>
                         </Box>
                         <hr />
-                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Accessibility Score </i> 
-                         of <b style={{ color: scoreColorSelected }}>{accessibilityDataAverage}</b>. This is considered 
-                        a <b style={{ color: scoreColorSelected }}><AccessibilityClassification score={accessibilityDataAverage}/></b> area.</Typography>
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Accessibility Score </i>
+                            of <b style={{ color: scoreColorSelected }}>{accessibilityDataAverage}</b>. This is considered
+                            a <b style={{ color: scoreColorSelected }}><AccessibilityClassification score={accessibilityDataAverage} /></b> area.</Typography>
                     </div>
                 )
             case "Sustainability": // Show all
@@ -949,10 +1222,10 @@ export default function Analysis(props) {
 
                         <Typography variant="h6">Elevation</Typography>
                         <Typography><b>{analysisState.data[9]} Meters</b> Above Sea Level</Typography>
-                        <hr/>
-                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Suitability Score </i> 
-                         of <b style={{ color: scoreColorSelected }}>{sustainabilityDataAverage}</b>. This is considered 
-                        a <b style={{ color: scoreColorSelected }}><SustainabilityClassification score={sustainabilityDataAverage}/></b> area.</Typography>
+                        <hr />
+                        <Typography variant='body1'>This area within <b style={{ color: scoreColorSelected }}>Barangay {barangay}</b> has an average <i>Suitability Score </i>
+                            of <b style={{ color: scoreColorSelected }}>{sustainabilityDataAverage}</b>. This is considered
+                            a <b style={{ color: scoreColorSelected }}><SustainabilityClassification score={sustainabilityDataAverage} /></b> area.</Typography>
                     </div>
                 );
             case "Coverage Score":
