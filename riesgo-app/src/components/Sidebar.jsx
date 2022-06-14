@@ -56,11 +56,6 @@ const Sidebar = (props) => {
     const [selected, setSelected] = React.useState(true);
     const [visible, setVisible] = React.useState(true);
 
-    // if (value != null) {
-    //     document.getElementById('sidebar-analysis').style.visibility = "visible";
-    //     document.getElementById('labels').style.visibility = "visible";
-    // }
-
     //Update Analysis Props
     const [analysisState, setAnalysisState] = React.useState(props);
     React.useEffect(() => {
