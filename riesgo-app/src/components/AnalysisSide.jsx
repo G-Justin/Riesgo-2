@@ -32,7 +32,6 @@ export default function AnalysisSide(props) {
   //TODO: Pasig / Manila Validation and Loadout
 
   // Marikina Loadout
-  // This implementation is retarded
   var marikinaLoadout = [
     analysisState.data[11], // 1
     analysisState.data[12],
