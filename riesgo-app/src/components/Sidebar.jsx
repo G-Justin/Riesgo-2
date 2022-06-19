@@ -3,7 +3,6 @@ import { BottomNavigation } from "@mui/material"
 import { BottomNavigationAction } from "@mui/material"
 import { Button } from "@mui/material"
 import { Card } from "@mui/material"
-//import { CardActions } from "@mui/material"
 import { CardContent } from "@mui/material"
 import { Paper } from "@mui/material"
 import { Typography } from "@mui/material"
@@ -18,8 +17,6 @@ import PeopleIcon from '@mui/icons-material/People';
 import DownloadIcon from '@mui/icons-material/Download';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import RoomIcon from '@mui/icons-material/Room';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import IconButton from '@mui/material/IconButton';
 
 //Misc
 import Divider from '@mui/material/Divider';
@@ -32,7 +29,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 //Adjust Weights
-import Slider from './Slider';
 import Fade from '@mui/material/Fade';
 import React from "react";
 import { Box } from "@mui/system";
@@ -762,7 +758,6 @@ const Sidebar = (props) => {
 
                         <Divider sx={{ marginTop: 1, marginBottom: 1 }} />
 
-                        <Slider />
                     </CardContent>
                 </Card>
             </Fade>
