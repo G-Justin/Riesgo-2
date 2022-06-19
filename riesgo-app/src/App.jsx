@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Sidebar from './components/Sidebar'
-//import Info from './components/Info'
 import Map from './components/Map'
 import Welcome from './components/Welcome'
 import FAQ from './components/FAQ'
