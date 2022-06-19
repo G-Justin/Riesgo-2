@@ -29,7 +29,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 //Adjust Weights
-import Fade from '@mui/material/Fade';
 import React from "react";
 import { Box } from "@mui/system";
 
@@ -107,13 +106,6 @@ const Sidebar = (props) => {
     const handleHide = () => {
         setVisible(!visible);
     };
-
-    //Adjust Weights Ui
-    const [open, setOpen] = React.useState(false);
-
-    //Handle Open Land Usage (Default)
-    // const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
     const handleChange = (event) => {
         setCity(event.target.value);
@@ -372,8 +364,6 @@ const Sidebar = (props) => {
                             setLayer('Flood'); //Front-end Display name of Layer
                             props.updateLayerType('flood_5yr'); //Back-end name of Layer
                             props.updateLayer(toActivate);  //Load the dynamic regex in the backend
-
-                            handleClose();
                         }}
                     />
                     <BottomNavigationAction
@@ -387,8 +377,6 @@ const Sidebar = (props) => {
                             setLayer('Hazard');
                             props.updateLayerType('hazard_5yr');
                             props.updateLayer(toActivate);
-
-                            handleClose();
                         }}
                     />
                     <BottomNavigationAction
@@ -401,8 +389,6 @@ const Sidebar = (props) => {
                             setLayer('Accessibility');
                             props.updateLayerType('accessibility_5yr');
                             props.updateLayer(toActivate);
-
-                            handleClose();
                         }}
                     />
                     <BottomNavigationAction
@@ -414,8 +400,6 @@ const Sidebar = (props) => {
                             setLayer('Sustainability');
                             props.updateLayerType('sustainability_5yr');
                             props.updateLayer(toActivate);
-
-                            handleClose();
                         }}
                     />
                     <BottomNavigationAction
@@ -428,8 +412,6 @@ const Sidebar = (props) => {
                             setLayer('Elevation');
                             props.updateLayerType('elevation');
                             props.updateLayer(toActivate);
-
-                            handleClose();
                         }}
                     />
                     <BottomNavigationAction
@@ -454,8 +436,6 @@ const Sidebar = (props) => {
                             setLayer('Coverage Score');
                             props.updateLayerType('coverage_score');
                             props.updateLayer(toActivate);
-
-                            handleClose();
                         }}
                     />
                 </BottomNavigation>
@@ -499,8 +479,6 @@ const Sidebar = (props) => {
                                             setLayer('Flood');
                                             props.updateLayerType('flood_5yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         5 Years
                                     </ToggleButton>
@@ -512,8 +490,6 @@ const Sidebar = (props) => {
                                             setLayer('Flood');
                                             props.updateLayerType('flood_25yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         25 Years
                                     </ToggleButton>
@@ -525,8 +501,6 @@ const Sidebar = (props) => {
                                             setLayer('Flood');
                                             props.updateLayerType('flood_100yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         100 Years
                                     </ToggleButton>
@@ -561,8 +535,6 @@ const Sidebar = (props) => {
                                             setLayer('Hazard');
                                             props.updateLayerType('hazard_5yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         5 Years
                                     </ToggleButton>
@@ -574,8 +546,6 @@ const Sidebar = (props) => {
                                             setLayer('Hazard');
                                             props.updateLayerType('hazard_25yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         25 Years
                                     </ToggleButton>
@@ -587,8 +557,6 @@ const Sidebar = (props) => {
                                             setLayer('Hazard');
                                             props.updateLayerType('hazard_100yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         100 Years
                                     </ToggleButton>
@@ -621,8 +589,6 @@ const Sidebar = (props) => {
                                             setLayer('Accessibility');
                                             props.updateLayerType('accessibility_5yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         5 Years
                                     </ToggleButton>
@@ -634,8 +600,6 @@ const Sidebar = (props) => {
                                             setLayer('Accessibility');
                                             props.updateLayerType('accessibility_25yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         25 Years
                                     </ToggleButton>
@@ -647,8 +611,6 @@ const Sidebar = (props) => {
                                             setLayer('Accessibility');
                                             props.updateLayerType('accessibility_100yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         100 Years
                                     </ToggleButton>
@@ -682,8 +644,6 @@ const Sidebar = (props) => {
                                             setLayer('Sustainability');
                                             props.updateLayerType('sustainability_5yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         5 Years
                                     </ToggleButton>
@@ -695,8 +655,6 @@ const Sidebar = (props) => {
                                             setLayer('Sustainability');
                                             props.updateLayerType('sustainability_25yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         25 Years
                                     </ToggleButton>
@@ -708,8 +666,6 @@ const Sidebar = (props) => {
                                             setLayer('Sustainability');
                                             props.updateLayerType('sustainability_100yr');
                                             props.updateLayer(toActivate);
-
-                                            handleClose();
                                         }}>
                                         100 Years
                                     </ToggleButton>
@@ -747,20 +703,6 @@ const Sidebar = (props) => {
 
                 </CardContent>
             </Card>
-
-            {/* Land Usage Modal */}
-            <Fade in={open}>
-                <Card sx={{ width: 300, position: "absolute", margin: 2, right: 0, bottom: 250 }}>
-                    <CardContent>
-                        <Typography variant="h6" component="div">
-                            Adjust Land Usage
-                        </Typography>
-
-                        <Divider sx={{ marginTop: 1, marginBottom: 1 }} />
-
-                    </CardContent>
-                </Card>
-            </Fade>
 
             <Card sx={{ position: "absolute", marginTop: 2,  top: 0, right: '48.75%'}}>
                 <ToggleButton
